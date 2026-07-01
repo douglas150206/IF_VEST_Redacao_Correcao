@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corretor de Redação ENEM</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; }
+
+    /* ── Auth ── */
+    .auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .auth-box { background: #fff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 2rem; width: 100%; max-width: 400px; }
+    .auth-box h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+    .auth-box p { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
+    .auth-tabs { display: flex; gap: 4px; background: #f5f4f0; border-radius: 8px; padding: 4px; margin-bottom: 1.5rem; }
+    .auth-tab { flex: 1; padding: 7px; border: none; background: transparent; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; color: #666; transition: all 0.15s; }
+    .auth-tab.active { background: #fff; color: #1a1a1a; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 12px; font-weight: 500; color: #555; margin-bottom: 5px; }
+    .field input { width: 100%; padding: 9px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .field input:focus { outline: none; border-color: #7F77DD; box-shadow: 0 0 0 3px rgba(127,119,221,0.12); }
+    .btn-primary { width: 100%; padding: 11px; border: none; border-radius: 8px; background: #534AB7; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-primary:hover { background: #3C3489; }
+    .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+    .auth-error { background: #fff0f0; border: 1px solid #f5c2c2; color: #a00; border-radius: 6px; padding: 8px 12px; font-size: 12px; margin-bottom: 12px; display: none; }
+
+    /* ── App principal ── */
+    .app { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; display: none; }
+    .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 10px; }
+    .topbar-left h1 { font-size: 20px; font-weight: 600; }
+    .topbar-left p { font-size: 13px; color: #666; }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .user-info { font-size: 13px; color: #555; }
+    .btn-sm { padding: 6px 14px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 13px; cursor: pointer; }
+    .btn-sm:hover { background: #f5f4f0; }
+
+    /* Status bar */
+    .status-bar { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .status-left { display: flex; align-items: center; gap: 12px; }
+    .status-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .status-icon.ok { background: #d1fae5; }
+    .status-icon.warn { background: #fef3c7; }
+    .status-icon.danger { background: #fee2e2; }
+    .status-icon.custom { background: #EEEDFE; }
+    .status-title { font-size: 13px; font-weight: 600; }
+    .status-sub { font-size: 12px; color: #666; }
+    .btn-link { background: none; border: none; color: #534AB7; font-size: 12px; cursor: pointer; text-decoration: underline; padding: 0; }
+
+    /* Modal chave */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; border-radius: 16px; padding: 1.5rem; width: 100%; max-width: 440px; }
+    .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .modal p { font-size: 13px; color: #555; margin-bottom: 1rem; line-height: 1.5; }
+    .modal-btns { display: flex; gap: 8px; margin-top: 1rem; }
+    .btn-secondary { flex: 1; padding: 9px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 13px; cursor: pointer; }
+    .tip-box { background: #EEEDFE; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #3C3489; margin-bottom: 1rem; line-height: 1.5; }
+
+    /* Formulário */
+    .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+    label.lbl { display: block; font-size: 13px; font-weight: 500; color: #555; margin-bottom: 6px; }
+    input.txt, textarea.txt {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
+      font-family: inherit; font-size: 14px; color: #1a1a1a; background: #fff;
+    }
+    input.txt:focus, textarea.txt:focus { outline: none; border-color: #7F77DD; box-shadow: 0 0 0 3px rgba(127,119,221,0.12); }
+    textarea.txt { min-height: 220px; resize: vertical; line-height: 1.7; }
+    .char-count { font-size: 12px; color: #999; text-align: right; margin-top: 4px; }
+    .btn-corrigir { width: 100%; padding: 13px; border: none; border-radius: 10px; background: #534AB7; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-corrigir:hover:not(:disabled) { background: #3C3489; }
+    .btn-corrigir:disabled { background: #ccc; cursor: not-allowed; }
+    .error-box { background: #fff0f0; border: 1px solid #f5c2c2; color: #a00; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 12px; display: none; }
+    .limit-box { background: #fef3c7; border: 1px solid #fcd34d; color: #78350f; border-radius: 8px; padding: 12px 14px; font-size: 13px; margin-top: 12px; display: none; line-height: 1.6; }
+
+    /* Resultados */
+    .results { margin-top: 2rem; display: none; }
+    .loading { text-align: center; padding: 2.5rem 1.5rem; }
+    .spinner-wrap { position: relative; width: 64px; height: 64px; margin: 0 auto 20px; }
+    .spinner-outer { width: 64px; height: 64px; border: 3px solid #eee; border-top-color: #534AB7; border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
+    .spinner-inner { width: 44px; height: 44px; border: 3px solid #eee; border-bottom-color: #7F77DD; border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 10px; left: 10px; }
+    .spinner-dot { width: 10px; height: 10px; background: #534AB7; border-radius: 50%; position: absolute; top: 27px; left: 27px; animation: pulse-dot 1s ease-in-out infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
+    .loading-msg { font-size: 14px; color: #534AB7; font-weight: 600; margin-bottom: 6px; min-height: 22px; transition: opacity 0.3s; }
+    .loading-sub { font-size: 12px; color: #999; margin-bottom: 20px; }
+    .loading-progress-bg { height: 4px; background: #eee; border-radius: 99px; overflow: hidden; width: 220px; margin: 0 auto; }
+    .loading-progress-fill { height: 4px; background: linear-gradient(90deg, #534AB7, #7F77DD); border-radius: 99px; width: 0%; transition: width 0.6s ease; }
+    .nota-total-card { background: #534AB7; color: #fff; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .nota-value { font-size: 42px; font-weight: 700; line-height: 1; }
+    .nota-max { font-size: 16px; opacity: 0.6; }
+    .nivel-pill { font-size: 12px; padding: 5px 14px; border-radius: 99px; font-weight: 600; }
+    .nivel-alto { background: #d1fae5; color: #065f46; }
+    .nivel-medio { background: #fef3c7; color: #92400e; }
+    .nivel-baixo { background: #fee2e2; color: #991b1b; }
+    .comp-grid { display: grid; gap: 10px; margin-bottom: 1.5rem; }
+    .comp-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 1rem 1.25rem; }
+    .comp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .comp-title { font-size: 13px; font-weight: 600; flex: 1; }
+    .comp-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+    .comp-nota { font-size: 20px; font-weight: 700; color: #534AB7; }
+    .comp-nota span { font-size: 12px; color: #999; font-weight: 400; }
+    .progress-bg { height: 4px; background: #f0eefc; border-radius: 99px; margin-bottom: 10px; }
+    .progress-fill { height: 4px; border-radius: 99px; background: #7F77DD; transition: width 0.8s ease; }
+    .comp-feedback { font-size: 13px; color: #555; line-height: 1.65; }
+    .divider { height: 1px; background: #eee; margin: 1.5rem 0; }
+    .melhorias-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+    .melhoria-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+    .melhoria-dot { width: 6px; height: 6px; border-radius: 50%; background: #7F77DD; flex-shrink: 0; margin-top: 6px; }
+    .melhoria-text { font-size: 13px; color: #555; line-height: 1.65; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .badge { background: #EEEDFE; color: #3C3489; font-size: 11px; padding: 3px 10px; border-radius: 99px; font-weight: 500; }
+
+    /* ── Loading Popup ── */
+    .loading-overlay { position: fixed; inset: 0; background: rgba(20,18,40,0.55); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 200; }
+    .loading-overlay.open { display: flex; animation: fade-in 0.25s ease; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    .loading-popup { background: #fff; border-radius: 20px; padding: 2.5rem 2rem; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 24px 60px rgba(83,74,183,0.18); animation: pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    @keyframes pop-in { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .popup-spinner-wrap { position: relative; width: 72px; height: 72px; margin: 0 auto 22px; }
+    .popup-spinner-outer { width: 72px; height: 72px; border: 3px solid #EEEDFE; border-top-color: #534AB7; border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
+    .popup-spinner-inner { width: 50px; height: 50px; border: 3px solid #EEEDFE; border-bottom-color: #7F77DD; border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 11px; left: 11px; }
+    .popup-spinner-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 18px; animation: pulse-dot 1.2s ease-in-out infinite; }
+    .popup-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+    .popup-msg { font-size: 13px; color: #534AB7; font-weight: 500; margin-bottom: 4px; min-height: 20px; transition: opacity 0.3s; }
+    .popup-sub { font-size: 12px; color: #aaa; margin-bottom: 20px; }
+    .popup-progress-bg { height: 5px; background: #EEEDFE; border-radius: 99px; overflow: hidden; }
+    .popup-progress-fill { height: 5px; background: linear-gradient(90deg, #534AB7, #7F77DD, #a09ae8); background-size: 200%; border-radius: 99px; width: 0%; transition: width 0.6s ease; animation: shimmer 1.8s linear infinite; }
+    @keyframes shimmer { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+    .popup-steps { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+    .popup-step { width: 7px; height: 7px; border-radius: 50%; background: #EEEDFE; transition: background 0.4s; }
+    .popup-step.done { background: #534AB7; }
+    .popup-step.active { background: #7F77DD; transform: scale(1.2); }
+
+    /* ── Tema / textos de apoio ── */
+    select.txt { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px; color: #1a1a1a; background: #fff; cursor: pointer; }
+    select.txt:focus { outline: none; border-color: #7F77DD; box-shadow: 0 0 0 3px rgba(127,119,221,0.12); }
+    .apoio-box { margin-top: 12px; border: 1px solid #e5e5e5; border-radius: 8px; background: #faf9f7; overflow: hidden; }
+    .apoio-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 600; color: #3C3489; user-select: none; }
+    .apoio-content { padding: 0 14px 14px; font-size: 13px; color: #444; line-height: 1.6; white-space: pre-wrap; max-height: 260px; overflow-y: auto; }
+    .hint { font-size: 12px; color: #888; margin-top: 6px; }
+    .check-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #555; }
+    .check-row input { width: 16px; height: 16px; accent-color: #534AB7; }
+
+    /* ── Painel de plágio ── */
+    .plagio-card { border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; border: 1px solid; }
+    .plagio-ok { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
+    .plagio-warn { background: #fef3c7; border-color: #fcd34d; color: #78350f; }
+    .plagio-danger { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
+    .plagio-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .plagio-bar-bg { height: 6px; background: rgba(0,0,0,0.08); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+    .plagio-bar-fill { height: 6px; border-radius: 99px; background: currentColor; transition: width .8s ease; }
+    .plagio-sub { font-size: 12px; line-height: 1.55; margin-bottom: 10px; opacity: .92; }
+    .plagio-trecho { background: rgba(255,255,255,0.55); border-left: 3px solid currentColor; border-radius: 4px; padding: 6px 10px; font-size: 12px; margin-bottom: 6px; line-height: 1.5; }
+
+    /* ── Modais largos / listas ── */
+    .modal-wide { max-width: 640px; }
+    .modal-lista { max-height: 52vh; overflow-y: auto; margin: 4px 0 8px; }
+    .empty-msg { text-align: center; color: #999; font-size: 13px; padding: 1.5rem 0; }
+
+    /* ── Histórico ── */
+    .hist-row { border: 1px solid #eee; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .hist-tema { font-size: 13px; font-weight: 600; color: #1a1a1a; }
+    .hist-meta { font-size: 12px; color: #888; margin-top: 2px; }
+    .hist-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .hist-nota { font-size: 16px; font-weight: 700; color: #534AB7; white-space: nowrap; }
+    .copia-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
+    .copia-none { background: #d1fae5; color: #065f46; }
+    .copia-warn { background: #fef3c7; color: #92400e; }
+    .copia-danger { background: #fee2e2; color: #991b1b; }
+
+    /* ── Admin de temas ── */
+    .tema-row { border: 1px solid #eee; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
+    .tema-row-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .tema-row-title { font-size: 13px; font-weight: 600; }
+    .tema-row-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .btn-mini { padding: 4px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 12px; cursor: pointer; }
+    .btn-mini:hover { background: #f5f4f0; }
+    .btn-mini.danger { color: #a00; border-color: #f0c0c0; }
+  </style>
+</head>
+<body>
+
+<!-- ── Tela de Login/Cadastro ── -->
+<div class="auth-wrap" id="authWrap">
+  <div class="auth-box">
+    <h1>Corretor de Redação ENEM</h1>
+    <p>Faça login ou crie sua conta para começar</p>
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="mostrarAba('login')">Entrar</button>
+      <button class="auth-tab" onclick="mostrarAba('cadastro')">Criar conta</button>
+    </div>
+    <div class="auth-error" id="authError"></div>
+
+    <!-- Login -->
+    <div id="formLogin">
+      <div class="field"><label>E-mail</label><input type="email" id="loginEmail" placeholder="seu@email.com" /></div>
+      <div class="field"><label>Senha</label><input type="password" id="loginSenha" placeholder="••••••" /></div>
+      <button class="btn-primary" onclick="fazerLogin()">Entrar</button>
+    </div>
+
+    <!-- Cadastro -->
+    <div id="formCadastro" style="display:none;">
+      <div class="field"><label>Nome</label><input type="text" id="cadNome" placeholder="Seu nome" /></div>
+      <div class="field"><label>E-mail</label><input type="email" id="cadEmail" placeholder="seu@email.com" /></div>
+      <div class="field"><label>Senha</label><input type="password" id="cadSenha" placeholder="Mínimo 6 caracteres" /></div>
+      <div class="field"><label>Código de professor (opcional)</label><input type="password" id="cadCodigoProf" placeholder="Deixe em branco se você for aluno" /></div>
+      <button class="btn-primary" onclick="fazerCadastro()">Criar conta</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── App Principal ── -->
+<div class="app" id="appWrap">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Corretor de Redação ENEM</h1>
+      <p>Avaliação automática nas 5 competências por inteligência artificial</p>
+    </div>
+    <div class="topbar-right">
+      <span class="user-info" id="userNome"></span>
+      <button class="btn-sm" onclick="abrirHistorico()">📜 Histórico</button>
+      <button class="btn-sm" id="btnGerenciarTemas" style="display:none;" onclick="abrirGerenciarTemas()">🛠️ Temas</button>
+      <button class="btn-sm" id="btnSouProfessor" style="display:none;" onclick="promoverProfessor()">Sou professor</button>
+      <button class="btn-sm" onclick="sair()">Sair</button>
+    </div>
+  </div>
+
+  <!-- Status de uso -->
+  <div class="status-bar" id="statusBar">
+    <div class="status-left">
+      <div class="status-icon ok" id="statusIcon">📊</div>
+      <div>
+        <div class="status-title" id="statusTitle">Carregando...</div>
+        <div class="status-sub" id="statusSub"></div>
+      </div>
+    </div>
+    <button class="btn-link" id="statusBtn" onclick="abrirModalChave()"></button>
+  </div>
+
+  <!-- Formulário -->
+  <div class="card">
+    <div style="margin-bottom:1rem;">
+      <label class="lbl" for="temaSelect">Tema da redação</label>
+      <select class="txt" id="temaSelect" onchange="aoMudarTema()">
+        <option value="">— Selecione um tema —</option>
+        <option value="custom">✏️ Tema personalizado (colar textos de apoio)</option>
+      </select>
+
+      <!-- Textos de apoio do tema escolhido (banco) -->
+      <div class="apoio-box" id="apoioBox" style="display:none;">
+        <div class="apoio-head" onclick="toggleApoio()">
+          <span>📄 Textos de apoio deste tema</span>
+          <span id="apoioToggle">▲</span>
+        </div>
+        <div class="apoio-content" id="apoioContent"></div>
+      </div>
+
+      <!-- Tema personalizado -->
+      <div id="customTemaWrap" style="display:none; margin-top:12px;">
+        <input class="txt" type="text" id="temaCustom" placeholder="Título do tema personalizado" style="margin-bottom:10px;" />
+        <textarea class="txt" id="textosApoioCustom" placeholder="Cole aqui os textos de apoio (motivadores) deste tema..." style="min-height:120px;"></textarea>
+      </div>
+
+      <div class="hint">Os textos de apoio são usados para leitura e para detectar cópia na sua redação.</div>
+    </div>
+    <div>
+      <label class="lbl" for="redacao">Texto da redação</label>
+      <textarea class="txt" id="redacao" placeholder="Cole ou digite a redação aqui..."></textarea>
+      <div class="char-count" id="charCount">0 palavras</div>
+    </div>
+  </div>
+  <div class="badges">
+    <span class="badge">Competência I — Norma culta</span>
+    <span class="badge">Competência II — Tema</span>
+    <span class="badge">Competência III — Argumentação</span>
+    <span class="badge">Competência IV — Coesão</span>
+    <span class="badge">Competência V — Proposta</span>
+  </div>
+  <br/>
+  <button class="btn-corrigir" id="btnCorrigir" onclick="corrigir()">✏️ Corrigir redação</button>
+  <div class="error-box" id="errorMsg"></div>
+  <div class="limit-box" id="limitMsg">
+    ⚠️ <strong>Limite mensal atingido!</strong><br/>
+    Você usou todas as 10 correções gratuitas deste mês.<br/>
+    <button class="btn-link" style="margin-top:4px;font-size:13px;" onclick="abrirModalChave()">👉 Cadastre sua chave de API para uso ilimitado</button>
+  </div>
+
+  <!-- Resultados -->
+  <div class="results" id="results">
+    <div class="loading" id="loadingState">
+      <div class="spinner-wrap">
+        <div class="spinner-outer"></div>
+        <div class="spinner-inner"></div>
+        <div class="spinner-dot"></div>
+      </div>
+      <div class="loading-msg" id="loadingMsg">Enviando redação...</div>
+      <div class="loading-sub">Isso pode levar alguns segundos</div>
+      <div class="loading-progress-bg">
+        <div class="loading-progress-fill" id="loadingProgress"></div>
+      </div>
+    </div>
+    <div id="resultContent" style="display:none;">
+      <div class="plagio-card" id="plagioCard" style="display:none;"></div>
+      <div class="nota-total-card">
+        <div>
+          <div style="font-size:14px;opacity:.8;margin-bottom:4px;">Nota final estimada</div>
+          <div style="display:flex;align-items:baseline;gap:6px;">
+            <div class="nota-value" id="notaTotal">—</div>
+            <div class="nota-max">/ 1000</div>
+          </div>
+        </div>
+        <div id="nivelGeral"></div>
+      </div>
+      <div class="comp-grid" id="compGrid"></div>
+      <div class="divider"></div>
+      <div>
+        <div class="melhorias-title">💡 Sugestões de melhoria</div>
+        <div id="melhorias"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Loading Popup ── -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-popup">
+    <div class="popup-spinner-wrap">
+      <div class="popup-spinner-outer"></div>
+      <div class="popup-spinner-inner"></div>
+      <div class="popup-spinner-icon">✏️</div>
+    </div>
+    <div class="popup-title">Corrigindo sua redação</div>
+    <div class="popup-msg" id="popupMsg">Enviando redação...</div>
+    <div class="popup-sub">A IA está analisando nas 5 competências</div>
+    <div class="popup-progress-bg">
+      <div class="popup-progress-fill" id="popupProgress"></div>
+    </div>
+    <div class="popup-steps" id="popupSteps">
+      <div class="popup-step" data-step="0"></div>
+      <div class="popup-step" data-step="1"></div>
+      <div class="popup-step" data-step="2"></div>
+      <div class="popup-step" data-step="3"></div>
+      <div class="popup-step" data-step="4"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: Chave de API própria ── -->
+<div class="modal-overlay" id="modalChave">
+  <div class="modal">
+    <h3>🔑 Usar minha chave de API</h3>
+    <p>Com sua própria chave da Anthropic, você tem <strong>uso ilimitado</strong> e paga apenas pelo que usar (em torno de R$ 0,05 por redação).</p>
+    <div class="tip-box">
+      Como obter sua chave:<br/>
+      1. Acesse <strong>console.anthropic.com</strong><br/>
+      2. Clique em <strong>API Keys → Create Key</strong><br/>
+      3. Copie a chave (começa com <strong>sk-ant-</strong>)
+    </div>
+    <div class="field">
+      <label>Sua chave de API</label>
+      <input type="password" id="inputApiKey" placeholder="sk-ant-..." />
+    </div>
+    <div class="auth-error" id="modalError"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="fecharModalChave()">Cancelar</button>
+      <button class="btn-primary" style="flex:1;" onclick="salvarChave()">Salvar chave</button>
+    </div>
+    <div style="margin-top:10px;text-align:center;">
+      <button class="btn-link" id="btnRemoverChave" onclick="removerChave()" style="display:none;color:#a00;">Remover chave cadastrada</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: Histórico de correções ── -->
+<div class="modal-overlay" id="modalHistorico">
+  <div class="modal modal-wide">
+    <h3>📜 Seu histórico de correções</h3>
+    <p>Últimas redações corrigidas, com a nota e o percentual de cópia dos textos de apoio.</p>
+    <div class="modal-lista" id="histLista"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="fecharModal('modalHistorico')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Modal: Gerenciar temas (professor) ── -->
+<div class="modal-overlay" id="modalTemas">
+  <div class="modal modal-wide">
+    <h3>🛠️ Gerenciar temas</h3>
+    <p>Cadastre, edite ou remova os temas e seus textos de apoio.</p>
+
+    <div class="field">
+      <label id="temaFormLabel">Novo tema</label>
+      <input class="txt" type="text" id="admTemaTitulo" placeholder="Título do tema" style="margin-bottom:8px;" />
+      <textarea class="txt" id="admTemaApoio" placeholder="Textos de apoio (mínimo de 50 caracteres)..." style="min-height:110px;"></textarea>
+    </div>
+    <div class="auth-error" id="admError"></div>
+    <div class="modal-btns" style="margin-top:8px;">
+      <button class="btn-secondary" id="admCancelEdit" style="display:none;" onclick="cancelarEdicaoTema()">Cancelar edição</button>
+      <button class="btn-primary" style="flex:1;" id="admSalvarBtn" onclick="salvarTemaAdmin()">Adicionar tema</button>
+    </div>
+
+    <div class="divider" style="margin:1rem 0;"></div>
+    <div style="font-size:13px;font-weight:600;margin-bottom:8px;">Temas cadastrados</div>
+    <div class="modal-lista" id="admLista"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="fecharModal('modalTemas')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const API = 'http://localhost:3005';
+  let token = localStorage.getItem('enem_token');
+  let statusAtual = null;
+  let temasCache = [];
+  let usuarioTipo = 'aluno';
+  let editandoTemaId = null;
+
+  // ── Inicialização ──
+  if (token) mostrarApp();
+
+  // ── Auth ──
+  function mostrarAba(aba) {
+    document.getElementById('formLogin').style.display = aba === 'login' ? 'block' : 'none';
+    document.getElementById('formCadastro').style.display = aba === 'cadastro' ? 'block' : 'none';
+    document.querySelectorAll('.auth-tab').forEach((t, i) => t.classList.toggle('active', (i === 0) === (aba === 'login')));
+    document.getElementById('authError').style.display = 'none';
+  }
+
+  async function fazerLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const senha = document.getElementById('loginSenha').value;
+    const errEl = document.getElementById('authError');
+    errEl.style.display = 'none';
+    try {
+      const r = await fetch(`${API}/api/auth/login`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, senha }) });
+      const d = await r.json();
+      if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
+      token = d.token;
+      localStorage.setItem('enem_token', token);
+      mostrarApp();
+    } catch { errEl.textContent = 'Erro de conexão. Backend está rodando?'; errEl.style.display = 'block'; }
+  }
+
+  async function fazerCadastro() {
+    const nome = document.getElementById('cadNome').value.trim();
+    const email = document.getElementById('cadEmail').value.trim();
+    const senha = document.getElementById('cadSenha').value;
+    const codigo_professor = document.getElementById('cadCodigoProf').value.trim();
+    const errEl = document.getElementById('authError');
+    errEl.style.display = 'none';
+    try {
+      const r = await fetch(`${API}/api/auth/cadastro`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nome, email, senha, codigo_professor }) });
+      const d = await r.json();
+      if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
+      token = d.token;
+      localStorage.setItem('enem_token', token);
+      mostrarApp();
+    } catch { errEl.textContent = 'Erro de conexão. Backend está rodando?'; errEl.style.display = 'block'; }
+  }
+
+  function sair() {
+    localStorage.removeItem('enem_token');
+    token = null;
+    document.getElementById('authWrap').style.display = 'flex';
+    document.getElementById('appWrap').style.display = 'none';
+  }
+
+  // ── App ──
+  async function mostrarApp() {
+    document.getElementById('authWrap').style.display = 'none';
+    document.getElementById('appWrap').style.display = 'block';
+    await carregarStatus();
+    await carregarTemas();
+  }
+
+  // ── Temas / textos de apoio ──
+  async function carregarTemas() {
+    try {
+      const r = await fetch(`${API}/api/temas`, { headers: { Authorization: `Bearer ${token}` } });
+      if (!r.ok) return;
+      temasCache = await r.json();
+      const sel = document.getElementById('temaSelect');
+      const custom = sel.querySelector('option[value="custom"]');
+      sel.querySelectorAll('option[data-tema]').forEach(o => o.remove());
+      temasCache.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = String(t.id);
+        opt.textContent = t.titulo;
+        opt.setAttribute('data-tema', '1');
+        sel.insertBefore(opt, custom);
+      });
+    } catch {}
+  }
+
+  function aoMudarTema() {
+    const val = document.getElementById('temaSelect').value;
+    const apoioBox = document.getElementById('apoioBox');
+    const customWrap = document.getElementById('customTemaWrap');
+    if (val === 'custom') {
+      customWrap.style.display = 'block';
+      apoioBox.style.display = 'none';
+    } else if (val) {
+      customWrap.style.display = 'none';
+      const tema = temasCache.find(t => String(t.id) === val);
+      if (tema) {
+        document.getElementById('apoioContent').textContent = tema.textos_apoio;
+        document.getElementById('apoioContent').style.display = 'block';
+        document.getElementById('apoioToggle').textContent = '▲';
+        apoioBox.style.display = 'block';
+      }
+    } else {
+      customWrap.style.display = 'none';
+      apoioBox.style.display = 'none';
+    }
+  }
+
+  function toggleApoio() {
+    const c = document.getElementById('apoioContent');
+    const t = document.getElementById('apoioToggle');
+    const escondido = c.style.display === 'none';
+    c.style.display = escondido ? 'block' : 'none';
+    t.textContent = escondido ? '▲' : '▼';
+  }
+
+  async function carregarStatus() {
+    try {
+      const r = await fetch(`${API}/api/usuario/status`, { headers: { Authorization: `Bearer ${token}` } });
+      if (r.status === 401) { sair(); return; }
+      statusAtual = await r.json();
+      usuarioTipo = statusAtual.tipo || 'aluno';
+      document.getElementById('userNome').textContent = statusAtual.nome;
+      document.getElementById('btnGerenciarTemas').style.display = usuarioTipo === 'professor' ? 'inline-block' : 'none';
+      document.getElementById('btnSouProfessor').style.display = usuarioTipo === 'professor' ? 'none' : 'inline-block';
+      atualizarStatusBar();
+    } catch {}
+  }
+
+  // Fecha qualquer modal pelo id
+  function fecharModal(id) { document.getElementById(id).classList.remove('open'); }
+
+  // ── Promoção a professor ──
+  async function promoverProfessor() {
+    const codigo = prompt('Digite o código de professor para liberar o gerenciamento de temas:');
+    if (!codigo) return;
+    try {
+      const r = await fetch(`${API}/api/usuario/promover-professor`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ codigo: codigo.trim() })
+      });
+      const d = await r.json();
+      if (!r.ok) { alert('❌ ' + (d.error || 'Código inválido.')); return; }
+      token = d.token;
+      localStorage.setItem('enem_token', token);
+      await carregarStatus();
+      alert('✅ ' + d.message);
+    } catch { alert('Erro de conexão.'); }
+  }
+
+  // ── Histórico ──
+  async function abrirHistorico() {
+    const lista = document.getElementById('histLista');
+    lista.innerHTML = '<div class="empty-msg">Carregando...</div>';
+    document.getElementById('modalHistorico').classList.add('open');
+    try {
+      const r = await fetch(`${API}/api/usuario/historico`, { headers: { Authorization: `Bearer ${token}` } });
+      const dados = await r.json();
+      if (!Array.isArray(dados) || dados.length === 0) {
+        lista.innerHTML = '<div class="empty-msg">Você ainda não corrigiu nenhuma redação.</div>';
+        return;
+      }
+      lista.innerHTML = dados.map(h => {
+        const data = new Date(String(h.criado_em).replace(' ', 'T') + 'Z')
+          .toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        const pct = h.plagio_percentual || 0;
+        const cls = pct === 0 ? 'copia-none' : pct < 25 ? 'copia-warn' : 'copia-danger';
+        const txt = pct === 0 ? 'Sem cópia' : `Cópia ${pct}%`;
+        return `<div class="hist-row">
+          <div>
+            <div class="hist-tema">${escapeHtml(h.tema || 'Sem tema')}</div>
+            <div class="hist-meta">${data}</div>
+          </div>
+          <div class="hist-right">
+            <span class="copia-badge ${cls}">${txt}</span>
+            <span class="hist-nota">${h.nota_total ?? '—'}<span style="font-size:11px;color:#999;font-weight:400;">/1000</span></span>
+          </div>
+        </div>`;
+      }).join('');
+    } catch {
+      lista.innerHTML = '<div class="empty-msg">Erro ao carregar o histórico.</div>';
+    }
+  }
+
+  // ── Gerenciamento de temas (professor) ──
+  async function abrirGerenciarTemas() {
+    cancelarEdicaoTema();
+    document.getElementById('admError').style.display = 'none';
+    document.getElementById('modalTemas').classList.add('open');
+    await renderListaTemasAdmin();
+  }
+
+  async function renderListaTemasAdmin() {
+    await carregarTemas(); // atualiza temasCache e o seletor principal
+    const lista = document.getElementById('admLista');
+    if (!temasCache.length) { lista.innerHTML = '<div class="empty-msg">Nenhum tema cadastrado.</div>'; return; }
+    lista.innerHTML = temasCache.map(t => `
+      <div class="tema-row">
+        <div class="tema-row-head">
+          <div class="tema-row-title">${escapeHtml(t.titulo)}</div>
+          <div class="tema-row-actions">
+            <button class="btn-mini" onclick="editarTema(${t.id})">Editar</button>
+            <button class="btn-mini danger" onclick="excluirTema(${t.id})">Excluir</button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  function editarTema(id) {
+    const t = temasCache.find(x => x.id === id);
+    if (!t) return;
+    editandoTemaId = id;
+    document.getElementById('admTemaTitulo').value = t.titulo;
+    document.getElementById('admTemaApoio').value = t.textos_apoio;
+    document.getElementById('temaFormLabel').textContent = 'Editando tema';
+    document.getElementById('admSalvarBtn').textContent = 'Salvar alterações';
+    document.getElementById('admCancelEdit').style.display = 'inline-block';
+    document.getElementById('admTemaTitulo').focus();
+  }
+
+  function cancelarEdicaoTema() {
+    editandoTemaId = null;
+    document.getElementById('admTemaTitulo').value = '';
+    document.getElementById('admTemaApoio').value = '';
+    document.getElementById('temaFormLabel').textContent = 'Novo tema';
+    document.getElementById('admSalvarBtn').textContent = 'Adicionar tema';
+    document.getElementById('admCancelEdit').style.display = 'none';
+  }
+
+  async function salvarTemaAdmin() {
+    const titulo = document.getElementById('admTemaTitulo').value.trim();
+    const textos_apoio = document.getElementById('admTemaApoio').value.trim();
+    const err = document.getElementById('admError');
+    err.style.display = 'none';
+    if (!titulo) { err.textContent = 'Informe o título do tema.'; err.style.display = 'block'; return; }
+    if (textos_apoio.length < 50) { err.textContent = 'Os textos de apoio precisam ter ao menos 50 caracteres.'; err.style.display = 'block'; return; }
+    const editando = editandoTemaId != null;
+    try {
+      const r = await fetch(`${API}/api/temas${editando ? '/' + editandoTemaId : ''}`, {
+        method: editando ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ titulo, textos_apoio })
+      });
+      const d = await r.json();
+      if (!r.ok) { err.textContent = d.error || 'Erro ao salvar.'; err.style.display = 'block'; return; }
+      cancelarEdicaoTema();
+      await renderListaTemasAdmin();
+    } catch { err.textContent = 'Erro de conexão.'; err.style.display = 'block'; }
+  }
+
+  async function excluirTema(id) {
+    const t = temasCache.find(x => x.id === id);
+    if (!confirm(`Excluir o tema "${t ? t.titulo : ''}"? Correções já feitas não são afetadas.`)) return;
+    try {
+      const r = await fetch(`${API}/api/temas/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+      if (!r.ok) { const d = await r.json(); alert('❌ ' + (d.error || 'Erro ao excluir.')); return; }
+      if (editandoTemaId === id) cancelarEdicaoTema();
+      await renderListaTemasAdmin();
+    } catch { alert('Erro de conexão.'); }
+  }
+
+  function atualizarStatusBar() {
+    if (!statusAtual) return;
+    const icon = document.getElementById('statusIcon');
+    const title = document.getElementById('statusTitle');
+    const sub = document.getElementById('statusSub');
+    const btn = document.getElementById('statusBtn');
+
+    if (statusAtual.tem_chave_propria) {
+      icon.textContent = '🔑'; icon.className = 'status-icon custom';
+      title.textContent = 'Usando sua chave de API — uso ilimitado';
+      sub.textContent = `${statusAtual.redacoes_usadas} correções feitas este mês`;
+      btn.textContent = 'Gerenciar chave';
+    } else {
+      const restantes = statusAtual.redacoes_restantes;
+      if (restantes === 0) {
+        icon.textContent = '🚫'; icon.className = 'status-icon danger';
+        title.textContent = 'Limite mensal atingido';
+        sub.textContent = 'Cadastre sua chave para continuar';
+      } else if (restantes <= 3) {
+        icon.textContent = '⚠️'; icon.className = 'status-icon warn';
+        title.textContent = `${restantes} correções restantes este mês`;
+        sub.textContent = 'Considere cadastrar sua chave de API';
+      } else {
+        icon.textContent = '📊'; icon.className = 'status-icon ok';
+        title.textContent = `${restantes} de 10 correções disponíveis`;
+        sub.textContent = 'Plano gratuito — renova todo mês';
+      }
+      btn.textContent = 'Usar chave própria →';
+    }
+  }
+
+  // ── Contador de palavras ──
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('redacao')?.addEventListener('input', () => {
+      const words = document.getElementById('redacao').value.trim().split(/\s+/).filter(w => w.length > 0).length;
+      document.getElementById('charCount').textContent = document.getElementById('redacao').value.trim() ? `${words} palavras` : '0 palavras';
+    });
+  });
+
+  // ── Loading animado ──
+  let loadingInterval = null;
+  const loadingMsgs = [
+    'Enviando redação...',
+    'Competência I — Norma culta...',
+    'Competência II — Tema e argumentos...',
+    'Competência III — Organização de ideias...',
+    'Competência IV — Coesão textual...',
+    'Competência V — Proposta de intervenção...',
+    'Calculando nota final...',
+  ];
+  const loadingProgs = [8, 22, 38, 53, 67, 82, 95];
+
+  function iniciarLoading() {
+    let i = 0;
+    const msgEl = document.getElementById('loadingMsg');
+    const progEl = document.getElementById('loadingProgress');
+    const popupMsgEl = document.getElementById('popupMsg');
+    const popupProgEl = document.getElementById('popupProgress');
+    const steps = document.querySelectorAll('.popup-step');
+
+    const setStep = (idx) => {
+      if (msgEl) { msgEl.style.opacity = '0'; setTimeout(() => { msgEl.textContent = loadingMsgs[idx]; msgEl.style.opacity = '1'; }, 200); }
+      if (progEl) progEl.style.width = loadingProgs[idx] + '%';
+      if (popupMsgEl) { popupMsgEl.style.opacity = '0'; setTimeout(() => { popupMsgEl.textContent = loadingMsgs[idx]; popupMsgEl.style.opacity = '1'; }, 200); }
+      if (popupProgEl) popupProgEl.style.width = loadingProgs[idx] + '%';
+      steps.forEach((s, si) => {
+        s.className = 'popup-step' + (si < idx - 1 ? ' done' : si === idx - 1 ? ' active' : '');
+      });
+    };
+
+    setStep(0);
+    document.getElementById('loadingOverlay').classList.add('open');
+    loadingInterval = setInterval(() => {
+      i = Math.min(i + 1, loadingMsgs.length - 1);
+      setStep(i);
+    }, 1800);
+  }
+
+  function pararLoading() {
+    clearInterval(loadingInterval);
+    const progEl = document.getElementById('loadingProgress');
+    const popupProgEl = document.getElementById('popupProgress');
+    if (progEl) progEl.style.width = '100%';
+    if (popupProgEl) popupProgEl.style.width = '100%';
+    document.querySelectorAll('.popup-step').forEach(s => s.className = 'popup-step done');
+    setTimeout(() => document.getElementById('loadingOverlay').classList.remove('open'), 400);
+  }
+
+  // ── Correção ──
+  async function corrigir() {
+    const texto = document.getElementById('redacao').value.trim();
+    const errEl = document.getElementById('errorMsg');
+    const limitEl = document.getElementById('limitMsg');
+    errEl.style.display = 'none';
+    limitEl.style.display = 'none';
+
+    if (texto.length < 100) {
+      errEl.textContent = 'Por favor, insira uma redação com pelo menos 100 caracteres.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    // Monta o corpo com o tema escolhido (banco ou personalizado)
+    const sel = document.getElementById('temaSelect').value;
+    const body = { redacao: texto };
+    if (sel === 'custom') {
+      const tituloCustom = document.getElementById('temaCustom').value.trim();
+      const apoioCustom = document.getElementById('textosApoioCustom').value.trim();
+      if (tituloCustom) body.tema = tituloCustom;
+      if (apoioCustom) body.textos_apoio = apoioCustom;
+    } else if (sel) {
+      body.tema_id = Number(sel);
+    }
+
+    const btn = document.getElementById('btnCorrigir');
+    btn.disabled = true;
+    const results = document.getElementById('results');
+    results.style.display = 'block';
+    document.getElementById('loadingState').style.display = 'block';
+    document.getElementById('resultContent').style.display = 'none';
+    iniciarLoading();
+
+    try {
+      const r = await fetch(`${API}/api/corrigir`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify(body)
+      });
+
+      if (r.status === 429) {
+        document.getElementById('loadingState').style.display = 'none';
+        results.style.display = 'none';
+        limitEl.style.display = 'block';
+        return;
+      }
+      if (r.status === 401) { sair(); return; }
+      if (!r.ok) {
+        const d = await r.json();
+        throw new Error(d.error || 'Erro desconhecido');
+      }
+
+      const data = await r.json();
+      pararLoading();
+      renderResult(data);
+      await carregarStatus(); // atualiza contador
+    } catch (err) {
+      pararLoading();
+      document.getElementById('loadingState').style.display = 'none';
+      results.style.display = 'none';
+      errEl.textContent = 'Erro: ' + err.message;
+      errEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  function renderPlagio(plagio) {
+    const card = document.getElementById('plagioCard');
+    if (!plagio || !plagio.totalPalavras) { card.style.display = 'none'; return; }
+    const pct = plagio.percentualCopiado;
+    let cls, icon, titulo, sub;
+    if (pct === 0) {
+      cls = 'plagio-ok'; icon = '✅';
+      titulo = 'Sem cópia dos textos de apoio';
+      sub = 'Nenhum trecho copiado literalmente dos textos de apoio foi detectado. Ótimo — o texto é de autoria própria.';
+    } else if (pct < 25) {
+      cls = 'plagio-warn'; icon = '⚠️';
+      titulo = `Cópia dos textos de apoio: ${pct}%`;
+      sub = 'Foram encontrados trechos copiados dos textos de apoio. Pela regra do ENEM, esses trechos não contam como produção própria e a nota já reflete essa penalização. Reescreva-os com suas palavras.';
+    } else {
+      cls = 'plagio-danger'; icon = '🚫';
+      titulo = `Cópia dos textos de apoio: ${pct}%`;
+      sub = 'Grande parte da redação é cópia literal dos textos de apoio. No ENEM isso reduz drasticamente a nota (e a cópia total zera a redação). Reescreva os trechos destacados com argumentação própria.';
+    }
+    const trechos = (plagio.trechosCopiados || []).slice(0, 6)
+      .map(t => `<div class="plagio-trecho">“${escapeHtml(t.texto)}”</div>`).join('');
+    card.className = 'plagio-card ' + cls;
+    card.innerHTML =
+      `<div class="plagio-title">${icon} ${titulo}</div>` +
+      `<div class="plagio-bar-bg"><div class="plagio-bar-fill" style="width:${pct}%"></div></div>` +
+      `<div class="plagio-sub">${sub}</div>` +
+      (trechos ? `<div style="font-size:12px;font-weight:600;margin-bottom:6px;">Trechos copiados detectados:</div>${trechos}` : '');
+    card.style.display = 'block';
+  }
+
+  function renderResult(data) {
+    document.getElementById('loadingState').style.display = 'none';
+    document.getElementById('resultContent').style.display = 'block';
+    renderPlagio(data.plagio);
+    document.getElementById('notaTotal').textContent = data.nota_total;
+    const nivel = data.nota_total >= 700 ? 'alto' : data.nota_total >= 400 ? 'medio' : 'baixo';
+    const nivelLabel = { alto: 'Desempenho alto', medio: 'Desempenho médio', baixo: 'Desempenho baixo' }[nivel];
+    document.getElementById('nivelGeral').innerHTML = `<span class="nivel-pill nivel-${nivel}">${nivelLabel}</span>`;
+    const grid = document.getElementById('compGrid');
+    grid.innerHTML = '';
+    data.competencias.forEach(c => {
+      const pct = (c.nota / 200) * 100;
+      const nClass = { alto: 'nivel-alto', medio: 'nivel-medio', baixo: 'nivel-baixo' }[c.nivel];
+      const nLabel = { alto: 'Alto', medio: 'Médio', baixo: 'Baixo' }[c.nivel];
+      grid.innerHTML += `<div class="comp-card"><div class="comp-header"><div class="comp-title">Competência ${c.numero} — ${c.titulo}</div><div class="comp-right"><div class="comp-nota">${c.nota}<span> / 200</span></div><span class="nivel-pill ${nClass}" style="font-size:11px;padding:3px 10px;">${nLabel}</span></div></div><div class="progress-bg"><div class="progress-fill" style="width:${pct}%"></div></div><div class="comp-feedback">${c.feedback}</div></div>`;
+    });
+    const melh = document.getElementById('melhorias');
+    melh.innerHTML = '';
+    (data.melhorias || []).forEach(m => {
+      melh.innerHTML += `<div class="melhoria-item"><div class="melhoria-dot"></div><div class="melhoria-text">${m}</div></div>`;
+    });
+  }
+
+  // ── Modal chave ──
+  function abrirModalChave() {
+    document.getElementById('modalChave').classList.add('open');
+    document.getElementById('modalError').style.display = 'none';
+    document.getElementById('inputApiKey').value = '';
+    document.getElementById('btnRemoverChave').style.display = statusAtual?.tem_chave_propria ? 'inline' : 'none';
+  }
+  function fecharModalChave() { document.getElementById('modalChave').classList.remove('open'); }
+
+  async function salvarChave() {
+    const key = document.getElementById('inputApiKey').value.trim();
+    const errEl = document.getElementById('modalError');
+    errEl.style.display = 'none';
+    try {
+      const r = await fetch(`${API}/api/usuario/api-key`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ api_key: key })
+      });
+      const d = await r.json();
+      if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
+      fecharModalChave();
+      await carregarStatus();
+      alert('✅ ' + d.message);
+    } catch { errEl.textContent = 'Erro de conexão.'; errEl.style.display = 'block'; }
+  }
+
+  async function removerChave() {
+    if (!confirm('Remover sua chave de API? O limite de 10 redações/mês será restaurado.')) return;
+    await fetch(`${API}/api/usuario/api-key`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+    fecharModalChave();
+    await carregarStatus();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente — contém segredos (ANTHROPIC_API_KEY, JWT_SECRET, CODIGO_PROFESSOR)
+.env
+
+# Banco de dados local — dados de usuários; é recriado automaticamente ao iniciar o servidor
+database.db
+database.db-journal
+database.db-wal
+database.db-shm
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Sistema operacional / editor
+.DS_Store
+Thumbs.db
+.vscode/
