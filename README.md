@@ -32,10 +32,9 @@ Sistema web que corrige redações no modelo ENEM usando inteligência artificia
    - `CODIGO_PROFESSOR` — código para cadastrar/promover um professor
 3. Inicie o servidor:
    ```bash
-   npm run dev     # ou: npm start
+   npm start       # ou, com recarga automática: npm run dev
    ```
-   O backend sobe em `http://localhost:3005`.
-4. Abra o `index.html` no navegador (ou sirva em `http://localhost:3000`, que é a origem liberada no CORS por padrão).
+4. Abra **http://localhost:3005** no navegador — o próprio servidor entrega a interface (frontend + API na mesma origem).
 
 ## Perfil de professor
 

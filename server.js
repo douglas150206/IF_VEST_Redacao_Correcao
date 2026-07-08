@@ -4,8 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Database = require('better-sqlite3');
 const Anthropic = require('@anthropic-ai/sdk');
+const path = require('path');
 const { detectarCopia } = require('./plagio');
-require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3005;
@@ -15,7 +16,7 @@ const LIMITE_MENSAL = 10;
 const CODIGO_PROFESSOR = process.env.CODIGO_PROFESSOR || 'professor2025';
 
 // ─── Banco de dados SQLite ───────────────────────────────────────────────────
-const db = new Database('database.db');
+const db = new Database(path.join(__dirname, 'database.db'));
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS usuarios (
@@ -447,6 +448,10 @@ app.get('/api/usuario/historico', autenticar, (req, res) => {
 // GET /api/health
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
+// Serve o frontend: assim tudo roda em http://localhost:3005 (sem CORS nem 2º servidor)
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
 app.listen(PORT, () => {
   console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
+  console.log(`   Abra o sistema em: http://localhost:${PORT}`);
 });
