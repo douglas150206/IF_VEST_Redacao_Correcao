@@ -3,198 +3,409 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corretor de Redação ENEM</title>
+  <title>Corretor de Redação ENEM — Instituto Federal de São Paulo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ── Tema (verde Instituto Federal) — ajuste estes valores para a paleta exata do IFvest ── */
+    /* ── Identidade visual — Instituto Federal de São Paulo ──────────────────────
+       Verde     #2f9e41   R50  G160 B65   PANTONE 362 C
+       Vermelho  #cd191e   R200 G25  B30   PANTONE 187 C
+       Preto     #000000                   PANTONE Process Black C
+       Tipografia: Open Sans (Bold para títulos, Regular para texto)
+       O vermelho é usado apenas em alertas e bloqueios, nunca como cor decorativa. */
     :root {
-      --brand: #1f8a3b;        /* verde base (botões, destaques) */
-      --brand-dark: #14622a;   /* verde escuro (hover) */
-      --brand-mid: #4aa564;    /* verde médio (acentos, focos) */
-      --brand-soft: #e7f4ec;   /* verde bem claro (fundos suaves) */
-      --brand-softer: #eef7f1; /* verde clarinho (barras de progresso) */
-      --brand-glow: #86cf9d;   /* verde claro (gradientes) */
+      --if-verde: #2f9e41;
+      --if-verde-escuro: #24802f;
+      --if-verde-profundo: #185c22;
+      --if-verde-claro: #eaf5ec;
+      --if-verde-linha: #c3e0c9;
+      --if-vermelho: #cd191e;
+      --if-vermelho-escuro: #a41317;
+      --if-vermelho-claro: #fceced;
+      --if-vermelho-linha: #f0c2c4;
+      --preto: #000000;
+
+      --texto: #16181a;
+      --texto-2: #4a4f54;
+      --texto-3: #757b81;
+      --linha: #d8dcd9;
+      --linha-suave: #e9ebe9;
+      --fundo: #f2f4f2;
+      --superficie: #ffffff;
+      --raio: 8px;
+      --raio-sm: 5px;
+      --sombra: 0 1px 2px rgba(0,0,0,0.04);
+
+      /* Aliases mantidos para as regras que já usavam os nomes antigos */
+      --brand: var(--if-verde);
+      --brand-dark: var(--if-verde-escuro);
+      --brand-mid: var(--if-verde);
+      --brand-soft: var(--if-verde-claro);
+      --brand-softer: var(--if-verde-claro);
+      --brand-glow: #7fc78d;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, sans-serif; background: #f5f4f0; color: #1a1a1a; min-height: 100vh; }
+    body {
+      font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif;
+      background: var(--fundo); color: var(--texto); min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--if-verde-escuro); }
 
-    /* ── Auth ── */
-    .auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
-    .auth-box { background: #fff; border: 1px solid #e5e5e5; border-radius: 16px; padding: 2rem; width: 100%; max-width: 400px; }
-    .auth-box h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
-    .auth-box p { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
-    .auth-tabs { display: flex; gap: 4px; background: #f5f4f0; border-radius: 8px; padding: 4px; margin-bottom: 1.5rem; }
-    .auth-tab { flex: 1; padding: 7px; border: none; background: transparent; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; color: #666; transition: all 0.15s; }
-    .auth-tab.active { background: #fff; color: #1a1a1a; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-    .field { margin-bottom: 1rem; }
-    .field label { display: block; font-size: 12px; font-weight: 500; color: #555; margin-bottom: 5px; }
-    .field input { width: 100%; padding: 9px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; }
-    .field input:focus { outline: none; border-color: var(--brand-mid); box-shadow: 0 0 0 3px rgba(31,138,59,0.15); }
-    .btn-primary { width: 100%; padding: 11px; border: none; border-radius: 8px; background: var(--brand); color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .btn-primary:hover { background: var(--brand-dark); }
-    .btn-primary:disabled { background: #ccc; cursor: not-allowed; }
-    .auth-error { background: #fff0f0; border: 1px solid #f5c2c2; color: #a00; border-radius: 6px; padding: 8px 12px; font-size: 12px; margin-bottom: 12px; display: none; }
+    /* Ícones em traço — substituem os emojis em toda a interface */
+    .ico { width: 1.05em; height: 1.05em; flex: none; vertical-align: -0.16em; }
+    .ico-md { width: 18px; height: 18px; }
+    .ico-lg { width: 22px; height: 22px; }
+
+    /* ── Marca institucional ── */
+    .marca { display: flex; align-items: center; gap: 12px; }
+    /* Altura pensada para o "São Paulo" da assinatura continuar legível. */
+    .marca-logo { height: 50px; width: auto; display: block; flex: none; }
+    .marca-texto { line-height: 1.15; }
+    .marca-texto strong { display: block; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; color: var(--preto); }
+    .marca-texto span { display: block; font-size: 12.5px; font-weight: 400; color: var(--texto-2); letter-spacing: 0.02em; }
+
+    /* ── Acesso (login / cadastro) ── */
+    .auth-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1.5rem 1rem; }
+    .auth-box { background: var(--superficie); border: 1px solid var(--linha); border-top: 3px solid var(--if-verde); border-radius: var(--raio); padding: 1.75rem 2rem; width: 100%; max-width: 420px; box-shadow: var(--sombra); }
+    .auth-marca { padding-bottom: 1.1rem; border-bottom: 1px solid var(--linha-suave); margin-bottom: 1.25rem; }
+    .auth-box h1 { font-size: 19px; font-weight: 700; margin-bottom: 3px; letter-spacing: -0.01em; }
+    .auth-box p { font-size: 13px; color: var(--texto-3); margin-bottom: 1.25rem; }
+    .auth-tabs { display: flex; border-bottom: 1px solid var(--linha); margin-bottom: 1.35rem; }
+    .auth-tab { flex: 1; padding: 9px 4px; border: none; background: transparent; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--texto-3); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+    .auth-tab:hover { color: var(--texto); }
+    .auth-tab.active { color: var(--if-verde-escuro); border-bottom-color: var(--if-verde); }
+    .field { margin-bottom: 0.95rem; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: var(--texto-2); margin-bottom: 5px; }
+    .field input { width: 100%; padding: 10px 12px; border: 1px solid var(--linha); border-radius: var(--raio-sm); font-size: 14px; font-family: inherit; color: var(--texto); background: #fff; }
+    .field input:focus { outline: none; border-color: var(--if-verde); box-shadow: 0 0 0 3px rgba(47,158,65,0.16); }
+    .btn-primary { width: 100%; padding: 11px; border: none; border-radius: var(--raio-sm); background: var(--if-verde); color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+    .btn-primary:hover { background: var(--if-verde-escuro); }
+    .btn-primary:disabled { background: #b9bfba; cursor: not-allowed; }
+    .auth-error { background: var(--if-vermelho-claro); border: 1px solid var(--if-vermelho-linha); color: var(--if-vermelho-escuro); border-radius: var(--raio-sm); padding: 9px 12px; font-size: 12.5px; margin-bottom: 12px; display: none; }
+
+    /* ── Cabeçalho institucional ── */
+    .app-shell { display: none; }
+    .cabecalho { background: var(--superficie); border-bottom: 3px solid var(--if-verde); }
+    .cabecalho-interno { max-width: 900px; margin: 0 auto; padding: 13px 1rem; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .cabecalho-acoes { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .user-info { font-size: 12.5px; color: var(--texto-2); font-weight: 600; padding-right: 10px; margin-right: 2px; border-right: 1px solid var(--linha); }
+    .btn-sm { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid var(--linha); border-radius: var(--raio-sm); background: #fff; font-family: inherit; font-size: 12.5px; font-weight: 600; color: var(--texto-2); cursor: pointer; transition: background .15s, border-color .15s, color .15s; }
+    .btn-sm:hover { background: var(--if-verde-claro); border-color: var(--if-verde-linha); color: var(--if-verde-profundo); }
+    .btn-sm.sair:hover { background: var(--if-vermelho-claro); border-color: var(--if-vermelho-linha); color: var(--if-vermelho-escuro); }
 
     /* ── App principal ── */
-    .app { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; display: none; }
-    .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 10px; }
-    .topbar-left h1 { font-size: 20px; font-weight: 600; }
-    .topbar-left p { font-size: 13px; color: #666; }
-    .topbar-right { display: flex; align-items: center; gap: 10px; }
-    .user-info { font-size: 13px; color: #555; }
-    .btn-sm { padding: 6px 14px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 13px; cursor: pointer; }
-    .btn-sm:hover { background: #f5f4f0; }
+    .app { max-width: 900px; margin: 0 auto; padding: 1.75rem 1rem 3rem; }
+    .titulo-pagina { margin-bottom: 1.5rem; }
+    .titulo-pagina h1 { font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
+    .titulo-pagina p { font-size: 13px; color: var(--texto-3); margin-top: 3px; }
+    .btn-link { background: none; border: none; color: var(--if-verde-escuro); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: underline; padding: 0; }
 
-    /* Status bar */
-    .status-bar { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-    .status-left { display: flex; align-items: center; gap: 12px; }
-    .status-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .status-icon.ok { background: #d1fae5; }
-    .status-icon.warn { background: #fef3c7; }
-    .status-icon.danger { background: #fee2e2; }
-    .status-icon.custom { background: var(--brand-soft); }
-    .status-title { font-size: 13px; font-weight: 600; }
-    .status-sub { font-size: 12px; color: #666; }
-    .btn-link { background: none; border: none; color: var(--brand); font-size: 12px; cursor: pointer; text-decoration: underline; padding: 0; }
-
-    /* Modal chave */
-    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
+    /* ── Modais ── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: none; align-items: center; justify-content: center; z-index: 100; padding: 1rem; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #fff; border-radius: 16px; padding: 1.5rem; width: 100%; max-width: 440px; }
-    .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-    .modal p { font-size: 13px; color: #555; margin-bottom: 1rem; line-height: 1.5; }
+    .modal { background: #fff; border-radius: var(--raio); border-top: 3px solid var(--if-verde); padding: 1.5rem; width: 100%; max-width: 460px; max-height: 92vh; overflow-y: auto; box-shadow: 0 12px 32px rgba(0,0,0,0.18); }
+    .modal h3 { font-size: 16.5px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .modal p { font-size: 13px; color: var(--texto-2); margin-bottom: 1rem; line-height: 1.6; }
     .modal-btns { display: flex; gap: 8px; margin-top: 1rem; }
-    .btn-secondary { flex: 1; padding: 9px; border: 1px solid #ddd; border-radius: 8px; background: #fff; font-size: 13px; cursor: pointer; }
-    .tip-box { background: var(--brand-soft); border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--brand-dark); margin-bottom: 1rem; line-height: 1.5; }
+    .btn-secondary { flex: 1; padding: 10px; border: 1px solid var(--linha); border-radius: var(--raio-sm); background: #fff; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--texto-2); cursor: pointer; transition: background .15s; }
+    .btn-secondary:hover { background: var(--fundo); }
 
-    /* Formulário */
-    .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
-    label.lbl { display: block; font-size: 13px; font-weight: 500; color: #555; margin-bottom: 6px; }
+    /* ── Formulário ── */
+    .card { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 1.35rem 1.5rem; margin-bottom: 1rem; box-shadow: var(--sombra); }
+    label.lbl { display: block; font-size: 12.5px; font-weight: 700; color: var(--texto-2); margin-bottom: 6px; letter-spacing: .01em; }
     input.txt, textarea.txt {
-      width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px;
-      font-family: inherit; font-size: 14px; color: #1a1a1a; background: #fff;
+      width: 100%; padding: 10px 13px; border: 1px solid var(--linha); border-radius: var(--raio-sm);
+      font-family: inherit; font-size: 14px; color: var(--texto); background: #fff;
     }
-    input.txt:focus, textarea.txt:focus { outline: none; border-color: var(--brand-mid); box-shadow: 0 0 0 3px rgba(31,138,59,0.15); }
-    textarea.txt { min-height: 220px; resize: vertical; line-height: 1.7; }
-    .char-count { font-size: 12px; color: #999; text-align: right; margin-top: 4px; }
-    .btn-corrigir { width: 100%; padding: 13px; border: none; border-radius: 10px; background: var(--brand); color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-    .btn-corrigir:hover:not(:disabled) { background: var(--brand-dark); }
-    .btn-corrigir:disabled { background: #ccc; cursor: not-allowed; }
-    .error-box { background: #fff0f0; border: 1px solid #f5c2c2; color: #a00; border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-top: 12px; display: none; }
-    .limit-box { background: #fef3c7; border: 1px solid #fcd34d; color: #78350f; border-radius: 8px; padding: 12px 14px; font-size: 13px; margin-top: 12px; display: none; line-height: 1.6; }
+    input.txt:focus, textarea.txt:focus { outline: none; border-color: var(--if-verde); box-shadow: 0 0 0 3px rgba(47,158,65,0.16); }
+    textarea.txt { min-height: 240px; resize: vertical; line-height: 1.75; }
+    .char-count { font-size: 12px; color: var(--texto-3); text-align: right; margin-top: 5px; }
+    .btn-corrigir { width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border: none; border-radius: var(--raio-sm); background: var(--if-verde); color: #fff; font-family: inherit; font-size: 14.5px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+    .btn-corrigir:hover:not(:disabled) { background: var(--if-verde-escuro); }
+    .btn-corrigir:disabled { background: #b9bfba; cursor: not-allowed; }
+    .error-box { background: var(--if-vermelho-claro); border: 1px solid var(--if-vermelho-linha); color: var(--if-vermelho-escuro); border-radius: var(--raio-sm); padding: 11px 14px; font-size: 13px; margin-top: 12px; display: none; }
+    .limit-box { background: var(--if-vermelho-claro); border: 1px solid var(--if-vermelho-linha); border-left: 4px solid var(--if-vermelho); color: #6a1013; border-radius: var(--raio-sm); padding: 14px 16px; font-size: 13px; margin-top: 12px; display: none; line-height: 1.65; }
 
-    /* Resultados */
+    /* ── Resultados ── */
     .results { margin-top: 2rem; display: none; }
     .loading { text-align: center; padding: 2.5rem 1.5rem; }
-    .spinner-wrap { position: relative; width: 64px; height: 64px; margin: 0 auto 20px; }
-    .spinner-outer { width: 64px; height: 64px; border: 3px solid #eee; border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
-    .spinner-inner { width: 44px; height: 44px; border: 3px solid #eee; border-bottom-color: var(--brand-mid); border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 10px; left: 10px; }
-    .spinner-dot { width: 10px; height: 10px; background: var(--brand); border-radius: 50%; position: absolute; top: 27px; left: 27px; animation: pulse-dot 1s ease-in-out infinite; }
+    .spinner-wrap { position: relative; width: 60px; height: 60px; margin: 0 auto 20px; }
+    .spinner-outer { width: 60px; height: 60px; border: 3px solid var(--linha-suave); border-top-color: var(--if-verde); border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
+    .spinner-inner { width: 42px; height: 42px; border: 3px solid var(--linha-suave); border-bottom-color: var(--if-verde-linha); border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 9px; left: 9px; }
+    .spinner-dot { width: 10px; height: 10px; background: var(--if-verde); position: absolute; top: 25px; left: 25px; animation: pulse-dot 1s ease-in-out infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.6; } }
-    .loading-msg { font-size: 14px; color: var(--brand); font-weight: 600; margin-bottom: 6px; min-height: 22px; transition: opacity 0.3s; }
-    .loading-sub { font-size: 12px; color: #999; margin-bottom: 20px; }
-    .loading-progress-bg { height: 4px; background: #eee; border-radius: 99px; overflow: hidden; width: 220px; margin: 0 auto; }
-    .loading-progress-fill { height: 4px; background: linear-gradient(90deg, var(--brand), var(--brand-mid)); border-radius: 99px; width: 0%; transition: width 0.6s ease; }
-    .nota-total-card { background: var(--brand); color: #fff; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-    .nota-value { font-size: 42px; font-weight: 700; line-height: 1; }
-    .nota-max { font-size: 16px; opacity: 0.6; }
-    .nivel-pill { font-size: 12px; padding: 5px 14px; border-radius: 99px; font-weight: 600; }
-    .nivel-alto { background: #d1fae5; color: #065f46; }
-    .nivel-medio { background: #fef3c7; color: #92400e; }
-    .nivel-baixo { background: #fee2e2; color: #991b1b; }
+    @keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: 0.55; } }
+    .loading-msg { font-size: 13.5px; color: var(--if-verde-profundo); font-weight: 700; margin-bottom: 6px; min-height: 22px; transition: opacity 0.3s; }
+    .loading-sub { font-size: 12px; color: var(--texto-3); margin-bottom: 20px; }
+    .loading-progress-bg { height: 4px; background: var(--linha-suave); border-radius: 99px; overflow: hidden; width: 220px; margin: 0 auto; }
+    .loading-progress-fill { height: 4px; background: var(--if-verde); border-radius: 99px; width: 0%; transition: width 0.6s ease; }
+    .nota-total-card { background: var(--if-verde); color: #fff; border-radius: var(--raio); padding: 1.35rem 1.6rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .nota-rotulo { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; opacity: .85; margin-bottom: 6px; font-weight: 600; }
+    .nota-value { font-size: 44px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+    .nota-max { font-size: 15px; opacity: 0.75; font-weight: 600; }
+    .nivel-pill { font-size: 11.5px; padding: 5px 12px; border-radius: var(--raio-sm); font-weight: 700; letter-spacing: .02em; display: inline-block; }
+    .nivel-alto { background: #fff; color: var(--if-verde-profundo); }
+    .nivel-medio { background: #fff; color: var(--texto); }
+    .nivel-baixo { background: #fff; color: var(--if-vermelho-escuro); }
+    .comp-card .nivel-alto { background: var(--if-verde-claro); color: var(--if-verde-profundo); }
+    .comp-card .nivel-medio { background: var(--linha-suave); color: var(--texto-2); }
+    .comp-card .nivel-baixo { background: var(--if-vermelho-claro); color: var(--if-vermelho-escuro); }
     .comp-grid { display: grid; gap: 10px; margin-bottom: 1.5rem; }
-    .comp-card { background: #fff; border: 1px solid #e5e5e5; border-radius: 10px; padding: 1rem 1.25rem; }
-    .comp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
-    .comp-title { font-size: 13px; font-weight: 600; flex: 1; }
-    .comp-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
-    .comp-nota { font-size: 20px; font-weight: 700; color: var(--brand); }
-    .comp-nota span { font-size: 12px; color: #999; font-weight: 400; }
-    .progress-bg { height: 4px; background: var(--brand-softer); border-radius: 99px; margin-bottom: 10px; }
-    .progress-fill { height: 4px; border-radius: 99px; background: var(--brand-mid); transition: width 0.8s ease; }
-    .comp-feedback { font-size: 13px; color: #555; line-height: 1.65; }
-    .divider { height: 1px; background: #eee; margin: 1.5rem 0; }
-    .melhorias-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
-    .melhoria-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
-    .melhoria-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand-mid); flex-shrink: 0; margin-top: 6px; }
-    .melhoria-text { font-size: 13px; color: #555; line-height: 1.65; }
-    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .badge { background: var(--brand-soft); color: var(--brand-dark); font-size: 11px; padding: 3px 10px; border-radius: 99px; font-weight: 500; }
+    .comp-card { background: var(--superficie); border: 1px solid var(--linha); border-radius: var(--raio); padding: 1.1rem 1.3rem; }
+    .comp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+    .comp-title { font-size: 13px; font-weight: 700; flex: 1; line-height: 1.45; }
+    .comp-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; }
+    .comp-nota { font-size: 20px; font-weight: 700; color: var(--if-verde-profundo); white-space: nowrap; }
+    .comp-nota span { font-size: 12px; color: var(--texto-3); font-weight: 400; }
+    .progress-bg { height: 5px; background: var(--linha-suave); border-radius: 99px; margin-bottom: 11px; overflow: hidden; }
+    .progress-fill { height: 5px; border-radius: 99px; background: var(--if-verde); transition: width 0.8s ease; }
+    .comp-feedback { font-size: 13px; color: var(--texto-2); line-height: 1.7; }
+    .divider { height: 1px; background: var(--linha-suave); margin: 1.5rem 0; }
+    .melhorias-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .melhoria-item { display: flex; gap: 11px; margin-bottom: 11px; align-items: flex-start; }
+    .melhoria-dot { width: 7px; height: 7px; background: var(--if-verde); flex-shrink: 0; margin-top: 7px; }
+    .melhoria-text { font-size: 13px; color: var(--texto-2); line-height: 1.7; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 4px; }
+    .badge { background: #fff; border: 1px solid var(--if-verde-linha); color: var(--if-verde-profundo); font-size: 11px; padding: 4px 10px; border-radius: var(--raio-sm); font-weight: 600; }
 
-    /* ── Loading Popup ── */
-    .loading-overlay { position: fixed; inset: 0; background: rgba(20,18,40,0.55); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 200; }
-    .loading-overlay.open { display: flex; animation: fade-in 0.25s ease; }
+    /* ── Aviso de processamento ── */
+    .loading-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); display: none; align-items: center; justify-content: center; z-index: 200; padding: 1rem; }
+    .loading-overlay.open { display: flex; animation: fade-in 0.2s ease; }
     @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-    .loading-popup { background: #fff; border-radius: 20px; padding: 2.5rem 2rem; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 24px 60px rgba(31,138,59,0.18); animation: pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1); }
-    @keyframes pop-in { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .popup-spinner-wrap { position: relative; width: 72px; height: 72px; margin: 0 auto 22px; }
-    .popup-spinner-outer { width: 72px; height: 72px; border: 3px solid var(--brand-soft); border-top-color: var(--brand); border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
-    .popup-spinner-inner { width: 50px; height: 50px; border: 3px solid var(--brand-soft); border-bottom-color: var(--brand-mid); border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 11px; left: 11px; }
-    .popup-spinner-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 18px; animation: pulse-dot 1.2s ease-in-out infinite; }
-    .popup-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
-    .popup-msg { font-size: 13px; color: var(--brand); font-weight: 500; margin-bottom: 4px; min-height: 20px; transition: opacity 0.3s; }
-    .popup-sub { font-size: 12px; color: #aaa; margin-bottom: 20px; }
-    .popup-progress-bg { height: 5px; background: var(--brand-soft); border-radius: 99px; overflow: hidden; }
-    .popup-progress-fill { height: 5px; background: linear-gradient(90deg, var(--brand), var(--brand-mid), var(--brand-glow)); background-size: 200%; border-radius: 99px; width: 0%; transition: width 0.6s ease; animation: shimmer 1.8s linear infinite; }
-    @keyframes shimmer { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+    .loading-popup { background: #fff; border-radius: var(--raio); border-top: 3px solid var(--if-verde); padding: 2.25rem 2rem; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 20px 48px rgba(0,0,0,0.25); }
+    .popup-spinner-wrap { position: relative; width: 68px; height: 68px; margin: 0 auto 22px; }
+    .popup-spinner-outer { width: 68px; height: 68px; border: 3px solid var(--if-verde-claro); border-top-color: var(--if-verde); border-radius: 50%; animation: spin 1s linear infinite; position: absolute; top: 0; left: 0; }
+    .popup-spinner-inner { width: 48px; height: 48px; border: 3px solid var(--if-verde-claro); border-bottom-color: var(--if-verde-linha); border-radius: 50%; animation: spin 0.7s linear infinite reverse; position: absolute; top: 10px; left: 10px; }
+    .popup-spinner-marca { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); display: grid; grid-template-columns: repeat(2, 7px); grid-auto-rows: 7px; gap: 2px; animation: pulse-dot 1.4s ease-in-out infinite; }
+    .popup-spinner-marca i { display: block; background: var(--if-verde); }
+    .popup-title { font-size: 16px; font-weight: 700; color: var(--texto); margin-bottom: 6px; }
+    .popup-msg { font-size: 13px; color: var(--if-verde-profundo); font-weight: 600; margin-bottom: 4px; min-height: 20px; transition: opacity 0.3s; }
+    .popup-sub { font-size: 12px; color: var(--texto-3); margin-bottom: 20px; }
+    .popup-progress-bg { height: 5px; background: var(--if-verde-claro); border-radius: 99px; overflow: hidden; }
+    .popup-progress-fill { height: 5px; background: var(--if-verde); border-radius: 99px; width: 0%; transition: width 0.6s ease; }
     .popup-steps { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
-    .popup-step { width: 7px; height: 7px; border-radius: 50%; background: var(--brand-soft); transition: background 0.4s; }
-    .popup-step.done { background: var(--brand); }
-    .popup-step.active { background: var(--brand-mid); transform: scale(1.2); }
+    .popup-step { width: 7px; height: 7px; background: var(--if-verde-claro); transition: background 0.4s; }
+    .popup-step.done { background: var(--if-verde); }
+    .popup-step.active { background: var(--if-verde-linha); }
 
     /* ── Tema / textos de apoio ── */
-    select.txt { width: 100%; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 14px; color: #1a1a1a; background: #fff; cursor: pointer; }
-    select.txt:focus { outline: none; border-color: var(--brand-mid); box-shadow: 0 0 0 3px rgba(31,138,59,0.15); }
-    .apoio-box { margin-top: 12px; border: 1px solid #e5e5e5; border-radius: 8px; background: #faf9f7; overflow: hidden; }
-    .apoio-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--brand-dark); user-select: none; }
-    .apoio-content { padding: 0 14px 14px; font-size: 13px; color: #444; line-height: 1.6; white-space: pre-wrap; max-height: 260px; overflow-y: auto; }
-    .hint { font-size: 12px; color: #888; margin-top: 6px; }
-    .check-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; color: #555; }
-    .check-row input { width: 16px; height: 16px; accent-color: var(--brand); }
+    select.txt { width: 100%; padding: 10px 13px; border: 1px solid var(--linha); border-radius: var(--raio-sm); font-family: inherit; font-size: 14px; color: var(--texto); background: #fff; cursor: pointer; }
+    select.txt:focus { outline: none; border-color: var(--if-verde); box-shadow: 0 0 0 3px rgba(47,158,65,0.16); }
+    .apoio-box { margin-top: 12px; border: 1px solid var(--linha); border-left: 3px solid var(--if-verde); border-radius: var(--raio-sm); background: #fafbfa; overflow: hidden; }
+    .apoio-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; font-size: 12.5px; font-weight: 700; color: var(--if-verde-profundo); user-select: none; }
+    .apoio-head span { display: inline-flex; align-items: center; gap: 7px; }
+    .apoio-content { padding: 0 14px 14px; font-size: 13px; color: var(--texto-2); line-height: 1.7; white-space: pre-wrap; max-height: 260px; overflow-y: auto; }
+    .hint { font-size: 12px; color: var(--texto-3); margin-top: 7px; line-height: 1.5; }
 
-    /* ── Painel de plágio ── */
-    .plagio-card { border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; border: 1px solid; }
-    .plagio-ok { background: #d1fae5; border-color: #a7f3d0; color: #065f46; }
-    .plagio-warn { background: #fef3c7; border-color: #fcd34d; color: #78350f; }
-    .plagio-danger { background: #fee2e2; border-color: #fca5a5; color: #991b1b; }
-    .plagio-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-    .plagio-bar-bg { height: 6px; background: rgba(0,0,0,0.08); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+    /* ── Painel de detecção de cópia ── */
+    .plagio-card { border-radius: var(--raio); padding: 1.1rem 1.3rem; margin-bottom: 1.25rem; border: 1px solid; border-left-width: 4px; }
+    .plagio-ok { background: var(--if-verde-claro); border-color: var(--if-verde-linha); border-left-color: var(--if-verde); color: var(--if-verde-profundo); }
+    .plagio-warn { background: var(--if-vermelho-claro); border-color: var(--if-vermelho-linha); border-left-color: var(--if-vermelho); color: #7a1418; }
+    .plagio-danger { background: var(--if-vermelho-claro); border-color: var(--if-vermelho); border-left-color: var(--if-vermelho); color: #6a1013; }
+    .plagio-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 9px; }
+    .plagio-bar-bg { height: 6px; background: rgba(0,0,0,0.09); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
     .plagio-bar-fill { height: 6px; border-radius: 99px; background: currentColor; transition: width .8s ease; }
-    .plagio-sub { font-size: 12px; line-height: 1.55; margin-bottom: 10px; opacity: .92; }
-    .plagio-trecho { background: rgba(255,255,255,0.55); border-left: 3px solid currentColor; border-radius: 4px; padding: 6px 10px; font-size: 12px; margin-bottom: 6px; line-height: 1.5; }
+    .plagio-sub { font-size: 12.5px; line-height: 1.65; margin-bottom: 10px; opacity: .95; }
+    .plagio-trecho { background: rgba(255,255,255,0.7); border-left: 3px solid currentColor; padding: 7px 10px; font-size: 12px; margin-bottom: 6px; line-height: 1.55; }
 
     /* ── Modais largos / listas ── */
-    .modal-wide { max-width: 640px; }
+    .modal-wide { max-width: 660px; }
     .modal-lista { max-height: 52vh; overflow-y: auto; margin: 4px 0 8px; }
-    .empty-msg { text-align: center; color: #999; font-size: 13px; padding: 1.5rem 0; }
+    .empty-msg { text-align: center; color: var(--texto-3); font-size: 13px; padding: 1.5rem 0; }
 
     /* ── Histórico ── */
-    .hist-row { border: 1px solid #eee; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .hist-tema { font-size: 13px; font-weight: 600; color: #1a1a1a; }
-    .hist-meta { font-size: 12px; color: #888; margin-top: 2px; }
-    .hist-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-    .hist-nota { font-size: 16px; font-weight: 700; color: var(--brand); white-space: nowrap; }
-    .copia-badge { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
-    .copia-none { background: #d1fae5; color: #065f46; }
-    .copia-warn { background: #fef3c7; color: #92400e; }
-    .copia-danger { background: #fee2e2; color: #991b1b; }
+    .hist-row { border: 1px solid var(--linha-suave); border-radius: var(--raio-sm); padding: 11px 14px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .hist-tema { font-size: 13px; font-weight: 600; color: var(--texto); }
+    .hist-meta { font-size: 12px; color: var(--texto-3); margin-top: 2px; }
+    .hist-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .hist-nota { font-size: 16px; font-weight: 700; color: var(--if-verde-profundo); white-space: nowrap; }
+    .copia-badge { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: var(--raio-sm); white-space: nowrap; }
+    .copia-none { background: var(--if-verde-claro); color: var(--if-verde-profundo); }
+    .copia-warn { background: var(--if-vermelho-claro); color: var(--if-vermelho-escuro); }
+    .copia-danger { background: var(--if-vermelho); color: #fff; }
 
-    /* ── Admin de temas ── */
-    .tema-row { border: 1px solid #eee; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
+    /* ── Gerenciamento de temas ── */
+    .tema-row { border: 1px solid var(--linha-suave); border-radius: var(--raio-sm); padding: 11px 14px; margin-bottom: 8px; }
     .tema-row-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
     .tema-row-title { font-size: 13px; font-weight: 600; }
     .tema-row-actions { display: flex; gap: 6px; flex-shrink: 0; }
-    .btn-mini { padding: 4px 10px; border: 1px solid #ddd; border-radius: 6px; background: #fff; font-size: 12px; cursor: pointer; }
-    .btn-mini:hover { background: #f5f4f0; }
-    .btn-mini.danger { color: #a00; border-color: #f0c0c0; }
+    .btn-mini { padding: 5px 11px; border: 1px solid var(--linha); border-radius: var(--raio-sm); background: #fff; font-family: inherit; font-size: 12px; font-weight: 600; color: var(--texto-2); cursor: pointer; }
+    .btn-mini:hover { background: var(--if-verde-claro); border-color: var(--if-verde-linha); color: var(--if-verde-profundo); }
+    .btn-mini.danger { color: var(--if-vermelho-escuro); border-color: var(--if-vermelho-linha); }
+    .btn-mini.danger:hover { background: var(--if-vermelho-claro); border-color: var(--if-vermelho); color: var(--if-vermelho-escuro); }
+
+    /* ── Avisos em rodapé de conteúdo ── */
+    .nota-rodape { font-size: 11.5px; color: var(--texto-3); line-height: 1.6; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--linha-suave); }
+
+    /* ── Aviso flutuante (substitui os alert() do navegador) ── */
+    .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%) translateY(12px); z-index: 300; display: flex; align-items: center; gap: 10px; max-width: 90vw; padding: 12px 16px; border-radius: var(--raio-sm); background: var(--texto); color: #fff; font-size: 13px; font-weight: 600; box-shadow: 0 8px 24px rgba(0,0,0,0.22); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+    .toast.visivel { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .toast.ok { background: var(--if-verde-escuro); }
+    .toast.erro { background: var(--if-vermelho-escuro); }
+
+    /* ── Aviso do plano gratuito (tela de acesso) ── */
+    .plano-aviso { background: var(--if-verde-claro); border: 1px solid var(--if-verde-linha); border-left: 4px solid var(--if-verde); border-radius: var(--raio-sm); padding: 12px 14px; margin-bottom: 1.25rem; }
+    .plano-aviso-title { font-size: 12.5px; font-weight: 700; color: var(--if-verde-profundo); margin-bottom: 5px; display: flex; align-items: center; gap: 7px; }
+    .plano-aviso-txt { font-size: 12px; color: var(--texto-2); line-height: 1.6; }
+    .plano-aviso-txt strong { color: var(--texto); font-weight: 700; }
+
+    /* ── Cartão de uso do plano (sempre visível no topo do app) ── */
+    .plano-card { background: var(--superficie); border: 1px solid var(--linha); border-left: 4px solid var(--linha); border-radius: var(--raio); padding: 1.15rem 1.4rem; margin-bottom: 1.5rem; box-shadow: var(--sombra); }
+    .plano-card.ok { border-color: var(--linha); border-left-color: var(--if-verde); }
+    .plano-card.warn { border-color: var(--if-vermelho-linha); border-left-color: var(--if-vermelho); }
+    .plano-card.danger { border-color: var(--if-vermelho-linha); border-left-color: var(--if-vermelho); background: var(--if-vermelho-claro); }
+    .plano-card.ilimitado { border-color: var(--if-verde-linha); border-left-color: var(--if-verde); background: var(--if-verde-claro); }
+    .plano-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-bottom: 11px; }
+    .plano-titulo { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 9px; line-height: 1.35; }
+    .plano-card.danger .plano-titulo, .plano-card.warn .plano-titulo { color: var(--if-vermelho-escuro); }
+    .plano-card.ilimitado .plano-titulo { color: var(--if-verde-profundo); }
+    .plano-contador { font-size: 12px; font-weight: 700; color: var(--texto-2); white-space: nowrap; letter-spacing: .04em; text-transform: uppercase; padding-top: 3px; }
+    .plano-blocos { display: flex; gap: 4px; margin-bottom: 11px; }
+    .plano-bloco { flex: 1; height: 9px; background: var(--if-verde); }
+    .plano-bloco.usado { background: #cfd4d0; }
+    .plano-bloco.warn { background: var(--if-vermelho); }
+    .plano-blocos.esgotado .plano-bloco.usado { background: var(--if-vermelho); opacity: .45; }
+    .plano-texto { font-size: 12.5px; color: var(--texto-2); line-height: 1.65; }
+    .plano-texto strong { color: var(--texto); font-weight: 700; }
+    .plano-acoes { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 13px; }
+    .btn-acao { padding: 9px 14px; border-radius: var(--raio-sm); font-size: 12.5px; font-weight: 700; cursor: pointer; border: 1px solid var(--linha); text-decoration: none; display: inline-flex; align-items: center; gap: 7px; font-family: inherit; transition: background .15s, border-color .15s, color .15s; }
+    .btn-acao.principal { background: var(--if-verde); border-color: var(--if-verde); color: #fff; }
+    .btn-acao.principal:hover { background: var(--if-verde-escuro); border-color: var(--if-verde-escuro); }
+    .btn-acao.contorno { background: #fff; color: var(--texto-2); }
+    .btn-acao.contorno:hover { background: var(--if-verde-claro); border-color: var(--if-verde-linha); color: var(--if-verde-profundo); }
+
+    /* ── Passo a passo dos modais ── */
+    .passos { counter-reset: passo; margin: 4px 0 12px; }
+    .passo { position: relative; padding-left: 36px; margin-bottom: 13px; font-size: 13px; color: var(--texto-2); line-height: 1.6; }
+    .passo::before { counter-increment: passo; content: counter(passo); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; background: var(--if-verde); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .passo strong { color: var(--texto); font-weight: 700; }
+    .passo a { color: var(--if-verde-escuro); font-weight: 700; word-break: break-word; }
+    .destaque-limite { background: var(--if-verde-claro); border-left: 4px solid var(--if-verde); border-radius: var(--raio-sm); padding: 11px 13px; font-size: 13px; color: var(--texto-2); line-height: 1.65; margin-bottom: 14px; }
+    .destaque-limite strong { color: var(--texto); font-weight: 700; }
+    .destaque-limite.alerta { background: var(--if-vermelho-claro); border-left-color: var(--if-vermelho); color: #6a1013; }
+    .destaque-limite.alerta strong { color: var(--if-vermelho-escuro); }
+    .limit-box a { color: var(--if-vermelho-escuro); font-weight: 700; }
+    .limit-box strong { color: var(--if-vermelho-escuro); }
+
+    /* ── Telas pequenas (uso pelo celular) ── */
+    @media (max-width: 560px) {
+      .cabecalho-interno { padding: 11px 1rem; gap: 10px; }
+      .marca-logo { height: 40px; }
+      .user-info { width: 100%; border-right: none; padding: 0; margin: 0; }
+      .cabecalho-acoes { width: 100%; gap: 6px; }
+      .btn-sm { flex: 1 1 auto; justify-content: center; padding: 8px 10px; }
+      .app { padding: 1.35rem 1rem 2.5rem; }
+      .card { padding: 1.1rem 1.15rem; }
+      .plano-card { padding: 1rem 1.1rem; }
+      .plano-acoes .btn-acao { flex: 1 1 100%; justify-content: center; }
+      .nota-total-card { padding: 1.15rem 1.25rem; }
+      .modal { padding: 1.25rem 1.15rem; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ── Tela de Login/Cadastro ── -->
+<!-- ── Conjunto de ícones em traço (usados no lugar de emojis) ── -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><line x1="12" y1="16.5" x2="12" y2="11"/><line x1="12" y1="7.8" x2="12.01" y2="7.8"/>
+  </symbol>
+  <symbol id="ico-alerta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9.5" x2="12" y2="13.5"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </symbol>
+  <symbol id="ico-bloqueio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><line x1="5.3" y1="5.3" x2="18.7" y2="18.7"/>
+  </symbol>
+  <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21.5 11.1V12a9.5 9.5 0 1 1-5.63-8.68"/><polyline points="21.5 4.5 12 14.01 9.2 11.2"/>
+  </symbol>
+  <symbol id="ico-chave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="7.5" cy="15.5" r="4.8"/><path d="M11 12 21 2"/><path d="m16.5 6.5 3 3 3-3-3-3"/>
+  </symbol>
+  <symbol id="ico-cartao" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4.5" width="20" height="15" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/>
+  </symbol>
+  <symbol id="ico-caneta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+  </symbol>
+  <symbol id="ico-historico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><polyline points="12 6.5 12 12 15.8 14"/>
+  </symbol>
+  <symbol id="ico-temas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1.5" y1="14" x2="6.5" y2="14"/><line x1="9.5" y1="8" x2="14.5" y2="8"/><line x1="17.5" y1="16" x2="22.5" y2="16"/>
+  </symbol>
+  <symbol id="ico-sair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+  </symbol>
+  <symbol id="ico-professor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16.5 11.5 18.5 13.5 22.5 9.5"/>
+  </symbol>
+  <symbol id="ico-documento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2.5H6.5a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V8z"/><polyline points="14 2.5 14 8 19.5 8"/><line x1="15.5" y1="13" x2="8.5" y2="13"/><line x1="15.5" y1="17" x2="8.5" y2="17"/>
+  </symbol>
+  <symbol id="ico-melhoria" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="22.5 6.5 13.5 15.5 8.5 10.5 1.5 17.5"/><polyline points="16.5 6.5 22.5 6.5 22.5 12.5"/>
+  </symbol>
+</svg>
+
+<script>
+  // ── Logotipo institucional ────────────────────────────────────────────────
+  // O arquivo fica em publico/logo-ifsp.svg (ou .png) e é servido na raiz do site.
+  // Enquanto não existir, a marca aparece só como texto — nada quebra.
+  // Se o arquivo contiver apenas o símbolo, sem as palavras "Instituto Federal
+  // São Paulo", troque a constante abaixo para false para manter o texto ao lado.
+  const LOGO_INCLUI_TEXTO = true;
+
+  function marcaComLogo(img) {
+    img.style.display = 'block';
+    if (!LOGO_INCLUI_TEXTO) return;
+    const texto = img.parentElement.querySelector('.marca-texto');
+    if (texto) texto.style.display = 'none';
+  }
+
+  // Tenta os formatos nesta ordem; se nenhum existir, fica só o texto.
+  const LOGO_FORMATOS = ['svg', 'png', 'jpg', 'jpeg'];
+
+  function marcaSemLogo(img) {
+    const proximo = Number(img.dataset.formato || 0) + 1;
+    if (proximo < LOGO_FORMATOS.length) {
+      img.dataset.formato = String(proximo);
+      img.src = '/logo-ifsp.' + LOGO_FORMATOS[proximo];
+      return;
+    }
+    img.remove();
+  }
+</script>
+
+<!-- ── Tela de acesso (login / cadastro) ── -->
 <div class="auth-wrap" id="authWrap">
   <div class="auth-box">
+    <div class="auth-marca">
+      <!-- O logotipo vem de publico/logo-ifsp.svg (ou .png). Enquanto o arquivo
+           não existir, fica só o texto institucional — ver publico/LEIA-ME.md. -->
+      <div class="marca">
+        <img class="marca-logo" src="/logo-ifsp.svg" alt="Instituto Federal de São Paulo"
+             style="display:none" onload="marcaComLogo(this)" onerror="marcaSemLogo(this)" />
+        <span class="marca-texto">
+          <strong>INSTITUTO FEDERAL</strong>
+          <span>São Paulo</span>
+        </span>
+      </div>
+    </div>
     <h1>Corretor de Redação ENEM</h1>
-    <p>Faça login ou crie sua conta para começar</p>
+    <p>Acesse com sua conta ou cadastre-se para enviar suas redações.</p>
+
+    <div class="plano-aviso">
+      <div class="plano-aviso-title"><svg class="ico" aria-hidden="true"><use href="#ico-info"/></svg> Plano gratuito: 10 correções por mês</div>
+      <div class="plano-aviso-txt">
+        Cada conta corrige <strong>até 10 redações por mês sem pagar nada</strong>.
+        Da <strong>11ª em diante o sistema bloqueia</strong>: para continuar no mesmo mês é preciso
+        <strong>comprar créditos no site da Anthropic</strong> e colar a <strong>sua própria chave de API</strong> aqui dentro.
+      </div>
+    </div>
+
     <div class="auth-tabs">
       <button class="auth-tab active" onclick="mostrarAba('login')">Entrar</button>
       <button class="auth-tab" onclick="mostrarAba('cadastro')">Criar conta</button>
@@ -220,31 +431,42 @@
 </div>
 
 <!-- ── App Principal ── -->
-<div class="app" id="appWrap">
-  <div class="topbar">
-    <div class="topbar-left">
-      <h1>Corretor de Redação ENEM</h1>
-      <p>Avaliação automática nas 5 competências por inteligência artificial</p>
-    </div>
-    <div class="topbar-right">
-      <span class="user-info" id="userNome"></span>
-      <button class="btn-sm" onclick="abrirHistorico()">📜 Histórico</button>
-      <button class="btn-sm" id="btnGerenciarTemas" style="display:none;" onclick="abrirGerenciarTemas()">🛠️ Temas</button>
-      <button class="btn-sm" id="btnSouProfessor" style="display:none;" onclick="promoverProfessor()">Sou professor</button>
-      <button class="btn-sm" onclick="sair()">Sair</button>
-    </div>
-  </div>
-
-  <!-- Status de uso -->
-  <div class="status-bar" id="statusBar">
-    <div class="status-left">
-      <div class="status-icon ok" id="statusIcon">📊</div>
-      <div>
-        <div class="status-title" id="statusTitle">Carregando...</div>
-        <div class="status-sub" id="statusSub"></div>
+<div class="app-shell" id="appWrap">
+  <header class="cabecalho">
+    <div class="cabecalho-interno">
+      <div class="marca">
+        <img class="marca-logo" src="/logo-ifsp.svg" alt="Instituto Federal de São Paulo"
+             style="display:none" onload="marcaComLogo(this)" onerror="marcaSemLogo(this)" />
+        <span class="marca-texto">
+          <strong>INSTITUTO FEDERAL</strong>
+          <span>São Paulo</span>
+        </span>
+      </div>
+      <div class="cabecalho-acoes">
+        <span class="user-info" id="userNome"></span>
+        <button class="btn-sm" onclick="abrirHistorico()"><svg class="ico" aria-hidden="true"><use href="#ico-historico"/></svg> Histórico</button>
+        <button class="btn-sm" id="btnGerenciarTemas" style="display:none;" onclick="abrirGerenciarTemas()"><svg class="ico" aria-hidden="true"><use href="#ico-temas"/></svg> Temas</button>
+        <button class="btn-sm" id="btnSouProfessor" style="display:none;" onclick="abrirModalProfessor()"><svg class="ico" aria-hidden="true"><use href="#ico-professor"/></svg> Sou professor</button>
+        <button class="btn-sm sair" onclick="sair()"><svg class="ico" aria-hidden="true"><use href="#ico-sair"/></svg> Sair</button>
       </div>
     </div>
-    <button class="btn-link" id="statusBtn" onclick="abrirModalChave()"></button>
+  </header>
+
+  <main class="app">
+  <div class="titulo-pagina">
+    <h1>Corretor de Redação ENEM</h1>
+    <p>Avaliação nas cinco competências do ENEM, com nota estimada e verificação de cópia dos textos de apoio.</p>
+  </div>
+
+  <!-- Status de uso — sempre visível, mostra quantas correções gratuitas restam -->
+  <div class="plano-card" id="planoCard">
+    <div class="plano-head">
+      <div class="plano-titulo" id="planoTitulo">Carregando seu plano...</div>
+      <div class="plano-contador" id="planoContador"></div>
+    </div>
+    <div class="plano-blocos" id="planoBlocos"></div>
+    <div class="plano-texto" id="planoTexto"></div>
+    <div class="plano-acoes" id="planoAcoes"></div>
   </div>
 
   <!-- Formulário -->
@@ -253,14 +475,14 @@
       <label class="lbl" for="temaSelect">Tema da redação</label>
       <select class="txt" id="temaSelect" onchange="aoMudarTema()">
         <option value="">— Selecione um tema —</option>
-        <option value="custom">✏️ Tema personalizado (colar textos de apoio)</option>
+        <option value="custom">Tema personalizado (colar textos de apoio)</option>
       </select>
 
       <!-- Textos de apoio do tema escolhido (banco) -->
       <div class="apoio-box" id="apoioBox" style="display:none;">
         <div class="apoio-head" onclick="toggleApoio()">
-          <span>📄 Textos de apoio deste tema</span>
-          <span id="apoioToggle">▲</span>
+          <span><svg class="ico" aria-hidden="true"><use href="#ico-documento"/></svg> Textos de apoio deste tema</span>
+          <span id="apoioToggle">Ocultar</span>
         </div>
         <div class="apoio-content" id="apoioContent"></div>
       </div>
@@ -287,12 +509,15 @@
     <span class="badge">Competência V — Proposta</span>
   </div>
   <br/>
-  <button class="btn-corrigir" id="btnCorrigir" onclick="corrigir()">✏️ Corrigir redação</button>
+  <button class="btn-corrigir" id="btnCorrigir" onclick="corrigir()"><svg class="ico" aria-hidden="true"><use href="#ico-caneta"/></svg> Corrigir redação</button>
   <div class="error-box" id="errorMsg"></div>
   <div class="limit-box" id="limitMsg">
-    ⚠️ <strong>Limite mensal atingido!</strong><br/>
-    Você usou todas as 10 correções gratuitas deste mês.<br/>
-    <button class="btn-link" style="margin-top:4px;font-size:13px;" onclick="abrirModalChave()">👉 Cadastre sua chave de API para uso ilimitado</button>
+    <strong>Limite de 10 correções gratuitas atingido neste mês.</strong><br/>
+    Esta seria a sua <strong>11ª correção</strong>. Para corrigi-la agora, é necessário usar créditos próprios:<br/>
+    <strong>1.</strong> Compre créditos em <a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener">console.anthropic.com/settings/billing</a><br/>
+    <strong>2.</strong> Crie sua chave em <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com/settings/keys</a> e cadastre-a no sistema.<br/>
+    <button class="btn-acao principal" style="margin-top:10px;" onclick="abrirModalChave()"><svg class="ico" aria-hidden="true"><use href="#ico-chave"/></svg> Cadastrar minha chave de API</button><br/>
+    <span style="font-size:12px;">Sem chave própria, as 10 correções gratuitas voltam no dia 1º do próximo mês.</span>
   </div>
 
   <!-- Resultados -->
@@ -313,8 +538,8 @@
       <div class="plagio-card" id="plagioCard" style="display:none;"></div>
       <div class="nota-total-card">
         <div>
-          <div style="font-size:14px;opacity:.8;margin-bottom:4px;">Nota final estimada</div>
-          <div style="display:flex;align-items:baseline;gap:6px;">
+          <div class="nota-rotulo">Nota final estimada</div>
+          <div style="display:flex;align-items:baseline;gap:7px;">
             <div class="nota-value" id="notaTotal">—</div>
             <div class="nota-max">/ 1000</div>
           </div>
@@ -324,24 +549,29 @@
       <div class="comp-grid" id="compGrid"></div>
       <div class="divider"></div>
       <div>
-        <div class="melhorias-title">💡 Sugestões de melhoria</div>
+        <div class="melhorias-title"><svg class="ico-md" aria-hidden="true" style="color:var(--if-verde)"><use href="#ico-melhoria"/></svg> Sugestões de melhoria</div>
         <div id="melhorias"></div>
       </div>
+      <p class="nota-rodape">
+        Avaliação gerada automaticamente por inteligência artificial, com base nos critérios das cinco competências do ENEM.
+        A nota é uma estimativa de estudo e não substitui a correção oficial nem a avaliação do professor.
+      </p>
     </div>
   </div>
+  </main>
 </div>
 
-<!-- ── Loading Popup ── -->
+<!-- ── Aviso de processamento ── -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-popup">
     <div class="popup-spinner-wrap">
       <div class="popup-spinner-outer"></div>
       <div class="popup-spinner-inner"></div>
-      <div class="popup-spinner-icon">✏️</div>
+      <div class="popup-spinner-marca" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
     <div class="popup-title">Corrigindo sua redação</div>
     <div class="popup-msg" id="popupMsg">Enviando redação...</div>
-    <div class="popup-sub">A IA está analisando nas 5 competências</div>
+    <div class="popup-sub">Análise em andamento nas cinco competências</div>
     <div class="popup-progress-bg">
       <div class="popup-progress-fill" id="popupProgress"></div>
     </div>
@@ -355,16 +585,37 @@
   </div>
 </div>
 
+<!-- ── Modal: Como funciona o limite (aparece ao entrar no sistema) ── -->
+<div class="modal-overlay" id="modalPlano">
+  <div class="modal modal-wide">
+    <h3><svg class="ico" aria-hidden="true" id="planoModalIcone" style="color:var(--if-verde)"><use href="#ico-info"/></svg> <span id="planoModalTitulo">Antes de começar: como funciona o seu limite</span></h3>
+    <div class="destaque-limite" id="planoModalDestaque">
+      <strong>Você tem 10 correções gratuitas por mês.</strong><br/>
+      Da <strong>11ª correção em diante o sistema bloqueia</strong> até o mês virar — a não ser que você
+      compre créditos no site da Anthropic e cadastre a <strong>sua própria chave de API</strong> aqui.
+    </div>
+    <div class="passos">
+      <div class="passo">Corrija <strong>até 10 redações por mês sem pagar nada</strong>. O contador fica sempre visível no topo da tela e zera todo dia 1º.</div>
+      <div class="passo">Ao chegar na <strong>11ª redação do mês</strong>, o botão de corrigir é bloqueado. Para continuar no mesmo mês, siga os passos 3 e 4.</div>
+      <div class="passo">Compre créditos em <a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener">console.anthropic.com/settings/billing</a> — custa cerca de <strong>R$ 0,05 por redação corrigida</strong>.</div>
+      <div class="passo">Crie sua chave em <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com/settings/keys</a>, copie o código que começa com <strong>sk-ant-</strong> e cole aqui no sistema. A partir daí seu uso fica <strong>ilimitado</strong>.</div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="fecharModal('modalPlano')">Entendi, começar</button>
+      <button class="btn-primary" style="flex:1;" onclick="fecharModal('modalPlano'); abrirModalChave();">Cadastrar minha chave agora</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── Modal: Chave de API própria ── -->
 <div class="modal-overlay" id="modalChave">
   <div class="modal">
-    <h3>🔑 Usar minha chave de API</h3>
-    <p>Com sua própria chave da Anthropic, você tem <strong>uso ilimitado</strong> e paga apenas pelo que usar (em torno de R$ 0,05 por redação).</p>
-    <div class="tip-box">
-      Como obter sua chave:<br/>
-      1. Acesse <strong>console.anthropic.com</strong><br/>
-      2. Clique em <strong>API Keys → Create Key</strong><br/>
-      3. Copie a chave (começa com <strong>sk-ant-</strong>)
+    <h3><svg class="ico" aria-hidden="true" style="color:var(--if-verde)"><use href="#ico-chave"/></svg> Usar minha chave de API</h3>
+    <p>A partir da <strong>11ª correção do mês</strong> o sistema só funciona com a sua própria chave. Com ela o uso é <strong>ilimitado</strong> e você paga apenas o que usar — cerca de R$ 0,05 por redação.</p>
+    <div class="passos">
+      <div class="passo"><strong>Compre créditos</strong> em <a href="https://console.anthropic.com/settings/billing" target="_blank" rel="noopener">console.anthropic.com/settings/billing</a> (é preciso cartão internacional; US$ 5 já dá para centenas de redações).</div>
+      <div class="passo"><strong>Crie a chave</strong> em <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com/settings/keys</a> → <strong>Create Key</strong>.</div>
+      <div class="passo"><strong>Copie e cole abaixo</strong> o código que começa com <strong>sk-ant-</strong>. Sem créditos comprados, a chave não funciona.</div>
     </div>
     <div class="field">
       <label>Sua chave de API</label>
@@ -384,8 +635,8 @@
 <!-- ── Modal: Histórico de correções ── -->
 <div class="modal-overlay" id="modalHistorico">
   <div class="modal modal-wide">
-    <h3>📜 Seu histórico de correções</h3>
-    <p>Últimas redações corrigidas, com a nota e o percentual de cópia dos textos de apoio.</p>
+    <h3><svg class="ico" aria-hidden="true" style="color:var(--if-verde)"><use href="#ico-historico"/></svg> Histórico de correções</h3>
+    <p>Últimas redações corrigidas, com a nota estimada e o percentual de cópia dos textos de apoio.</p>
     <div class="modal-lista" id="histLista"></div>
     <div class="modal-btns">
       <button class="btn-secondary" onclick="fecharModal('modalHistorico')">Fechar</button>
@@ -396,7 +647,7 @@
 <!-- ── Modal: Gerenciar temas (professor) ── -->
 <div class="modal-overlay" id="modalTemas">
   <div class="modal modal-wide">
-    <h3>🛠️ Gerenciar temas</h3>
+    <h3><svg class="ico" aria-hidden="true" style="color:var(--if-verde)"><use href="#ico-temas"/></svg> Gerenciar temas</h3>
     <p>Cadastre, edite ou remova os temas e seus textos de apoio.</p>
 
     <div class="field">
@@ -419,13 +670,52 @@
   </div>
 </div>
 
+<!-- ── Modal: Acesso de professor ── -->
+<div class="modal-overlay" id="modalProfessor">
+  <div class="modal">
+    <h3><svg class="ico" aria-hidden="true" style="color:var(--if-verde)"><use href="#ico-professor"/></svg> Acesso de professor</h3>
+    <p>Informe o código institucional para liberar o cadastro e a edição dos temas e dos textos de apoio.</p>
+    <div class="field">
+      <label for="inputCodigoProf">Código de professor</label>
+      <input type="password" id="inputCodigoProf" placeholder="Digite o código" />
+    </div>
+    <div class="auth-error" id="profError"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="fecharModal('modalProfessor')">Cancelar</button>
+      <button class="btn-primary" style="flex:1;" onclick="confirmarProfessor()">Liberar acesso</button>
+    </div>
+  </div>
+</div>
+
+<!-- Aviso flutuante (substitui os alert() do navegador) -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
   const API = ''; // mesma origem: o frontend é servido pelo próprio backend
+  const URL_CREDITOS = 'https://console.anthropic.com/settings/billing';
+  const URL_CHAVES = 'https://console.anthropic.com/settings/keys';
   let token = localStorage.getItem('enem_token');
   let statusAtual = null;
   let temasCache = [];
   let usuarioTipo = 'aluno';
   let editandoTemaId = null;
+
+  // ── Utilidades de interface ──
+  // Devolve o ícone em traço correspondente (ver <symbol> no topo do documento).
+  function icone(nome, classe = 'ico') {
+    return `<svg class="${classe}" aria-hidden="true"><use href="#ico-${nome}"/></svg>`;
+  }
+
+  // Aviso discreto no rodapé, no lugar dos alert() do navegador.
+  let toastTimer = null;
+  function aviso(mensagem, tipo = 'ok') {
+    const el = document.getElementById('toast');
+    el.className = 'toast ' + tipo;
+    el.innerHTML = icone(tipo === 'erro' ? 'alerta' : 'check') + `<span>${escapeHtml(mensagem)}</span>`;
+    requestAnimationFrame(() => el.classList.add('visivel'));
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('visivel'), 4500);
+  }
 
   // ── Inicialização ──
   if (token) mostrarApp();
@@ -449,7 +739,7 @@
       if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
       token = d.token;
       localStorage.setItem('enem_token', token);
-      mostrarApp();
+      mostrarApp(true);
     } catch { errEl.textContent = 'Erro de conexão. Backend está rodando?'; errEl.style.display = 'block'; }
   }
 
@@ -466,23 +756,52 @@
       if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
       token = d.token;
       localStorage.setItem('enem_token', token);
-      mostrarApp();
+      mostrarApp(true);
     } catch { errEl.textContent = 'Erro de conexão. Backend está rodando?'; errEl.style.display = 'block'; }
   }
 
   function sair() {
     localStorage.removeItem('enem_token');
+    sessionStorage.removeItem('enem_aviso_plano');
     token = null;
     document.getElementById('authWrap').style.display = 'flex';
     document.getElementById('appWrap').style.display = 'none';
   }
 
   // ── App ──
-  async function mostrarApp() {
+  // `entrandoAgora` = veio de um login/cadastro; nesse caso o aviso do limite
+  // aparece sempre. Em recarregamentos de página, aparece 1x por sessão.
+  async function mostrarApp(entrandoAgora = false) {
     document.getElementById('authWrap').style.display = 'none';
     document.getElementById('appWrap').style.display = 'block';
     await carregarStatus();
     await carregarTemas();
+    talvezMostrarAvisoPlano(entrandoAgora);
+  }
+
+  // Explica o limite de 10/mês logo ao entrar (só para quem ainda não tem chave própria)
+  function talvezMostrarAvisoPlano(entrandoAgora) {
+    if (!statusAtual || statusAtual.tem_chave_propria) return;
+    if (!entrandoAgora && sessionStorage.getItem('enem_aviso_plano') === '1') return;
+    sessionStorage.setItem('enem_aviso_plano', '1');
+
+    const titulo = document.getElementById('planoModalTitulo');
+    const iconeEl = document.getElementById('planoModalIcone');
+    const destaque = document.getElementById('planoModalDestaque');
+    const restantes = statusAtual.redacoes_restantes;
+    const critico = restantes <= 3;
+
+    if (restantes === 0) {
+      titulo.textContent = 'Suas 10 correções gratuitas deste mês acabaram';
+    } else if (critico) {
+      titulo.textContent = `Restam apenas ${restantes} de 10 correções gratuitas`;
+    } else {
+      titulo.textContent = 'Antes de começar: como funciona o seu limite';
+    }
+    iconeEl.querySelector('use').setAttribute('href', restantes === 0 ? '#ico-bloqueio' : critico ? '#ico-alerta' : '#ico-info');
+    iconeEl.style.color = critico ? 'var(--if-vermelho)' : 'var(--if-verde)';
+    destaque.className = 'destaque-limite' + (critico ? ' alerta' : '');
+    document.getElementById('modalPlano').classList.add('open');
   }
 
   // ── Temas / textos de apoio ──
@@ -517,7 +836,7 @@
       if (tema) {
         document.getElementById('apoioContent').textContent = tema.textos_apoio;
         document.getElementById('apoioContent').style.display = 'block';
-        document.getElementById('apoioToggle').textContent = '▲';
+        document.getElementById('apoioToggle').textContent = 'Ocultar';
         apoioBox.style.display = 'block';
       }
     } else {
@@ -531,7 +850,7 @@
     const t = document.getElementById('apoioToggle');
     const escondido = c.style.display === 'none';
     c.style.display = escondido ? 'block' : 'none';
-    t.textContent = escondido ? '▲' : '▼';
+    t.textContent = escondido ? 'Ocultar' : 'Mostrar';
   }
 
   async function carregarStatus() {
@@ -550,22 +869,32 @@
   // Fecha qualquer modal pelo id
   function fecharModal(id) { document.getElementById(id).classList.remove('open'); }
 
-  // ── Promoção a professor ──
-  async function promoverProfessor() {
-    const codigo = prompt('Digite o código de professor para liberar o gerenciamento de temas:');
-    if (!codigo) return;
+  // ── Acesso de professor ──
+  function abrirModalProfessor() {
+    document.getElementById('profError').style.display = 'none';
+    document.getElementById('inputCodigoProf').value = '';
+    document.getElementById('modalProfessor').classList.add('open');
+    document.getElementById('inputCodigoProf').focus();
+  }
+
+  async function confirmarProfessor() {
+    const codigo = document.getElementById('inputCodigoProf').value.trim();
+    const err = document.getElementById('profError');
+    err.style.display = 'none';
+    if (!codigo) { err.textContent = 'Informe o código de professor.'; err.style.display = 'block'; return; }
     try {
       const r = await fetch(`${API}/api/usuario/promover-professor`, {
         method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ codigo: codigo.trim() })
+        body: JSON.stringify({ codigo })
       });
       const d = await r.json();
-      if (!r.ok) { alert('❌ ' + (d.error || 'Código inválido.')); return; }
+      if (!r.ok) { err.textContent = d.error || 'Código inválido.'; err.style.display = 'block'; return; }
       token = d.token;
       localStorage.setItem('enem_token', token);
+      fecharModal('modalProfessor');
       await carregarStatus();
-      alert('✅ ' + d.message);
-    } catch { alert('Erro de conexão.'); }
+      aviso(d.message);
+    } catch { err.textContent = 'Erro de conexão.'; err.style.display = 'block'; }
   }
 
   // ── Histórico ──
@@ -673,42 +1002,100 @@
     if (!confirm(`Excluir o tema "${t ? t.titulo : ''}"? Correções já feitas não são afetadas.`)) return;
     try {
       const r = await fetch(`${API}/api/temas/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-      if (!r.ok) { const d = await r.json(); alert('❌ ' + (d.error || 'Erro ao excluir.')); return; }
+      if (!r.ok) { const d = await r.json(); aviso(d.error || 'Erro ao excluir o tema.', 'erro'); return; }
       if (editandoTemaId === id) cancelarEdicaoTema();
       await renderListaTemasAdmin();
-    } catch { alert('Erro de conexão.'); }
+      aviso('Tema removido.');
+    } catch { aviso('Erro de conexão.', 'erro'); }
   }
 
   function atualizarStatusBar() {
     if (!statusAtual) return;
-    const icon = document.getElementById('statusIcon');
-    const title = document.getElementById('statusTitle');
-    const sub = document.getElementById('statusSub');
-    const btn = document.getElementById('statusBtn');
+    const card = document.getElementById('planoCard');
+    const titulo = document.getElementById('planoTitulo');
+    const contador = document.getElementById('planoContador');
+    const blocos = document.getElementById('planoBlocos');
+    const texto = document.getElementById('planoTexto');
+    const acoes = document.getElementById('planoAcoes');
 
+    // ── Usuário com chave própria: uso ilimitado ──
     if (statusAtual.tem_chave_propria) {
-      icon.textContent = '🔑'; icon.className = 'status-icon custom';
-      title.textContent = 'Usando sua chave de API — uso ilimitado';
-      sub.textContent = `${statusAtual.redacoes_usadas} correções feitas este mês`;
-      btn.textContent = 'Gerenciar chave';
+      card.className = 'plano-card ilimitado';
+      titulo.innerHTML = icone('chave', 'ico-md') + 'Chave de API própria ativa — uso ilimitado';
+      contador.textContent = `${statusAtual.redacoes_usadas} correções este mês`;
+      blocos.style.display = 'none';
+      texto.innerHTML = 'As correções são cobradas diretamente nos <strong>seus créditos da Anthropic</strong> (cerca de R$ 0,05 por redação). Se a chave for removida, a conta volta ao plano gratuito de <strong>10 correções por mês</strong>.';
+      acoes.innerHTML = `<button class="btn-acao contorno" onclick="abrirModalChave()">${icone('chave')} Gerenciar minha chave</button>`;
+      atualizarBotaoCorrigir();
+      return;
+    }
+
+    // ── Plano gratuito: 10 por mês ──
+    const limite = statusAtual.redacoes_limite ?? 10;
+    const usadas = statusAtual.redacoes_usadas;
+    const restantes = statusAtual.redacoes_restantes;
+    const estado = restantes === 0 ? 'danger' : restantes <= 3 ? 'warn' : 'ok';
+
+    card.className = 'plano-card ' + estado;
+    contador.textContent = `${usadas} de ${limite} usadas`;
+    blocos.style.display = 'flex';
+    blocos.className = 'plano-blocos' + (restantes === 0 ? ' esgotado' : '');
+    blocos.innerHTML = Array.from({ length: limite }, (_, i) =>
+      i < usadas
+        ? '<div class="plano-bloco usado"></div>'
+        : `<div class="plano-bloco ${estado === 'ok' ? '' : 'warn'}"></div>`
+    ).join('');
+
+    if (restantes === 0) {
+      titulo.innerHTML = icone('bloqueio', 'ico-md') + `Limite gratuito esgotado — ${usadas}/${limite} correções usadas neste mês`;
+      texto.innerHTML =
+        'As <strong>10 correções gratuitas</strong> deste mês já foram utilizadas. Para corrigir a <strong>11ª redação agora</strong>, ' +
+        'é necessário <strong>comprar créditos no site da Anthropic</strong> e cadastrar a <strong>sua própria chave de API</strong> aqui. ' +
+        'Sem isso, o envio fica bloqueado até o dia 1º do próximo mês.';
+    } else if (restantes <= 3) {
+      titulo.innerHTML = icone('alerta', 'ico-md') + `Restam apenas ${restantes} de ${limite} correções gratuitas neste mês`;
+      texto.innerHTML =
+        `Quando as ${limite} correções acabarem, a <strong>11ª só será processada com créditos próprios</strong>: ` +
+        'compre créditos no site da Anthropic e cadastre a sua chave de API com antecedência para não interromper os estudos.';
     } else {
-      const restantes = statusAtual.redacoes_restantes;
-      if (restantes === 0) {
-        icon.textContent = '🚫'; icon.className = 'status-icon danger';
-        title.textContent = 'Limite mensal atingido';
-        sub.textContent = 'Cadastre sua chave para continuar';
-      } else if (restantes <= 3) {
-        icon.textContent = '⚠️'; icon.className = 'status-icon warn';
-        title.textContent = `${restantes} correções restantes este mês`;
-        sub.textContent = 'Considere cadastrar sua chave de API';
-      } else {
-        icon.textContent = '📊'; icon.className = 'status-icon ok';
-        title.textContent = `${restantes} de 10 correções disponíveis`;
-        sub.textContent = 'Plano gratuito — renova todo mês';
-      }
-      btn.textContent = 'Usar chave própria →';
+      titulo.innerHTML = icone('info', 'ico-md') + `Plano gratuito — ${restantes} de ${limite} correções restantes neste mês`;
+      texto.innerHTML =
+        'Cada conta tem <strong>10 correções gratuitas por mês</strong> (o contador reinicia todo dia 1º). ' +
+        'A partir da <strong>11ª correção</strong>, é preciso <strong>comprar créditos no site da Anthropic</strong> ' +
+        'e cadastrar a <strong>sua própria chave de API</strong> para continuar usando no mesmo mês.';
+    }
+
+    const enfase = restantes === 0 ? 'principal' : 'contorno';
+    acoes.innerHTML =
+      `<a class="btn-acao ${enfase}" href="${URL_CREDITOS}" target="_blank" rel="noopener">${icone('cartao')} Comprar créditos na Anthropic</a>` +
+      `<button class="btn-acao ${enfase}" onclick="abrirModalChave()">${icone('chave')} Cadastrar minha chave de API</button>` +
+      `<button class="btn-acao contorno" onclick="abrirModalPlano()">${icone('info')} Como funciona o limite</button>`;
+
+    atualizarBotaoCorrigir();
+  }
+
+  // Deixa explícito no próprio botão quantas correções gratuitas ainda restam
+  function atualizarBotaoCorrigir() {
+    const btn = document.getElementById('btnCorrigir');
+    if (!btn) return;
+    if (!statusAtual) { btn.disabled = false; return; }
+    if (statusAtual.tem_chave_propria) {
+      btn.disabled = false;
+      btn.innerHTML = icone('caneta') + ' Corrigir redação (uso ilimitado com sua chave)';
+      return;
+    }
+    const limite = statusAtual.redacoes_limite ?? 10;
+    const restantes = statusAtual.redacoes_restantes;
+    if (restantes === 0) {
+      btn.disabled = true;
+      btn.innerHTML = icone('bloqueio') + ` Limite de ${limite} por mês atingido — cadastre sua chave de API`;
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = icone('caneta') + ` Corrigir redação — restam ${restantes} de ${limite} gratuitas`;
     }
   }
+
+  function abrirModalPlano() { document.getElementById('modalPlano').classList.add('open'); }
 
   // ── Contador de palavras ──
   document.addEventListener('DOMContentLoaded', () => {
@@ -775,6 +1162,13 @@
     errEl.style.display = 'none';
     limitEl.style.display = 'none';
 
+    // Bloqueio explícito da 11ª correção para quem não tem chave própria
+    if (statusAtual && !statusAtual.tem_chave_propria && statusAtual.redacoes_restantes === 0) {
+      limitEl.style.display = 'block';
+      limitEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
     if (texto.length < 100) {
       errEl.textContent = 'Por favor, insira uma redação com pelo menos 100 caracteres.';
       errEl.style.display = 'block';
@@ -809,9 +1203,12 @@
       });
 
       if (r.status === 429) {
+        pararLoading();
         document.getElementById('loadingState').style.display = 'none';
         results.style.display = 'none';
         limitEl.style.display = 'block';
+        limitEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await carregarStatus(); // trava o botão e atualiza o contador
         return;
       }
       if (r.status === 401) { sair(); return; }
@@ -831,7 +1228,7 @@
       errEl.textContent = 'Erro: ' + err.message;
       errEl.style.display = 'block';
     } finally {
-      btn.disabled = false;
+      atualizarBotaoCorrigir(); // mantém o bloqueio se o limite tiver acabado
     }
   }
 
@@ -845,17 +1242,17 @@
     const pct = plagio.percentualCopiado;
     let cls, icon, titulo, sub;
     if (pct === 0) {
-      cls = 'plagio-ok'; icon = '✅';
+      cls = 'plagio-ok'; icon = icone('check', 'ico-md');
       titulo = 'Sem cópia dos textos de apoio';
-      sub = 'Nenhum trecho copiado literalmente dos textos de apoio foi detectado. Ótimo — o texto é de autoria própria.';
+      sub = 'Nenhum trecho copiado literalmente dos textos de apoio foi detectado — o texto é de autoria própria.';
     } else if (pct < 25) {
-      cls = 'plagio-warn'; icon = '⚠️';
+      cls = 'plagio-warn'; icon = icone('alerta', 'ico-md');
       titulo = `Cópia dos textos de apoio: ${pct}%`;
       sub = 'Foram encontrados trechos copiados dos textos de apoio. Pela regra do ENEM, esses trechos não contam como produção própria e a nota já reflete essa penalização. Reescreva-os com suas palavras.';
     } else {
-      cls = 'plagio-danger'; icon = '🚫';
+      cls = 'plagio-danger'; icon = icone('bloqueio', 'ico-md');
       titulo = `Cópia dos textos de apoio: ${pct}%`;
-      sub = 'Grande parte da redação é cópia literal dos textos de apoio. No ENEM isso reduz drasticamente a nota (e a cópia total zera a redação). Reescreva os trechos destacados com argumentação própria.';
+      sub = 'Grande parte da redação é cópia literal dos textos de apoio. No ENEM isso reduz drasticamente a nota, e a cópia total zera a redação. Reescreva os trechos destacados com argumentação própria.';
     }
     const trechos = (plagio.trechosCopiados || []).slice(0, 6)
       .map(t => `<div class="plagio-trecho">“${escapeHtml(t.texto)}”</div>`).join('');
@@ -912,8 +1309,9 @@
       const d = await r.json();
       if (!r.ok) { errEl.textContent = d.error; errEl.style.display = 'block'; return; }
       fecharModalChave();
+      document.getElementById('limitMsg').style.display = 'none';
       await carregarStatus();
-      alert('✅ ' + d.message);
+      aviso(d.message);
     } catch { errEl.textContent = 'Erro de conexão.'; errEl.style.display = 'block'; }
   }
 
@@ -922,6 +1320,7 @@
     await fetch(`${API}/api/usuario/api-key`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
     fecharModalChave();
     await carregarStatus();
+    aviso('Chave removida. Limite de 10 correções por mês restaurado.');
   }
 </script>
 </body>

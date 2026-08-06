@@ -89,12 +89,16 @@ if (db.prepare('SELECT COUNT(*) AS total FROM temas').get().total === 0) {
   const inserir = db.prepare('INSERT INTO temas (titulo, textos_apoio) VALUES (?, ?)');
   const inserirVarios = db.transaction((temas) => temas.forEach((t) => inserir.run(t.titulo, t.textos_apoio)));
   inserirVarios(TEMAS_SEED);
-  console.log(`📚 ${TEMAS_SEED.length} temas de exemplo cadastrados.`);
+  console.log(`${TEMAS_SEED.length} temas de exemplo cadastrados.`);
 }
 
 // ─── Middlewares ─────────────────────────────────────────────────────────────
 app.use(cors({ origin: process.env.FRONTEND_URL || '*' }));
 app.use(express.json());
+
+// Arquivos públicos (logotipo institucional, imagens). Fica numa pasta própria
+// para não expor .env nem database.db, que estão na raiz do projeto.
+app.use(express.static(path.join(__dirname, 'publico')));
 
 // Middleware de autenticação JWT
 function autenticar(req, res, next) {
@@ -270,6 +274,8 @@ app.delete('/api/usuario/api-key', autenticar, (req, res) => {
 // GET /api/usuario/status
 app.get('/api/usuario/status', autenticar, (req, res) => {
   const usuario = db.prepare('SELECT nome, email, api_key, tipo FROM usuarios WHERE id = ?').get(req.usuario.id);
+  // O token continua válido mesmo se a conta tiver sido removida; nesse caso, pede login de novo.
+  if (!usuario) return res.status(401).json({ error: 'Conta não encontrada. Faça login novamente.' });
 
   const mesAtual = new Date().toISOString().slice(0, 7); // "2025-05"
   const usadoMes = db.prepare(
@@ -370,6 +376,7 @@ app.post('/api/corrigir', autenticar, async (req, res) => {
 
   // Busca dados do usuário
   const usuario = db.prepare('SELECT api_key FROM usuarios WHERE id = ?').get(req.usuario.id);
+  if (!usuario) return res.status(401).json({ error: 'Conta não encontrada. Faça login novamente.' });
 
   // Verifica limite se não tem chave própria
   if (!usuario.api_key) {
@@ -452,6 +459,6 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.listen(PORT, () => {
-  console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
-  console.log(`   Abra o sistema em: http://localhost:${PORT}`);
+  console.log(`Servidor em execucao na porta ${PORT}.`);
+  console.log(`Abra o sistema em: http://localhost:${PORT}`);
 });
