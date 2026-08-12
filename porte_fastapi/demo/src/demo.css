@@ -10,6 +10,22 @@ body {
   font-family: "Open Sans", "Segoe UI", Arial, sans-serif;
 }
 
+/* Cabeçalho institucional — no IFvest quem desenha isto é o layout de vocês.
+   Está aqui só para a demo não parecer uma página solta. */
+.cabecalho-simulado {
+  background: #fff;
+  border-bottom: 3px solid #2f9e41;
+  padding: 13px 16px;
+}
+
+.cabecalho-simulado img {
+  height: 50px;
+  width: auto;
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .barra-demo {
   display: flex;
   align-items: center;

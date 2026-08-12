@@ -32,6 +32,12 @@ function Demo() {
 
   return (
     <>
+      {/* Simula o cabeçalho que o layout do IFvest vai fornecer. O componente
+          do corretor não desenha isto de propósito — senão haveria dois. */}
+      <header className="cabecalho-simulado">
+        <img src="/logo-ifsp.png" alt="Instituto Federal de São Paulo" />
+      </header>
+
       <div className="barra-demo">
         <strong>Demonstração</strong>
         <span>entrar como:</span>
