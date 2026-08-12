@@ -72,10 +72,11 @@ export function CorretorDeRedacao() {
   const [apoioCustom, setApoioCustom] = useState("");
   const [erroLocal, setErroLocal] = useState<string | null>(null);
 
-  const [modalChave, setModalChave] = useState(false);
-  const [modalPlano, setModalPlano] = useState(false);
-  const [modalHistorico, setModalHistorico] = useState(false);
-  const [modalTemas, setModalTemas] = useState(false);
+  // Um modal por vez: guardar um booleano por modal deixava dois overlays
+  // empilharem se dois fossem abertos na mesma interação.
+  type Modal = null | "plano" | "chave" | "historico" | "temas";
+  const [modal, setModal] = useState<Modal>(null);
+  const fecharModal = () => setModal(null);
   const jaExplicou = useRef(false);
 
   const passo = useProgresso(enviando);
@@ -86,7 +87,7 @@ export function CorretorDeRedacao() {
     if (!status || jaExplicou.current) return;
     jaExplicou.current = true;
     if (!status.tem_chave_propria && status.redacoes_limite !== null) {
-      setModalPlano(true);
+      setModal("plano");
     }
   }, [status]);
 
@@ -150,7 +151,7 @@ export function CorretorDeRedacao() {
           <button
             type="button"
             className="btn-acao contorno"
-            onClick={() => setModalHistorico(true)}
+            onClick={() => setModal("historico")}
           >
             <Icone nome="documento" /> Meu histórico
           </button>
@@ -158,7 +159,7 @@ export function CorretorDeRedacao() {
             <button
               type="button"
               className="btn-acao contorno"
-              onClick={() => setModalTemas(true)}
+              onClick={() => setModal("temas")}
             >
               <Icone nome="documento" /> Gerenciar temas
             </button>
@@ -168,8 +169,8 @@ export function CorretorDeRedacao() {
 
       <CartaoPlano
         status={status}
-        aoAbrirChave={() => setModalChave(true)}
-        aoAbrirExplicacao={() => setModalPlano(true)}
+        aoAbrirChave={() => setModal("chave")}
+        aoAbrirExplicacao={() => setModal("plano")}
       />
 
       <div className="card">
@@ -240,7 +241,7 @@ export function CorretorDeRedacao() {
             type="button"
             className="btn-acao principal"
             style={{ marginTop: 10 }}
-            onClick={() => setModalChave(true)}
+            onClick={() => setModal("chave")}
           >
             <Icone nome="chave" /> Cadastrar minha chave de API
           </button>
@@ -277,25 +278,22 @@ export function CorretorDeRedacao() {
       </div>
 
       <ModalPlano
-        aberto={modalPlano}
+        aberto={modal === "plano"}
         status={status}
-        aoFechar={() => setModalPlano(false)}
-        aoAbrirChave={() => setModalChave(true)}
+        aoFechar={fecharModal}
+        aoAbrirChave={() => setModal("chave")}
       />
       <ModalChaveApi
-        aberto={modalChave}
+        aberto={modal === "chave"}
         temChave={status.tem_chave_propria}
-        aoFechar={() => setModalChave(false)}
+        aoFechar={fecharModal}
         aoMudar={recarregarStatus}
       />
-      <ModalHistorico
-        aberto={modalHistorico}
-        aoFechar={() => setModalHistorico(false)}
-      />
+      <ModalHistorico aberto={modal === "historico"} aoFechar={fecharModal} />
       {status.professor && (
         <ModalTemas
-          aberto={modalTemas}
-          aoFechar={() => setModalTemas(false)}
+          aberto={modal === "temas"}
+          aoFechar={fecharModal}
           aoMudar={recarregarTemas}
         />
       )}
