@@ -1,0 +1,3170 @@
+{
+  "gerado_em": "20260812T200537Z",
+  "parametros": {
+    "repeticoes": 10,
+    "modelos": [
+      "claude-opus-5",
+      "claude-sonnet-4-5"
+    ],
+    "max_tokens": 8000,
+    "esforco": "medium"
+  },
+  "resumo": [
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 960,
+      "desvio_padrao": 0.0,
+      "minimo": 960,
+      "maximo": 960,
+      "amplitude": 0,
+      "identicas": true
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 936,
+      "desvio_padrao": 28.0,
+      "minimo": 920,
+      "maximo": 1000,
+      "amplitude": 80,
+      "identicas": false
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 600,
+      "desvio_padrao": 0.0,
+      "minimo": 600,
+      "maximo": 600,
+      "amplitude": 0,
+      "identicas": true
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 544,
+      "desvio_padrao": 28.0,
+      "minimo": 480,
+      "maximo": 560,
+      "amplitude": 80,
+      "identicas": false
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 376,
+      "desvio_padrao": 20.7,
+      "minimo": 360,
+      "maximo": 400,
+      "amplitude": 40,
+      "identicas": false
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 284,
+      "desvio_padrao": 12.6,
+      "minimo": 280,
+      "maximo": 320,
+      "amplitude": 40,
+      "identicas": false
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 0,
+      "desvio_padrao": 0.0,
+      "minimo": 0,
+      "maximo": 0,
+      "amplitude": 0,
+      "identicas": true
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 0,
+      "desvio_padrao": 0.0,
+      "minimo": 0,
+      "maximo": 0,
+      "amplitude": 0,
+      "identicas": true
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 556,
+      "desvio_padrao": 66.5,
+      "minimo": 440,
+      "maximo": 640,
+      "amplitude": 200,
+      "identicas": false
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 496,
+      "desvio_padrao": 73.5,
+      "minimo": 440,
+      "maximo": 600,
+      "amplitude": 160,
+      "identicas": false
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 380,
+      "desvio_padrao": 43.2,
+      "minimo": 320,
+      "maximo": 440,
+      "amplitude": 120,
+      "identicas": false
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "n": 10,
+      "media": 280,
+      "desvio_padrao": 0.0,
+      "minimo": 280,
+      "maximo": 280,
+      "amplitude": 0,
+      "identicas": true
+    }
+  ],
+  "bruto": [
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1326,
+      "segundos": 19.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1676,
+      "segundos": 24.0
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1340,
+      "segundos": 25.1
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        160,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1386,
+      "segundos": 19.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1635,
+      "segundos": 23.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        160,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1641,
+      "segundos": 23.3
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1539,
+      "segundos": 23.8
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1725,
+      "segundos": 24.5
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1760,
+      "segundos": 25.1
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2417,
+      "tokens_saida": 1859,
+      "segundos": 27.4
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 833,
+      "segundos": 20.3
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 787,
+      "segundos": 20.4
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 786,
+      "segundos": 18.8
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 735,
+      "segundos": 17.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 922,
+      "segundos": 22.5
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 793,
+      "segundos": 19.1
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        200,
+        200,
+        160,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 824,
+      "segundos": 20.0
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        200,
+        200,
+        160,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 941,
+      "segundos": 22.2
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 851,
+      "segundos": 20.9
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 1000,
+      "competencias": [
+        200,
+        200,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1918,
+      "tokens_saida": 846,
+      "segundos": 19.8
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1912,
+      "segundos": 26.7
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 600,
+      "competencias": [
+        140,
+        120,
+        120,
+        120,
+        100
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1550,
+      "segundos": 22.8
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1610,
+      "segundos": 22.8
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1525,
+      "segundos": 21.8
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1853,
+      "segundos": 27.9
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1448,
+      "segundos": 21.2
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 600,
+      "competencias": [
+        140,
+        120,
+        120,
+        120,
+        100
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1586,
+      "segundos": 23.9
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1515,
+      "segundos": 24.3
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1807,
+      "segundos": 26.6
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 600,
+      "competencias": [
+        140,
+        120,
+        120,
+        120,
+        100
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2267,
+      "tokens_saida": 1564,
+      "segundos": 23.1
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 962,
+      "segundos": 22.2
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 520,
+      "competencias": [
+        120,
+        120,
+        120,
+        80,
+        80
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 1098,
+      "segundos": 24.6
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        160,
+        0
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "alto",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 922,
+      "segundos": 19.4
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 818,
+      "segundos": 16.8
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 1016,
+      "segundos": 21.6
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 520,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 1087,
+      "segundos": 22.0
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 803,
+      "segundos": 16.4
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 480,
+      "competencias": [
+        120,
+        120,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 926,
+      "segundos": 20.4
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 900,
+      "segundos": 18.6
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        40
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1789,
+      "tokens_saida": 984,
+      "segundos": 21.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1862,
+      "segundos": 26.1
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1636,
+      "segundos": 22.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1552,
+      "segundos": 22.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1954,
+      "segundos": 27.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1554,
+      "segundos": 22.6
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1755,
+      "segundos": 24.1
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1538,
+      "segundos": 20.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1664,
+      "segundos": 23.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1695,
+      "segundos": 22.6
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 360,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 2095,
+      "tokens_saida": 1835,
+      "segundos": 24.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 941,
+      "segundos": 20.9
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 1014,
+      "segundos": 21.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 1099,
+      "segundos": 24.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 914,
+      "segundos": 19.3
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 969,
+      "segundos": 20.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 980,
+      "segundos": 20.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 320,
+      "competencias": [
+        80,
+        80,
+        40,
+        80,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 928,
+      "segundos": 19.0
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 1135,
+      "segundos": 24.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 1241,
+      "segundos": 25.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 280,
+      "competencias": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 1657,
+      "tokens_saida": 868,
+      "segundos": 18.5
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1388,
+      "segundos": 20.5
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1266,
+      "segundos": 18.3
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1242,
+      "segundos": 17.8
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1231,
+      "segundos": 17.3
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1301,
+      "segundos": 18.4
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1385,
+      "segundos": 19.6
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1442,
+      "segundos": 20.7
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1361,
+      "segundos": 20.1
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1276,
+      "segundos": 20.0
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 2305,
+      "tokens_saida": 1464,
+      "segundos": 20.4
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 823,
+      "segundos": 18.2
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 883,
+      "segundos": 17.9
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 766,
+      "segundos": 15.6
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 811,
+      "segundos": 17.3
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 901,
+      "segundos": 19.2
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 1017,
+      "segundos": 22.0
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 831,
+      "segundos": 16.7
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 801,
+      "segundos": 17.1
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 793,
+      "segundos": 16.2
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 1827,
+      "tokens_saida": 906,
+      "segundos": 17.8
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 600,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "alto"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1464,
+      "segundos": 22.0
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1444,
+      "segundos": 22.3
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 560,
+      "competencias": [
+        120,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1856,
+      "segundos": 27.3
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 600,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1833,
+      "segundos": 27.2
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1700,
+      "segundos": 23.5
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 600,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "alto"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1498,
+      "segundos": 22.1
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1554,
+      "segundos": 23.2
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 640,
+      "competencias": [
+        160,
+        160,
+        80,
+        80,
+        120,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1703,
+      "segundos": 25.0
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1589,
+      "segundos": 21.6
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 560,
+      "competencias": [
+        120,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 2273,
+      "tokens_saida": 1906,
+      "segundos": 28.3
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 857,
+      "segundos": 18.1
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 600,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "alto"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 876,
+      "segundos": 16.3
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 600,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        160
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "alto"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 874,
+      "segundos": 18.8
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        80,
+        40,
+        120,
+        160
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 849,
+      "segundos": 17.4
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 948,
+      "segundos": 20.9
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 846,
+      "segundos": 17.8
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 969,
+      "segundos": 20.5
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 560,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        120
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 892,
+      "segundos": 17.4
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 937,
+      "segundos": 19.3
+    },
+    {
+      "redacao": "R5",
+      "faixa": "copia_baixa",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 440,
+      "competencias": [
+        160,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "alto",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 29,
+      "tokens_entrada": 1823,
+      "tokens_saida": 933,
+      "segundos": 20.4
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 440,
+      "competencias": [
+        120,
+        80,
+        80,
+        120,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1577,
+      "segundos": 22.9
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 360,
+      "competencias": [
+        120,
+        80,
+        40,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 2104,
+      "segundos": 29.7
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 400,
+      "competencias": [
+        120,
+        80,
+        80,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1716,
+      "segundos": 24.6
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 320,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1846,
+      "segundos": 26.7
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 320,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1780,
+      "segundos": 25.9
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 400,
+      "competencias": [
+        120,
+        80,
+        80,
+        120,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1609,
+      "segundos": 23.6
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 360,
+      "competencias": [
+        120,
+        80,
+        40,
+        80,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1854,
+      "segundos": 27.4
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 440,
+      "competencias": [
+        120,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1796,
+      "segundos": 27.2
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 360,
+      "competencias": [
+        120,
+        80,
+        80,
+        80,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1770,
+      "segundos": 25.5
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 400,
+      "competencias": [
+        120,
+        80,
+        40,
+        80,
+        80
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 2446,
+      "tokens_saida": 1926,
+      "segundos": 30.8
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 1,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 834,
+      "segundos": 19.6
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 2,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 901,
+      "segundos": 22.6
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 3,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 1081,
+      "segundos": 26.7
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 4,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 908,
+      "segundos": 23.8
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 5,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        40,
+        40
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 831,
+      "segundos": 19.9
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 6,
+      "nota_total": 280,
+      "competencias": [
+        160,
+        40,
+        40,
+        40,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 922,
+      "segundos": 23.3
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 7,
+      "nota_total": 280,
+      "competencias": [
+        160,
+        40,
+        40,
+        40,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 1037,
+      "segundos": 24.2
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 8,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 904,
+      "segundos": 23.0
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 9,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 936,
+      "segundos": 22.6
+    },
+    {
+      "redacao": "R6",
+      "faixa": "copia_media",
+      "modelo": "claude-sonnet-4-5",
+      "repeticao": 10,
+      "nota_total": 280,
+      "competencias": [
+        120,
+        40,
+        40,
+        80,
+        0
+      ],
+      "niveis": [
+        "medio",
+        "baixo",
+        "baixo",
+        "medio",
+        "baixo"
+      ],
+      "plagio_percentual": 45,
+      "tokens_entrada": 1936,
+      "tokens_saida": 964,
+      "segundos": 25.1
+    }
+  ]
+}
