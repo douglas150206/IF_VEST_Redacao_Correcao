@@ -1,0 +1,42 @@
+{
+  "tema": {
+    "titulo": "Caminhos para combater a desinformação na internet",
+    "textos_apoio": "TEXTO I\nA circulação de notícias falsas cresceu de forma expressiva com a popularização das redes sociais e dos aplicativos de mensagem. Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos.\n\nTEXTO II\nEspecialistas defendem a educação midiática como ferramenta central de enfrentamento: ensinar o cidadão a verificar fontes, identificar vieses e desconfiar de manchetes sensacionalistas é tão importante quanto punir quem produz desinformação.\n\nTEXTO III\nPlataformas digitais operam com algoritmos que priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e imprecisos. O debate sobre a responsabilidade das empresas de tecnologia ganha força em diferentes países."
+  },
+  "observacao": "Redações escritas para este experimento, cobrindo faixas distintas de qualidade. Não são redações reais do ENEM nem possuem nota oficial — a limitação está declarada no artigo. Para o experimento de confiabilidade isso não é impeditivo: mede-se a dispersão da nota atribuída ao MESMO texto, não a acurácia frente a um gabarito.",
+  "redacoes": [
+    {
+      "id": "R1",
+      "faixa_esperada": "alta",
+      "texto": "A desinformação tornou-se um dos principais desafios das democracias contemporâneas. Quando a mentira circula mais rápido que a checagem, o debate público perde a base comum de fatos sobre a qual qualquer acordo seria possível. Diante disso, dois fatores merecem análise: a arquitetura das plataformas digitais e a lacuna formativa do cidadão brasileiro.\n\nEm primeiro lugar, os algoritmos das redes sociais são desenhados para maximizar o tempo de permanência do usuário, e não a veracidade do que ele consome. Conteúdos que provocam indignação circulam mais, porque a indignação prende. O resultado é um ambiente em que a informação verificada compete em desvantagem com o boato bem produzido. Não se trata, portanto, de um acidente do meio digital, mas de uma consequência previsível do modelo de negócio que o sustenta.\n\nAlém disso, a escola brasileira ainda trata a leitura crítica como tema transversal, quando deveria ser conteúdo com hora marcada. Forma-se um estudante capaz de interpretar um texto literário, mas não necessariamente de rastrear a origem de um áudio recebido no celular. Essa lacuna explica por que faixas etárias com alta escolaridade formal também compartilham desinformação: o problema não é analfabetismo, é ausência de repertório específico de verificação.\n\nPortanto, cabe ao Ministério da Educação implantar oficinas permanentes de educação midiática no ensino médio, em parceria com universidades públicas e agências de checagem, por meio da inclusão de práticas de verificação de fontes no currículo obrigatório, a fim de que o estudante conclua a formação básica sabendo distinguir informação apurada de propaganda disfarçada."
+    },
+    {
+      "id": "R2",
+      "faixa_esperada": "media",
+      "texto": "A desinformação é um problema muito grande no Brasil e no mundo todo. Com as redes sociais, as notícias falsas se espalham muito rápido e as pessoas acabam acreditando em coisas que não são verdade. Isso prejudica a sociedade de várias formas.\n\nPrimeiramente, muitas pessoas não sabem verificar se uma notícia é verdadeira ou não. Elas recebem uma mensagem no aplicativo e já compartilham com todos os contatos, sem pensar. Isso faz com que a mentira chegue em muita gente antes que alguém possa desmentir. As plataformas também têm culpa nisso, porque os algoritmos mostram o que dá mais engajamento.\n\nOutro ponto importante é a educação. Se as escolas ensinassem os alunos a checar as fontes, as pessoas teriam mais cuidado antes de acreditar em tudo. A educação midiática é uma ferramenta importante que precisa ser mais usada no Brasil, porque forma cidadãos mais críticos e conscientes do que leem.\n\nDessa forma, o governo deve criar campanhas de conscientização sobre as notícias falsas e as escolas devem ensinar os alunos a verificar as informações. Assim, a sociedade brasileira estará mais preparada para enfrentar esse problema que afeta a todos."
+    },
+    {
+      "id": "R3",
+      "faixa_esperada": "baixa",
+      "texto": "As fake news são um problema muito serio hoje em dia. Muita gente compartilha noticia falsa sem saber e isso é ruim para todo mundo. As redes sociais ajudam a espalhar essas mentiras muito rapido.\n\nAs pessoas acreditam em tudo que veem na internet. Elas nao checam se é verdade e sai compartilhando. Isso causa muitos problemas na sociedade e nas familias tambem porque as pessoas brigam por causa disso.\n\nAs escolas deveriam ensinar mais sobre isso para os alunos. E o governo tambem tem que fazer alguma coisa para resolver esse problema que é muito grave e afeta todo mundo no pais inteiro.\n\nPortanto é preciso que todos façam a sua parte para acabar com as fake news e melhorar a sociedade brasileira."
+    },
+    {
+      "id": "R4",
+      "faixa_esperada": "copia",
+      "copia_medida": 74,
+      "texto": "A circulação de notícias falsas cresceu de forma expressiva com a popularização das redes sociais e dos aplicativos de mensagem. Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos. Especialistas defendem a educação midiática como ferramenta central de enfrentamento: ensinar o cidadão a verificar fontes, identificar vieses e desconfiar de manchetes sensacionalistas é tão importante quanto punir quem produz desinformação.\n\nPor isso o tema merece a atenção das autoridades brasileiras neste momento histórico do país, sendo necessário que todos façam a sua parte para resolver essa questão importante."
+    },
+    {
+      "id": "R5",
+      "faixa_esperada": "copia_baixa",
+      "copia_medida": 29,
+      "texto": "A desinformação é hoje um obstáculo concreto ao debate público brasileiro. Vale lembrar que plataformas digitais operam com algoritmos que priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e imprecisos. Essa lógica premia quem grita mais alto, não quem apura melhor. Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos. Some-se a isso uma formação escolar que ainda não trata a verificação de fontes como conteúdo obrigatório. Portanto, o Ministério da Educação deve inserir a educação midiática no currículo do ensino médio, por meio de oficinas regulares de checagem, a fim de formar leitores capazes de reconhecer o boato antes de compartilhá-lo."
+    },
+    {
+      "id": "R6",
+      "faixa_esperada": "copia_media",
+      "copia_medida": 45,
+      "texto": "A desinformação afeta profundamente o debate público no Brasil atual. É sabido que a circulação de notícias falsas cresceu de forma expressiva com a popularização das redes sociais e dos aplicativos de mensagem. Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos. Diante desse quadro, especialistas defendem a educação midiática como ferramenta central de enfrentamento: ensinar o cidadão a verificar fontes, identificar vieses e desconfiar de manchetes sensacionalistas é tão importante quanto punir quem produz desinformação. Cabe então ao poder público agir com urgência sobre esse cenário que compromete a democracia brasileira e desorienta milhões de eleitores todos os anos. A escola pública, nesse contexto, precisa deixar de tratar a leitura crítica como assunto secundário e assumi-la como conteúdo com hora marcada no currículo, sob pena de formar cidadãos tecnicamente alfabetizados mas incapazes de avaliar aquilo que recebem no celular."
+    }
+  ]
+}

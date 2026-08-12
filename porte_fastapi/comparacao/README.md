@@ -80,15 +80,21 @@ campo em todas — inclusive a lista de trechos, caractere por caractere. As not
 | Copiada 74%, rodada 2 | 280 | 160 |
 | Copiada 74%, rodada 3 | 120 | 0 |
 
-Duas leituras, e nenhuma é "os backends discordam":
+> ⚠️ **Correção.** Uma versão anterior deste arquivo concluía daqui que "o Node
+> é instável e o Python é estável". **Essa conclusão não se sustentou.** Um
+> experimento controlado — mesmo prompt, mesmo `max_tokens`, mesma entrada,
+> variando só o modelo — mostrou o contrário no agregado. Ver
+> `pesquisa/README.md`.
+>
+> O erro foi de método: aqui estão sendo comparados **dois backends**, que
+> diferem em prompt e em `max_tokens` (1500 no Node, 8000 no Python), não dois
+> modelos. A variação observada era da configuração, não do modelo. Esta tabela
+> continua útil para conferir que os dois sistemas *funcionam*; ela não serve
+> para comparar qualidade de correção.
 
-1. **O Node é instável no mesmo texto**: 200, 920, 200 na *mesma* redação. Uma
-   variação de 720 pontos não é opinião, é ruído. O Python ficou em 640–680.
-2. **O Python aplica a regra de cópia**; o Node não. Com 74% copiado, o prompt
-   manda zerar — o Python zerou em 2 de 3; o Node deu 280, 280 e 120.
-
-Isso é consequência do modelo e do orçamento de tokens (`claude-opus-5` com 8000
-contra `claude-sonnet-4-5` com 1500), não da linguagem do backend.
+O que dá para afirmar olhando só esta tabela: os dois backends produzem
+correções bem formadas, na escala do ENEM, e o antiplágio é idêntico. As notas
+diferem, e isolar a causa exige o experimento controlado.
 
 ## Um bug que esta comparação encontrou
 
