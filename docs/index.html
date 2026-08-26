@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Projeto de extensão do IFSP Campus Jacareí: correção automática de redação do ENEM nas cinco competências, com detecção de cópia dos textos motivadores.">
+<meta name="author" content="Douglas Hiroiti">
+<link rel="canonical" href="https://douglas150206.github.io/IF_VEST_Redacao_Correcao/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230A0F0C'/%3E%3Crect x='22' y='24' width='56' height='9' rx='4' fill='%232F9E41'/%3E%3Crect x='22' y='45' width='56' height='9' rx='4' fill='%2356D06E'/%3E%3Crect x='22' y='66' width='32' height='9' rx='4' fill='%23FF5B60'/%3E%3C/svg%3E">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://douglas150206.github.io/IF_VEST_Redacao_Correcao/">
+<meta property="og:title" content="Corretor de Redação ENEM">
+<meta property="og:description" content="Projeto de extensão do IFSP Campus Jacareí: correção automática de redação do ENEM nas cinco competências, com detecção de cópia dos textos motivadores.">
+<meta name="twitter:card" content="summary_large_image">
+
+<title>Corretor de Redação ENEM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+  /* Design comprometido com um único mundo visual: escuro, editorial.
+     Todas as cores são pintadas explicitamente — a página não herda nada
+     do tema do visualizador. */
+  :root {
+    /* Neutros com viés de verde, não cinza puro: o preto tem a cor do projeto. */
+    --tinta:        #0A0F0C;
+    --tinta-2:      #0F1712;
+    --tinta-3:      #16211A;
+    --linha:        rgba(211, 240, 219, 0.10);
+    --linha-forte:  rgba(211, 240, 219, 0.20);
+
+    /* Verde institucional do IFSP. O sólido para preenchimentos, o claro
+       para texto pequeno — #2F9E41 puro não tem contraste para corpo. */
+    --verde:        #2F9E41;
+    --verde-claro:  #56D06E;
+    --verde-tenue:  rgba(47, 158, 65, 0.14);
+
+    /* Vermelho do manual, reservado a cópia e alerta — como no sistema. */
+    --vermelho:     #FF5B60;
+    --vermelho-fundo: rgba(205, 25, 30, 0.16);
+
+    --texto:        #E7EFE9;
+    --texto-fraco:  #96A69C;
+    --texto-tenue:  #616F67;
+
+    --display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+    --corpo:   'Open Sans', ui-sans-serif, system-ui, sans-serif;
+    --mono:    'JetBrains Mono', ui-monospace, monospace;
+
+    --largura: 1120px;
+    --raio: 16px;
+    --raio-sm: 9px;
+    --transicao: 240ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--tinta);
+    color: var(--texto);
+    font-family: var(--corpo);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .env { width: 100%; max-width: var(--largura); margin: 0 auto; padding: 0 24px; }
+
+  section { padding: 96px 0; border-top: 1px solid var(--linha); }
+  section:first-of-type { border-top: none; }
+
+  /* Rótulos em caixa normal: só a inicial maiúscula. O monoespaçado e o verde
+     já bastam para marcá-los como rótulo, sem precisar de versalete. */
+  .rotulo {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--verde-claro);
+    margin: 0 0 18px;
+  }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+
+  h1 {
+    font-size: clamp(38px, 6.2vw, 76px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+  }
+  /* Subtítulo fora do h1: dentro dele, o texto corrido colava "ENEM" na
+     palavra seguinte para leitores de tela e para indexação. */
+  .subtitulo {
+    font-family: var(--display);
+    font-size: clamp(38px, 6.2vw, 76px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: var(--texto-fraco);
+    margin: 0;
+    max-width: none;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(27px, 3.6vw, 40px);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+
+  p { margin: 0 0 16px; max-width: 62ch; }
+  .fraco { color: var(--texto-fraco); }
+  .tenue { color: var(--texto-tenue); font-size: 14px; }
+
+  a { color: var(--verde-claro); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--verde-claro);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────────────────── */
+  .hero { padding: 104px 0 88px; }
+  .hero-grade {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero p.lead { font-size: 18px; color: var(--texto-fraco); margin-top: 26px; }
+
+  .acoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 22px;
+    border-radius: var(--raio-sm);
+    font-family: var(--corpo);
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: var(--transicao);
+  }
+  .botao.primario { background: var(--verde); color: #04140A; }
+  .botao.primario:hover { background: var(--verde-claro); }
+  .botao.secundario { border-color: var(--linha-forte); color: var(--texto); }
+  .botao.secundario:hover { border-color: var(--verde-claro); color: var(--verde-claro); }
+
+  /* Cartão de correção — o instrumento do projeto como imagem do hero. */
+  .boletim {
+    background: linear-gradient(180deg, var(--tinta-2), var(--tinta-3));
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+    padding: 26px 26px 22px;
+  }
+  .boletim-topo {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--linha);
+  }
+  .nota-grande {
+    font-family: var(--display);
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--verde-claro);
+    font-variant-numeric: tabular-nums;
+  }
+  .nota-grande span { font-size: 19px; color: var(--texto-tenue); font-weight: 600; }
+
+  .comp { display: grid; gap: 13px; margin-top: 18px; }
+  .comp-linha { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; }
+  .comp-nome { font-size: 12.5px; color: var(--texto-fraco); }
+  .comp-nota {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--texto);
+  }
+  .barra { grid-column: 1 / -1; height: 5px; background: rgba(211,240,219,0.08); border-radius: 99px; overflow: hidden; }
+  .barra i {
+    display: block;
+    height: 100%;
+    background: var(--verde);
+    border-radius: 99px;
+    transform-origin: left;
+    animation: encher 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes encher { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  .boletim-copia {
+    margin-top: 20px;
+    padding: 13px 15px;
+    border-radius: var(--raio-sm);
+    background: var(--vermelho-fundo);
+    border-left: 3px solid var(--vermelho);
+    font-size: 12.5px;
+    color: #FFC9CB;
+  }
+
+  /* ── Números ──────────────────────────────────────────────────────────── */
+  .numeros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .numero .valor {
+    font-family: var(--display);
+    font-size: clamp(34px, 4.4vw, 50px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--texto);
+    font-variant-numeric: tabular-nums;
+  }
+  .numero .valor em { font-style: normal; color: var(--verde-claro); }
+  .numero p { font-size: 13.5px; color: var(--texto-fraco); margin: 12px 0 0; }
+
+  /* ── Passos ───────────────────────────────────────────────────────────── */
+  .passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--linha); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; margin-top: 40px; }
+  .passo { background: var(--tinta-2); padding: 26px 24px 28px; }
+  .passo .n {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--verde);
+    letter-spacing: 0.1em;
+  }
+  .passo h3 { margin: 12px 0 8px; }
+  .passo p { font-size: 13.5px; color: var(--texto-fraco); margin: 0; }
+
+  /* ── Trecho com cópia marcada ─────────────────────────────────────────── */
+  .amostra {
+    background: var(--tinta-2);
+    border: 1px solid var(--linha);
+    border-radius: var(--raio);
+    padding: 26px 28px;
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--texto-fraco);
+  }
+  .amostra mark {
+    background: var(--vermelho-fundo);
+    color: #FFD2D4;
+    padding: 2px 3px;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(255, 91, 96, 0.5);
+  }
+  .legenda-copia {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--texto-tenue);
+  }
+  .legenda-copia b { color: var(--vermelho); font-weight: 700; }
+
+  .duas { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+
+  /* ── Gráfico de dispersão ─────────────────────────────────────────────── */
+  .gráfico { margin-top: 36px; }
+  .grafico-linhas { display: grid; gap: 14px; }
+  .g-linha { display: grid; grid-template-columns: 96px 1fr 54px; align-items: center; gap: 16px; }
+  .g-rot { font-family: var(--mono); font-size: 12px; color: var(--texto-fraco); text-align: right; font-variant-numeric: tabular-nums; }
+  .g-trilho { height: 22px; background: rgba(211,240,219,0.05); border-radius: 5px; overflow: hidden; }
+  .g-barra { height: 100%; border-radius: 5px; background: var(--verde); opacity: 0.55; }
+  .g-barra.pico { background: var(--vermelho); opacity: 0.9; }
+  .g-val { font-family: var(--mono); font-size: 12.5px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* ── Devolutivas reais ────────────────────────────────────────────────── */
+  .dado { font-family: var(--mono); font-size: 0.92em; color: var(--verde-claro); font-variant-numeric: tabular-nums; }
+
+  .devolutivas { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px; }
+  .dev {
+    background: var(--tinta-2);
+    border: 1px solid var(--linha);
+    border-left: 3px solid var(--verde);
+    border-radius: var(--raio-sm);
+    padding: 22px 24px;
+  }
+  .dev header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--linha);
+  }
+  .dev-comp { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--texto-tenue); }
+  .dev-nota {
+    font-family: var(--display);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--texto);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .dev-nota small { font-size: 12px; color: var(--texto-tenue); font-weight: 600; }
+  .dev p { margin: 0; font-size: 14px; line-height: 1.7; color: var(--texto-fraco); max-width: none; }
+
+  /* ── Lista de próximos passos ─────────────────────────────────────────── */
+  .lista { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 2px; }
+  .lista li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--linha);
+    color: var(--texto-fraco);
+    font-size: 14.5px;
+  }
+  .lista li::before { content: "→"; color: var(--verde); font-family: var(--mono); }
+
+  /* ── Créditos ─────────────────────────────────────────────────────────── */
+  .creditos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; }
+  .credito { border-top: 1px solid var(--linha-forte); padding-top: 16px; }
+  .credito .papel { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--texto-tenue); }
+  .credito .nome { font-family: var(--display); font-size: 17px; font-weight: 700; margin-top: 7px; }
+
+  .instituicao {
+    margin: 28px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--linha);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--texto-tenue);
+    max-width: none;
+  }
+
+  .repo {
+    margin-top: 64px;
+    padding: 34px 32px;
+    border: 1px solid var(--linha-forte);
+    border-radius: var(--raio);
+    background: var(--tinta-2);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+  }
+
+  footer { padding: 40px 0 72px; color: var(--texto-tenue); font-size: 12.5px; }
+  footer p { max-width: 70ch; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .barra i { animation: none; }
+    * { transition-duration: 1ms !important; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grade, .duas, .devolutivas { grid-template-columns: 1fr; gap: 40px; }
+    .devolutivas { gap: 16px; }
+    .numeros { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+    .passos { grid-template-columns: 1fr; }
+    .creditos { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+    .g-linha { grid-template-columns: 78px 1fr 46px; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="env hero-grade">
+      <div>
+        <p class="rotulo">Projeto de extensão · IFSP Campus Jacareí</p>
+        <h1>Corretor de Redação ENEM</h1>
+        <p class="subtitulo">A nota volta em segundos, não em semanas.</p>
+        <p class="lead">
+          Um sistema que avalia a redação nas cinco competências do ENEM, aponta o que
+          melhorar em cada uma e detecta trechos copiados dos textos motivadores — a
+          regra que a correção automática costuma ignorar.
+        </p>
+        <div class="acoes">
+          <a class="botao primario" href="#exemplo">Ver uma correção real</a>
+          <a class="botao secundario" href="#pesquisa">O que a pesquisa mostrou</a>
+        </div>
+        <p class="tenue" style="margin-top:22px">
+          Construído para os pré-vestibulandos do IFSP. Código aberto.
+        </p>
+      </div>
+
+      <div class="boletim" role="img" aria-label="Correção real: nota 440 de 1000, com as cinco competências e 29% do texto identificado como cópia">
+        <div class="boletim-topo">
+          <div>
+            <p class="rotulo" style="margin:0 0 6px">Nota final estimada</p>
+            <div class="nota-grande">440 <span>/ 1000</span></div>
+          </div>
+          <div class="g-val" style="color:var(--texto-fraco);text-align:right">Desempenho<br>médio</div>
+        </div>
+
+        <div class="comp">
+          <div class="comp-linha">
+            <span class="comp-nome">I — Norma culta</span>
+            <span class="comp-nota">120</span>
+            <span class="barra"><i style="width:60%;animation-delay:.05s"></i></span>
+          </div>
+          <div class="comp-linha">
+            <span class="comp-nome">II — Compreensão da proposta</span>
+            <span class="comp-nota">80</span>
+            <span class="barra"><i style="width:40%;animation-delay:.12s"></i></span>
+          </div>
+          <div class="comp-linha">
+            <span class="comp-nome">III — Argumentação</span>
+            <span class="comp-nota">80</span>
+            <span class="barra"><i style="width:40%;animation-delay:.19s"></i></span>
+          </div>
+          <div class="comp-linha">
+            <span class="comp-nome">IV — Coesão textual</span>
+            <span class="comp-nota">80</span>
+            <span class="barra"><i style="width:40%;animation-delay:.26s"></i></span>
+          </div>
+          <div class="comp-linha">
+            <span class="comp-nome">V — Proposta de intervenção</span>
+            <span class="comp-nota">80</span>
+            <span class="barra"><i style="width:40%;animation-delay:.33s"></i></span>
+          </div>
+        </div>
+
+        <div class="boletim-copia">
+          <strong>29% do texto veio dos textos de apoio.</strong>
+          Trechos copiados não contam como produção própria — e a nota já reflete isso.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Números ────────────────────────────────────────────────────────── -->
+  <section>
+    <div class="env">
+      <div class="numeros">
+        <div class="numero">
+          <div class="valor"><em>5</em></div>
+          <p>Competências do ENEM avaliadas, cada uma na escala oficial de 0 a 200.</p>
+        </div>
+        <div class="numero">
+          <div class="valor"><em>7</em></div>
+          <p>Palavras seguidas: a sequência mínima que o detector trata como cópia.</p>
+        </div>
+        <div class="numero">
+          <div class="valor">120</div>
+          <p>Correções controladas no experimento de confiabilidade.</p>
+        </div>
+        <div class="numero">
+          <div class="valor">22<span style="font-size:.45em"> s</span></div>
+          <p>Da redação enviada ao retorno completo, em média.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Como funciona ──────────────────────────────────────────────────── -->
+  <section>
+    <div class="env">
+      <p class="rotulo">Como funciona</p>
+      <h2>Da redação enviada à nota por competência</h2>
+      <p class="fraco">
+        A ordem importa: a detecção de cópia acontece <em>antes</em> da avaliação, e o
+        resultado dela entra no julgamento em vez de ser um aviso à parte.
+      </p>
+
+      <div class="passos">
+        <div class="passo">
+          <div class="n">01</div>
+          <h3>Tema e textos de apoio</h3>
+          <p>O aluno escolhe um tema do banco montado pelo professor ou cola um tema próprio com os textos motivadores.</p>
+        </div>
+        <div class="passo">
+          <div class="n">02</div>
+          <h3>Detecção de cópia</h3>
+          <p>O texto é comparado com os motivadores por n-gramas de 7 palavras. O resultado é um percentual e a lista dos trechos.</p>
+        </div>
+        <div class="passo">
+          <div class="n">03</div>
+          <h3>Avaliação</h3>
+          <p>A redação vai para o modelo de linguagem junto com os trechos copiados já identificados, para serem descontados da argumentação.</p>
+        </div>
+        <div class="passo">
+          <div class="n">04</div>
+          <h3>Nota e devolutiva</h3>
+          <p>Sai uma nota por competência na escala oficial, com duas ou três frases apontando evidências do próprio texto.</p>
+        </div>
+        <div class="passo">
+          <div class="n">05</div>
+          <h3>Histórico</h3>
+          <p>Cada correção fica registrada com nota e percentual de cópia, para o aluno acompanhar a evolução.</p>
+        </div>
+        <div class="passo">
+          <div class="n">06</div>
+          <h3>Cota mensal</h3>
+          <p>Dez correções gratuitas por mês por conta, com o contador sempre visível na tela.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Detecção de cópia ──────────────────────────────────────────────── -->
+  <section id="copia">
+    <div class="env">
+      <p class="rotulo">O diferencial técnico</p>
+      <h2>Copiar o texto motivador não é escrever</h2>
+
+      <div class="duas">
+        <div>
+          <p class="fraco">
+            No ENEM, trecho copiado dos textos de apoio não conta como produção do
+            participante. É regra da prova — e é justamente o que a maior parte dos
+            corretores automáticos não verifica.
+          </p>
+          <p class="fraco">
+            O detector monta o conjunto de todas as sequências de sete palavras dos
+            textos motivadores e varre a redação atrás delas. A comparação ignora
+            acentos, pontuação e maiúsculas, então reescrever <em>"Educação,"</em> como
+            <em>"educacao"</em> não engana o sistema.
+          </p>
+          <p class="fraco">
+            É determinístico: mesma redação, mesmo resultado, sempre. Diferente da nota,
+            que é julgamento do modelo.
+          </p>
+        </div>
+
+        <div>
+          <div class="amostra">
+            A desinformação é hoje um obstáculo concreto ao debate público brasileiro.
+            Vale lembrar que <mark>plataformas digitais operam com algoritmos que
+            priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e
+            imprecisos.</mark> Essa lógica premia quem grita mais alto, não quem apura
+            melhor. <mark>Conteúdos enganosos se espalham mais rápido que checagens e
+            correções, moldando opiniões e comportamentos.</mark> Some-se a isso uma
+            formação escolar que ainda não trata a verificação de fontes como conteúdo
+            obrigatório. Portanto, o Ministério da Educação deve inserir a educação
+            midiática no currículo do ensino médio, por meio de oficinas regulares de
+            checagem, a fim de formar leitores capazes de reconhecer o boato antes de
+            compartilhá-lo.
+          </div>
+          <div class="legenda-copia">
+            <b>■</b> Trinta e duas de 109 palavras vieram do texto de apoio — <b>29% copiado</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Correção real ──────────────────────────────────────────────────── -->
+  <section id="exemplo">
+    <div class="env">
+      <p class="rotulo">Uma correção de verdade</p>
+      <h2>O que o sistema devolveu para a redação acima</h2>
+      <p class="fraco">
+        Nada aqui é ilustrativo: é a saída real do sistema para o texto destacado,
+        gerada em <span class="dado">22 s</span> e registrada nos dados do projeto.
+        Repare que a devolutiva não apenas desconta a cópia — ela explica ao aluno
+        <em>onde</em> a cópia enfraqueceu cada competência.
+      </p>
+
+      <div class="devolutivas">
+        <article class="dev">
+          <header>
+            <span class="dev-comp">Competência II · Compreensão da proposta</span>
+            <span class="dev-nota">80<small>/200</small></span>
+          </header>
+          <p>
+            “O tema é abordado no eixo correto (algoritmos, viralização e educação
+            midiática), mas o repertório apresentado é justamente o dos textos de apoio,
+            reproduzido literalmente em dois períodos que somam 29% da redação.
+            Descontadas as cópias, resta apenas a menção genérica à formação escolar,
+            sem qualquer repertório sociocultural legitimado e externo.”
+          </p>
+        </article>
+
+        <article class="dev">
+          <header>
+            <span class="dev-comp">Competência III · Argumentação</span>
+            <span class="dev-nota">80<small>/200</small></span>
+          </header>
+          <p>
+            “Os dois argumentos centrais (lógica algorítmica e velocidade do boato) são
+            cópias literais, não produção própria. As contribuições autorais são frases
+            curtas, sem desenvolvimento, exemplificação ou explicação de causa e
+            consequência. Falta projeto de texto: as ideias se justapõem em vez de
+            progredirem.”
+          </p>
+        </article>
+      </div>
+
+      <p class="rotulo" style="margin-top:44px">Sugestões devolvidas ao aluno</p>
+      <ul class="lista">
+        <li>Reescreva com suas próprias palavras as ideias tomadas dos textos de apoio: em vez de copiar o trecho sobre algoritmos, explique o mecanismo — como a métrica de cliques transforma indignação em lucro.</li>
+        <li>Organize a redação em quatro ou cinco parágrafos, com tese, dois desenvolvimentos e conclusão; hoje todo o texto é um bloco único.</li>
+        <li>Insira repertório externo à coletânea, como o Marco Civil da Internet ou o conceito de bolha informacional.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Pesquisa ───────────────────────────────────────────────────────── -->
+  <section id="pesquisa">
+    <div class="env">
+      <p class="rotulo">Resultados da pesquisa</p>
+      <h2>O sistema é firme onde a decisão é fácil<br>e vacila onde ela é difícil</h2>
+      <p class="fraco">
+        Cento e vinte correções controladas — seis redações, dois modelos de linguagem,
+        dez repetições de cada — mediram quanto a nota varia quando a <em>mesma</em>
+        redação é corrigida de novo. O resultado não acompanha o modelo usado: acompanha
+        a ambiguidade do caso.
+      </p>
+
+      <div class="gráfico">
+        <p class="tenue" style="margin-bottom:18px">
+          Coeficiente de variação da nota, por percentual de cópia da redação
+        </p>
+        <div class="grafico-linhas">
+          <div class="g-linha">
+            <span class="g-rot">0% cópia</span>
+            <span class="g-trilho"><span class="g-barra" style="width:2%"></span></span>
+            <span class="g-val" style="color:var(--texto-fraco)">0,0%</span>
+          </div>
+          <div class="g-linha">
+            <span class="g-rot">0% cópia</span>
+            <span class="g-trilho"><span class="g-barra" style="width:2%"></span></span>
+            <span class="g-val" style="color:var(--texto-fraco)">0,0%</span>
+          </div>
+          <div class="g-linha">
+            <span class="g-rot">0% cópia</span>
+            <span class="g-trilho"><span class="g-barra" style="width:37%"></span></span>
+            <span class="g-val" style="color:var(--texto-fraco)">5,5%</span>
+          </div>
+          <div class="g-linha">
+            <span class="g-rot">29% cópia</span>
+            <span class="g-trilho"><span class="g-barra pico" style="width:80%"></span></span>
+            <span class="g-val" style="color:var(--vermelho)">12,0%</span>
+          </div>
+          <div class="g-linha">
+            <span class="g-rot">45% cópia</span>
+            <span class="g-trilho"><span class="g-barra pico" style="width:76%"></span></span>
+            <span class="g-val" style="color:var(--vermelho)">11,4%</span>
+          </div>
+          <div class="g-linha">
+            <span class="g-rot">74% cópia</span>
+            <span class="g-trilho"><span class="g-barra" style="width:2%"></span></span>
+            <span class="g-val" style="color:var(--texto-fraco)">0,0%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="duas" style="margin-top:56px">
+        <div>
+          <h3>A variância mora na dúvida</h3>
+          <p class="fraco" style="font-size:14.5px">
+            Em redações claramente boas ou claramente copiadas, o sistema repetiu a mesma
+            nota nas dez execuções. Na faixa de cópia parcial, respondeu diferente em seis
+            de dez — e sem sinalizar essa incerteza ao aluno.
+          </p>
+        </div>
+        <div>
+          <h3>A regra de zerar é degrau, não rampa</h3>
+          <p class="fraco" style="font-size:14.5px">
+            Nada foi zerado com 45% de cópia; tudo foi zerado com 74%. O limiar não está
+            escrito em lugar nenhum do código — fica implícito no julgamento do modelo,
+            embora o detector forneça o percentual exato.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Próximos passos ────────────────────────────────────────────────── -->
+  <section>
+    <div class="env">
+      <p class="rotulo">Próximos passos</p>
+      <h2>O que vem depois</h2>
+      <ul class="lista">
+        <li>Medir a concordância com notas oficiais em corpus real de redações do ENEM</li>
+        <li>Tornar o limiar de cópia uma regra determinística em código, e não julgamento do modelo</li>
+        <li>Expor ao aluno a incerteza da nota quando o caso for ambíguo</li>
+        <li>Integrar o corretor ao sistema geral do IFvest, com login único</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Créditos ───────────────────────────────────────────────────────── -->
+  <section>
+    <div class="env">
+      <p class="rotulo">Créditos</p>
+      <h2>Quem construiu</h2>
+
+      <div class="creditos">
+        <div class="credito">
+          <div class="papel">Desenvolvimento e pesquisa</div>
+          <div class="nome">Douglas Hiroiti</div>
+        </div>
+        <div class="credito">
+          <div class="papel">Orientação</div>
+          <div class="nome">Profa. Ana Paula Abrantes de Castro Shiguemori</div>
+        </div>
+      </div>
+
+      <p class="instituicao">
+        Desenvolvido no Instituto Federal de São Paulo — IFSP Campus Jacareí.
+      </p>
+
+      <div class="repo">
+        <div>
+          <h3 style="margin-bottom:6px">O código está aberto</h3>
+          <p class="fraco" style="margin:0;font-size:14px">
+            Sistema, testes, dados dos experimentos e scripts de análise.
+          </p>
+        </div>
+        <a class="botao primario" href="https://github.com/douglas150206/IF_VEST_Redacao_Correcao" target="_blank" rel="noopener">
+          Ver o repositório no GitHub →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="env">
+      <p>
+        Esta página apresenta um projeto acadêmico de extensão e não é uma publicação
+        oficial da instituição. As notas produzidas pelo sistema são estimativas de
+        estudo e não substituem a correção oficial do ENEM nem a avaliação do professor.
+      </p>
+    </div>
+  </footer>
+</main>
+</body>
+</html>
