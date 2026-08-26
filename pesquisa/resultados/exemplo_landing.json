@@ -1,0 +1,73 @@
+{
+  "redacao_id": "R5",
+  "modelo": "claude-opus-5",
+  "tema": "Caminhos para combater a desinformação na internet",
+  "texto_original": "A desinformação é hoje um obstáculo concreto ao debate público brasileiro. Vale lembrar que plataformas digitais operam com algoritmos que priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e imprecisos. Essa lógica premia quem grita mais alto, não quem apura melhor. Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos. Some-se a isso uma formação escolar que ainda não trata a verificação de fontes como conteúdo obrigatório. Portanto, o Ministério da Educação deve inserir a educação midiática no currículo do ensino médio, por meio de oficinas regulares de checagem, a fim de formar leitores capazes de reconhecer o boato antes de compartilhá-lo.",
+  "texto_marcado_html": "A desinformação é hoje um obstáculo concreto ao debate público brasileiro. Vale lembrar que <mark>plataformas digitais operam com algoritmos que priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e imprecisos.</mark> Essa lógica premia quem grita mais alto, não quem apura melhor. <mark>Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos.</mark> Some-se a isso uma formação escolar que ainda não trata a verificação de fontes como conteúdo obrigatório. Portanto, o Ministério da Educação deve inserir a educação midiática no currículo do ensino médio, por meio de oficinas regulares de checagem, a fim de formar leitores capazes de reconhecer o boato antes de compartilhá-lo.",
+  "plagio": {
+    "percentual": 29,
+    "palavras_copiadas": 32,
+    "total_palavras": 109,
+    "trechos": [
+      {
+        "texto": "plataformas digitais operam com algoritmos que priorizam o engajamento, o que muitas vezes favorece conteúdos polêmicos e imprecisos.",
+        "palavras": 18
+      },
+      {
+        "texto": "Conteúdos enganosos se espalham mais rápido que checagens e correções, moldando opiniões e comportamentos.",
+        "palavras": 14
+      }
+    ]
+  },
+  "correcao": {
+    "nota_total": 440,
+    "competencias": [
+      {
+        "numero": 1,
+        "titulo": "Domínio da norma culta da língua portuguesa",
+        "nota": 120,
+        "nivel": "medio",
+        "feedback": "O texto não apresenta desvios gramaticais evidentes, e construções como \"Some-se a isso\" e \"a fim de\" revelam domínio de estruturas mais formais. No entanto, boa parte da fluência do período vem de frases copiadas dos textos motivadores, o que reduz a amostra de escrita própria avaliável. Nos trechos autorais, a expressão \"quem grita mais alto\" resvala para registro coloquial."
+      },
+      {
+        "numero": 2,
+        "titulo": "Compreensão da proposta e aplicação de conceitos de diversas áreas",
+        "nota": 80,
+        "nivel": "baixo",
+        "feedback": "O tema é abordado no eixo correto (algoritmos, viralização e educação midiática), mas o repertório apresentado é justamente o dos textos de apoio, reproduzido literalmente em dois períodos que somam 29% da redação. Descontadas as cópias, resta apenas a menção genérica à \"formação escolar que ainda não trata a verificação de fontes como conteúdo obrigatório\", sem qualquer repertório sociocultural legitimado e externo (lei, autor, dado, fato histórico). O texto configura-se, assim, como tangenciamento apoiado em paráfrase mínima da coletânea."
+      },
+      {
+        "numero": 3,
+        "titulo": "Seleção, relação e organização de informações e argumentos",
+        "nota": 80,
+        "nivel": "baixo",
+        "feedback": "A estrutura é um bloco único, sem separação clara entre introdução, desenvolvimento e conclusão, e os dois argumentos centrais (lógica algorítmica e velocidade do boato) são cópias literais, não produção própria. As contribuições autorais — \"Essa lógica premia quem grita mais alto\" e a crítica à escola — são frases curtas, sem desenvolvimento, exemplificação ou explicação de causa e consequência. Falta projeto de texto: as ideias se justapõem em vez de progredirem."
+      },
+      {
+        "numero": 4,
+        "titulo": "Conhecimento dos mecanismos linguísticos de coesão textual",
+        "nota": 80,
+        "nivel": "baixo",
+        "feedback": "Há uso correto de articuladores como \"Vale lembrar que\", \"Some-se a isso\" e \"Portanto\", além do pronome \"Essa lógica\", que retoma a ideia anterior. Contudo, parte dessa amarração conecta trechos copiados, e a ausência de parágrafos distintos elimina a coesão interparagrafal, avaliada nesta competência. O texto muito curto limita a demonstração de variedade de recursos coesivos."
+      },
+      {
+        "numero": 5,
+        "titulo": "Proposta de intervenção respeitando os direitos humanos",
+        "nota": 80,
+        "nivel": "baixo",
+        "feedback": "A proposta indica agente (Ministério da Educação), ação (inserir a educação midiática no currículo), meio (oficinas regulares de checagem) e finalidade (formar leitores críticos), mas está reduzida a um único período final, sem detalhamento real de como as oficinas funcionariam ou de parcerias envolvidas. Além disso, ela responde apenas ao problema da escola, ignorando o eixo dos algoritmos e da responsabilidade das plataformas levantado no próprio texto. Não há violação aos direitos humanos."
+      }
+    ],
+    "melhorias": [
+      "Reescreva com suas próprias palavras as ideias tomadas dos textos de apoio: em vez de copiar \"plataformas digitais operam com algoritmos que priorizam o engajamento...\", explique o mecanismo, por exemplo, mostrando como a métrica de cliques transforma indignação em lucro.",
+      "Organize a redação em quatro ou cinco parágrafos (introdução com tese, dois desenvolvimentos e conclusão), pois hoje todo o texto é um bloco único.",
+      "Insira repertório sociocultural externo à coletânea, como a Lei nº 12.965/2014 (Marco Civil da Internet), a atuação de agências de checagem ou conceitos como \"bolha informacional\" de Eli Pariser.",
+      "Desenvolva cada argumento em pelo menos cinco linhas, com dado, explicação e consequência social, em vez de frases-síntese como \"Essa lógica premia quem grita mais alto\".",
+      "Amplie a proposta de intervenção, acrescentando uma ação voltada às plataformas (por exemplo, transparência algorítmica fiscalizada por órgão regulador) e detalhando meio, agente e efeito esperado."
+    ]
+  },
+  "tokens": {
+    "entrada": 2273,
+    "saida": 1590
+  }
+}
