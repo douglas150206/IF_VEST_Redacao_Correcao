@@ -110,8 +110,7 @@ PALABRAS_CLAVE = (
 AUTORES = [
     "Douglas Hiroiti Kadomoto, IFSP, graduando em Análise e Desenvolvimento de "
     "Sistemas.",
-    "Ana Paula Abrantes de Castro Shiguemori, IFSP, [CONFIRMAR TITULAÇÃO: mestra "
-    "ou doutora].",
+    "Ana Paula Abrantes de Castro Shiguemori, IFSP, doutora.",
 ]
 
 CEGO = ("[DADOS DOS AUTORES — campo deixado em branco para a avaliação cega; "
