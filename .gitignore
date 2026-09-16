@@ -32,3 +32,6 @@ Thumbs.db
 
 # Experimentos (logs e bancos temporários)
 pesquisa/*.log
+
+# Artigo (pasta temporária de montagem do .docx)
+artigo/_build/
