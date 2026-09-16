@@ -5,7 +5,8 @@ Artigo científico derivado deste TCC, montado dentro do template oficial da
 
 | Arquivo | O que é |
 |---|---|
-| `ARTIGO_RECIMA21.docx` | **O artigo pronto para submissão.** |
+| `ARTIGO_RECIMA21.docx` | **Versão cega — é esta que se submete agora.** Sem nomes. |
+| `ARTIGO_RECIMA21_versao-final.docx` | Versão com os autores, para o *segundo* envio. |
 | `template_recima21.docx` | Template oficial da revista, usado como base. |
 | `conteudo.py` | Todo o texto do artigo (títulos, resumos, seções, tabelas, referências). |
 | `montar.py` | Gera o `.docx` injetando o conteúdo no template. |
@@ -15,7 +16,8 @@ Artigo científico derivado deste TCC, montado dentro do template oficial da
 Edite o texto em `conteudo.py` e regenere:
 
 ```bash
-python3 montar.py
+python3 montar.py            # versão cega (submissão inicial)
+python3 montar.py --final    # versão com os autores (versão final)
 ```
 
 O script reextrai o template a cada execução e substitui apenas o corpo do
@@ -45,15 +47,18 @@ soffice --headless --convert-to pdf ARTIGO_RECIMA21.docx
 
 ## Antes de submeter
 
-1. **Dados dos autores.** O campo está propositalmente em branco — a revista
-   exige avaliação cega na primeira submissão. Preencher só na versão final,
-   com nome completo, instituição e titulação de cada autor.
+1. **Submeta a versão cega.** A revista exige avaliação cega no primeiro
+   envio: o campo de autores fica em branco e a submissão é vinculada ao login
+   de quem envia. Os nomes entram só no segundo envio, após a avaliação.
 2. **Anonimato.** Pelo mesmo motivo, o texto não cita o nome do sistema, a
    instituição nem o repositório. Vale incluir na versão final.
-3. **Referências.** Conferir páginas e volumes na fonte original antes do
+3. **Cadastro dos autores.** Todos os autores precisam estar cadastrados na
+   plataforma da revista *no momento da submissão* — inclusive a orientadora.
+   Incluir nome depois da editoração implica taxa adicional, segundo o
+   template.
+4. **Referências.** Conferir páginas e volumes na fonte original antes do
    envio.
-4. **Cadastro.** Todos os autores precisam estar cadastrados na plataforma da
-   revista no momento da submissão, e o arquivo deve ir em `.docx`.
+5. **Formato.** A revista só aceita `.docx` — não envie PDF nem `.doc`.
 
 ## Origem dos dados
 

@@ -101,6 +101,23 @@ PALABRAS_CLAVE = (
     "Fiabilidad test-retest. Detección de copia."
 )
 
+# ─── Dados dos autores ──────────────────────────────────────────────────────
+# A revista exige AVALIAÇÃO CEGA na primeira submissão: este bloco só entra na
+# versão final, gerada com `python3 montar.py --final`.
+# Formato exigido pelo template: "Nome Completo, Instituição, titulação."
+# ("Não incluir outras informações!!")
+
+AUTORES = [
+    "Douglas Hiroiti Kadomoto, IFSP, graduando em Análise e Desenvolvimento de "
+    "Sistemas.",
+    "Ana Paula Abrantes de Castro Shiguemori, IFSP, [CONFIRMAR TITULAÇÃO: mestra "
+    "ou doutora].",
+]
+
+CEGO = ("[DADOS DOS AUTORES — campo deixado em branco para a avaliação cega; "
+        "preencher somente na versão final, com nome completo, instituição e "
+        "titulação de cada autor.]")
+
 # ─── Corpo do artigo ────────────────────────────────────────────────────────
 # ("h1", texto) título de seção; ("h2", texto) subtítulo; ("p", texto) parágrafo;
 # ("cap", texto) legenda acima do quadro/tabela; ("fonte", texto) fonte abaixo;

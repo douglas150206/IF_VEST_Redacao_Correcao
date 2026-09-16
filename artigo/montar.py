@@ -11,12 +11,17 @@ from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI))
-from conteudo import (ABSTRACT, CORPO, KEYWORDS, PALABRAS_CLAVE, PALAVRAS_CHAVE,
-                      REFERENCIAS, RESUMEN, RESUMO, TABELAS, TITULOS)
+from conteudo import (ABSTRACT, AUTORES, CEGO, CORPO, KEYWORDS, PALABRAS_CLAVE,
+                      PALAVRAS_CHAVE, REFERENCIAS, RESUMEN, RESUMO, TABELAS,
+                      TITULOS)
+
+# A revista exige avaliação cega na primeira submissão; --final inclui os autores.
+FINAL = "--final" in sys.argv
 
 TPL = AQUI / "template_recima21.docx"
 UNZ = AQUI / "_build"
-SAIDA = AQUI / "ARTIGO_RECIMA21.docx"
+SAIDA = AQUI / ("ARTIGO_RECIMA21_versao-final.docx" if FINAL
+                else "ARTIGO_RECIMA21.docx")
 
 LARGURA = 8504          # largura útil da página, em twips (A4 com margens de 3 cm)
 ARIAL = '<w:rFonts w:ascii="Arial" w:hAnsi="Arial" w:cs="Arial"/>'
@@ -114,9 +119,12 @@ for t in TITULOS:
     corpo.append(par(t.upper(), jc="center", line=240, after=240, bold=True))
 
 corpo.append(par())
-corpo.append(par("[DADOS DOS AUTORES — campo deixado em branco para a avaliação cega; "
-                 "preencher somente na versão final, com nome completo, instituição e "
-                 "titulação de cada autor.]", jc="center", line=240, after=240))
+if FINAL:
+    for autor in AUTORES:
+        corpo.append(par(autor, jc="center", line=240, after=120))
+    corpo.append(par())
+else:
+    corpo.append(par(CEGO, jc="center", line=240, after=240))
 corpo.append(par())
 
 for rotulo, texto, chave, palavras in (
