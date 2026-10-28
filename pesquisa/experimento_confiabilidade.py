@@ -41,11 +41,17 @@ sys.path.insert(0, str(AQUI.parent / "porte_fastapi"))
 from corretor.config import config  # noqa: E402,F401
 from corretor.corretor import PROMPT_SISTEMA, montar_prompt  # noqa: E402
 from corretor.esquemas import CorrecaoIA  # noqa: E402
+from corretor.grade_inep import PROMPT_SISTEMA as PROMPT_CALIBRADO  # noqa: E402
 from corretor.plagio import detectar_copia  # noqa: E402
 
 MODELOS_PADRAO = ["claude-opus-5", "claude-sonnet-4-5"]
 MAX_TOKENS = 8000
 ESFORCO = "medium"
+
+# Os dois prompts em comparação. `atual` é o que está em produção; `calibrado`
+# é o que usa a grade específica do INEP. Tudo o mais na requisição é idêntico,
+# para que a diferença observada seja atribuível ao prompt e a nada além dele.
+PROMPTS = {"atual": PROMPT_SISTEMA, "calibrado": PROMPT_CALIBRADO}
 
 
 def carregar_corpus() -> dict:
@@ -53,7 +59,11 @@ def carregar_corpus() -> dict:
 
 
 def corrigir_uma_vez(
-    cliente: anthropic.Anthropic, modelo: str, redacao: str, tema: dict
+    cliente: anthropic.Anthropic,
+    modelo: str,
+    redacao: str,
+    tema: dict,
+    sistema: str = PROMPT_SISTEMA,
 ) -> dict:
     """Uma correção. Devolve notas, tokens e latência."""
     plagio = detectar_copia(redacao, tema["textos_apoio"])
@@ -66,7 +76,7 @@ def corrigir_uma_vez(
     resposta = cliente.messages.parse(
         model=modelo,
         max_tokens=MAX_TOKENS,
-        system=PROMPT_SISTEMA,
+        system=sistema,
         messages=[{"role": "user", "content": prompt}],
         output_format=CorrecaoIA,
         **extras,
@@ -105,8 +115,11 @@ def main() -> int:
     p.add_argument("--repeticoes", type=int, default=3)
     p.add_argument("--modelos", nargs="+", default=MODELOS_PADRAO)
     p.add_argument("--redacoes", nargs="+", default=None, help="ids, ex.: R1 R4")
+    p.add_argument("--prompt", choices=sorted(PROMPTS), default="atual",
+                   help="qual system prompt usar (padrão: atual)")
     p.add_argument("--estimar", action="store_true", help="só mostra o tamanho da corrida")
     args = p.parse_args()
+    sistema = PROMPTS[args.prompt]
 
     corpus = carregar_corpus()
     redacoes = corpus["redacoes"]
@@ -116,6 +129,7 @@ def main() -> int:
     total = len(redacoes) * len(args.modelos) * args.repeticoes
     print(f"redações: {len(redacoes)}  modelos: {len(args.modelos)}  "
           f"repetições: {args.repeticoes}")
+    print(f"prompt: {args.prompt} ({len(sistema.split())} palavras)")
     print(f"total de chamadas à API: {total}")
     if args.estimar:
         print("\n(--estimar: nada foi chamado)")
@@ -133,7 +147,7 @@ def main() -> int:
                 print(f"  [{feito}/{total}] {redacao['id']} · {modelo} · rep {rep}",
                       end="", flush=True)
                 try:
-                    r = corrigir_uma_vez(cliente, modelo, redacao["texto"], tema)
+                    r = corrigir_uma_vez(cliente, modelo, redacao["texto"], tema, sistema)
                 except Exception as erro:  # noqa: BLE001 — registra e segue
                     print(f"  ERRO: {erro}")
                     bruto.append({"redacao": redacao["id"], "modelo": modelo,
@@ -178,13 +192,14 @@ def main() -> int:
     saida = AQUI / "resultados"
     saida.mkdir(exist_ok=True)
     carimbo = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    arquivo = saida / f"confiabilidade_{carimbo}.json"
+    arquivo = saida / f"confiabilidade_{args.prompt}_{carimbo}.json"
     arquivo.write_text(
         json.dumps(
             {
                 "gerado_em": carimbo,
                 "parametros": {"repeticoes": args.repeticoes, "modelos": args.modelos,
-                               "max_tokens": MAX_TOKENS, "esforco": ESFORCO},
+                               "max_tokens": MAX_TOKENS, "esforco": ESFORCO,
+                               "prompt": args.prompt},
                 "resumo": resumo,
                 "bruto": bruto,
             },

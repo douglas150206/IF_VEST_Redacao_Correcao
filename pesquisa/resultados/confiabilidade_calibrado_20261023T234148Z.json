@@ -1,0 +1,1072 @@
+{
+  "gerado_em": "20261023T234148Z",
+  "parametros": {
+    "repeticoes": 10,
+    "modelos": [
+      "claude-opus-5"
+    ],
+    "max_tokens": 8000,
+    "esforco": "medium",
+    "prompt": "calibrado"
+  },
+  "resumo": [
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 908,
+      "desvio_padrao": 37.9,
+      "minimo": 840,
+      "maximo": 960,
+      "amplitude": 120,
+      "identicas": false
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 612,
+      "desvio_padrao": 19.3,
+      "minimo": 600,
+      "maximo": 640,
+      "amplitude": 40,
+      "identicas": false
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "n": 10,
+      "media": 400,
+      "desvio_padrao": 0.0,
+      "minimo": 400,
+      "maximo": 400,
+      "amplitude": 0,
+      "identicas": true
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "n": 4,
+      "media": 0,
+      "desvio_padrao": 0.0,
+      "minimo": 0,
+      "maximo": 0,
+      "amplitude": 0,
+      "identicas": true
+    }
+  ],
+  "bruto": [
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        120,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2258,
+      "segundos": 31.4
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        120,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2134,
+      "segundos": 29.1
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 1866,
+      "segundos": 24.5
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 840,
+      "competencias": [
+        200,
+        120,
+        160,
+        160,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2274,
+      "segundos": 30.2
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 880,
+      "competencias": [
+        200,
+        120,
+        160,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 1940,
+      "segundos": 25.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 960,
+      "competencias": [
+        200,
+        160,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "alto",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2121,
+      "segundos": 29.7
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 880,
+      "competencias": [
+        200,
+        120,
+        160,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2041,
+      "segundos": 26.6
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 880,
+      "competencias": [
+        200,
+        120,
+        160,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2017,
+      "segundos": 26.8
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        120,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2024,
+      "segundos": 27.3
+    },
+    {
+      "redacao": "R1",
+      "faixa": "alta",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 920,
+      "competencias": [
+        200,
+        120,
+        200,
+        200,
+        200
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "alto",
+        "alto",
+        "alto"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4707,
+      "tokens_saida": 2207,
+      "segundos": 30.9
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 640,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2019,
+      "segundos": 25.9
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2172,
+      "segundos": 29.0
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 640,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2052,
+      "segundos": 27.1
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2151,
+      "segundos": 28.2
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 640,
+      "competencias": [
+        160,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "alto",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2015,
+      "segundos": 26.6
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 1902,
+      "segundos": 26.4
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 1969,
+      "segundos": 27.3
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2130,
+      "segundos": 27.9
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 2087,
+      "segundos": 27.4
+    },
+    {
+      "redacao": "R2",
+      "faixa": "media",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 600,
+      "competencias": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "niveis": [
+        "medio",
+        "medio",
+        "medio",
+        "medio",
+        "medio"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4557,
+      "tokens_saida": 1946,
+      "segundos": 25.9
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2119,
+      "segundos": 27.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2287,
+      "segundos": 31.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2234,
+      "segundos": 30.2
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2005,
+      "segundos": 25.9
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2225,
+      "segundos": 29.1
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2304,
+      "segundos": 30.8
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2047,
+      "segundos": 26.3
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2063,
+      "segundos": 26.7
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2148,
+      "segundos": 28.0
+    },
+    {
+      "redacao": "R3",
+      "faixa": "baixa",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "nota_total": 400,
+      "competencias": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 0,
+      "tokens_entrada": 4385,
+      "tokens_saida": 2089,
+      "segundos": 28.0
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 4595,
+      "tokens_saida": 1180,
+      "segundos": 15.4
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 4595,
+      "tokens_saida": 1272,
+      "segundos": 16.2
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 4595,
+      "tokens_saida": 1352,
+      "segundos": 17.2
+    },
+    {
+      "redacao": "R4",
+      "faixa": "copia",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "nota_total": 0,
+      "competencias": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "niveis": [
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo",
+        "baixo"
+      ],
+      "plagio_percentual": 70,
+      "tokens_entrada": 4595,
+      "tokens_saida": 1232,
+      "segundos": 16.6
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL44tdtGLmzppdPpCN3h'}"
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL463M3CbaaBDdz3wkwU'}"
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL465XWYx3kWeQwxAoiQ'}"
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL466rNoMRS5NtC8wVRy'}"
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL468BFvfkDiJjfnk6uD'}"
+    },
+    {
+      "redacao": "R4",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL469GViYfaCeYSs7oGq'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46AGmMAZ7VGMERfkAk'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46BjpL4UAKrnLQKSRU'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46Cs3WPgiqkZEqUsrM'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46Dq5CbPsB8QTcaW4v'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46EupDvDkaFNgAveVU'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46Ft7TtU7xryWDccVh'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46GuNS4L9eyHbRzmzs'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46J35ny9UW4SFDt7Fy'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46K1cm41oisDtXC5To'}"
+    },
+    {
+      "redacao": "R5",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46LRTkASm3er4A9ysH'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 1,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46MjLpayHnZEuSKWmP'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 2,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46NpZjz4QBzxa6YJzw'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 3,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46PmNvv8rA5tjDG9x5'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 4,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46R8Dv3XgtPFFX6eJa'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 5,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46S6mAg6GXxZyQjzju'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 6,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46T7YRxk5ZFCYCnCfi'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 7,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46UGk272H9Ho5XhvkJ'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 8,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46VEnEFErExfEFnHLA'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 9,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46WGJLcCq9BR2TunzD'}"
+    },
+    {
+      "redacao": "R6",
+      "modelo": "claude-opus-5",
+      "repeticao": 10,
+      "erro": "Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.'}, 'request_id': 'req_011CgL46XELrdm9a6vJTg135'}"
+    }
+  ]
+}

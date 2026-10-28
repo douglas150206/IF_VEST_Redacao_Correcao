@@ -1,0 +1,633 @@
+{
+  "gerado_em": "20261024T000207Z",
+  "corpus": "Essay-BR (testing split)",
+  "parametros": {
+    "n": 25,
+    "prompt": "atual",
+    "modelo": "claude-opus-5",
+    "max_tokens": 8000,
+    "esforco": "medium",
+    "semente": 20261023
+  },
+  "relatorio": {
+    "geral": {
+      "n": 25,
+      "vies": 16,
+      "erro_absoluto": 115.2,
+      "dp": 184.0,
+      "fora_de_100": 10,
+      "fora_de_100_pct": 40.0
+    },
+    "por_competencia": {
+      "C1": {
+        "n": 25,
+        "vies": -14.4,
+        "erro_absoluto": 36.8,
+        "dp": 43.0
+      },
+      "C2": {
+        "n": 25,
+        "vies": 1.6,
+        "erro_absoluto": 30.4,
+        "dp": 48.3
+      },
+      "C3": {
+        "n": 25,
+        "vies": 11.2,
+        "erro_absoluto": 20.8,
+        "dp": 35.6
+      },
+      "C4": {
+        "n": 25,
+        "vies": 3.2,
+        "erro_absoluto": 28.8,
+        "dp": 44.6
+      },
+      "C5": {
+        "n": 25,
+        "vies": 14.4,
+        "erro_absoluto": 33.6,
+        "dp": 55.2
+      }
+    },
+    "por_faixa": {
+      "fraca": {
+        "n": 8,
+        "vies": 150,
+        "erro_absoluto": 160,
+        "dp": 235.9
+      },
+      "baixa": {
+        "n": 8,
+        "vies": -15,
+        "erro_absoluto": 85,
+        "dp": 106.8
+      },
+      "media": {
+        "n": 6,
+        "vies": -73.3,
+        "erro_absoluto": 113.3,
+        "dp": 150.6
+      },
+      "alta": {
+        "n": 3,
+        "vies": -80,
+        "erro_absoluto": 80,
+        "dp": 40.0
+      }
+    }
+  },
+  "pares": [
+    {
+      "titulo": "Pátria amada, Brasil?",
+      "faixa": "fraca",
+      "humano_total": 320,
+      "humano_comp": [
+        80,
+        120,
+        120,
+        0,
+        0
+      ],
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        120,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1895
+    },
+    {
+      "titulo": "Liberdade e respeito a homossexualidadel",
+      "faixa": "fraca",
+      "humano_total": 280,
+      "humano_comp": [
+        80,
+        40,
+        40,
+        40,
+        80
+      ],
+      "sistema_total": 360,
+      "sistema_comp": [
+        40,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1822
+    },
+    {
+      "titulo": "A renovação do Brasil",
+      "faixa": "fraca",
+      "humano_total": 0,
+      "humano_comp": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sistema_total": 200,
+      "sistema_comp": [
+        40,
+        80,
+        40,
+        40,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1921
+    },
+    {
+      "titulo": "A falta de valorização dos povos indígenas",
+      "faixa": "fraca",
+      "humano_total": 360,
+      "humano_comp": [
+        120,
+        120,
+        40,
+        80,
+        0
+      ],
+      "sistema_total": 400,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1982
+    },
+    {
+      "titulo": "O que é mais importante para vencer na vida?",
+      "faixa": "fraca",
+      "humano_total": 240,
+      "humano_comp": [
+        40,
+        80,
+        40,
+        40,
+        40
+      ],
+      "sistema_total": 240,
+      "sistema_comp": [
+        80,
+        40,
+        40,
+        80,
+        0,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2155
+    },
+    {
+      "titulo": "Preocupação com o idoso",
+      "faixa": "fraca",
+      "humano_total": 0,
+      "humano_comp": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sistema_total": 680,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1913
+    },
+    {
+      "titulo": "o comprometimento com a educação",
+      "faixa": "fraca",
+      "humano_total": 360,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "sistema_total": 360,
+      "sistema_comp": [
+        40,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2002
+    },
+    {
+      "titulo": "",
+      "faixa": "fraca",
+      "humano_total": 320,
+      "humano_comp": [
+        120,
+        80,
+        40,
+        40,
+        40
+      ],
+      "sistema_total": 280,
+      "sistema_comp": [
+        80,
+        80,
+        40,
+        80,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1702
+    },
+    {
+      "titulo": "A Intolerância Religiosa",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        120,
+        120
+      ],
+      "sistema_total": 400,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1897
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        120,
+        120,
+        80,
+        120,
+        80
+      ],
+      "sistema_total": 440,
+      "sistema_comp": [
+        120,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1930
+    },
+    {
+      "titulo": "ANALFABETIMOS FUNCIONAL NO BRASIL",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        80,
+        120,
+        80,
+        120,
+        120
+      ],
+      "sistema_total": 400,
+      "sistema_comp": [
+        40,
+        80,
+        80,
+        80,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2034
+    },
+    {
+      "titulo": "A importância da cultura",
+      "faixa": "baixa",
+      "humano_total": 400,
+      "humano_comp": [
+        120,
+        120,
+        80,
+        80,
+        0
+      ],
+      "sistema_total": 320,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        80,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1768
+    },
+    {
+      "titulo": "A troca da boneca por um bebe, quem é o culpado?",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        120,
+        40
+      ],
+      "sistema_total": 600,
+      "sistema_comp": [
+        80,
+        120,
+        120,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1740
+    },
+    {
+      "titulo": "Protagonistas e coadjuvantes",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        80,
+        80
+      ],
+      "sistema_total": 440,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        80,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1843
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 400,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "sistema_total": 400,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1947
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        120,
+        80
+      ],
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        120,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1805
+    },
+    {
+      "titulo": "Será possível ter um saneamento básico de qualidade sem privatização do serviço?",
+      "faixa": "media",
+      "humano_total": 680,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        120,
+        120
+      ],
+      "sistema_total": 640,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        120,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1865
+    },
+    {
+      "titulo": "",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        160,
+        120
+      ],
+      "sistema_total": 760,
+      "sistema_comp": [
+        160,
+        160,
+        120,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2106
+    },
+    {
+      "titulo": "Impactos ambientais, como lidar?",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        120,
+        160,
+        120,
+        160,
+        160
+      ],
+      "sistema_total": 720,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2050
+    },
+    {
+      "titulo": "SUS",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        160,
+        120
+      ],
+      "sistema_total": 480,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        120,
+        120
+      ],
+      "plagio_percentual": 10,
+      "tokens_saida": 2094
+    },
+    {
+      "titulo": "Esporte e cooperação",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        120,
+        120,
+        160,
+        120,
+        200
+      ],
+      "sistema_total": 440,
+      "sistema_comp": [
+        80,
+        80,
+        80,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1843
+    },
+    {
+      "titulo": "",
+      "faixa": "media",
+      "humano_total": 600,
+      "humano_comp": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "sistema_total": 680,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2053
+    },
+    {
+      "titulo": "SUS",
+      "faixa": "alta",
+      "humano_total": 840,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        200,
+        200
+      ],
+      "sistema_total": 800,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        200
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1748
+    },
+    {
+      "titulo": "Combate aos autoritários.",
+      "faixa": "alta",
+      "humano_total": 800,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        200,
+        160
+      ],
+      "sistema_total": 720,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1947
+    },
+    {
+      "titulo": "Violência policial no Brasil",
+      "faixa": "alta",
+      "humano_total": 880,
+      "humano_comp": [
+        160,
+        200,
+        160,
+        200,
+        160
+      ],
+      "sistema_total": 760,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1851
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "tamanho_shingle": 7,
+  "teste_a_tamanho": [
+    {
+      "palavras_copiadas": 3,
+      "precisao": null,
+      "recall": 0.0,
+      "f1": null,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 27
+    },
+    {
+      "palavras_copiadas": 4,
+      "precisao": null,
+      "recall": 0.0,
+      "f1": null,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 36
+    },
+    {
+      "palavras_copiadas": 5,
+      "precisao": null,
+      "recall": 0.0,
+      "f1": null,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 45
+    },
+    {
+      "palavras_copiadas": 6,
+      "precisao": null,
+      "recall": 0.0,
+      "f1": null,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 54
+    },
+    {
+      "palavras_copiadas": 7,
+      "precisao": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "verdadeiros_positivos": 63,
+      "falsos_positivos": 0,
+      "falsos_negativos": 0
+    },
+    {
+      "palavras_copiadas": 8,
+      "precisao": 0.9863013698630136,
+      "recall": 1.0,
+      "f1": 0.993103448275862,
+      "verdadeiros_positivos": 72,
+      "falsos_positivos": 1,
+      "falsos_negativos": 0
+    },
+    {
+      "palavras_copiadas": 10,
+      "precisao": 0.989010989010989,
+      "recall": 1.0,
+      "f1": 0.994475138121547,
+      "verdadeiros_positivos": 90,
+      "falsos_positivos": 1,
+      "falsos_negativos": 0
+    },
+    {
+      "palavras_copiadas": 15,
+      "precisao": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "verdadeiros_positivos": 135,
+      "falsos_positivos": 0,
+      "falsos_negativos": 0
+    },
+    {
+      "palavras_copiadas": 20,
+      "precisao": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "verdadeiros_positivos": 180,
+      "falsos_positivos": 0,
+      "falsos_negativos": 0
+    },
+    {
+      "palavras_copiadas": 30,
+      "precisao": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "verdadeiros_positivos": 270,
+      "falsos_positivos": 0,
+      "falsos_negativos": 0
+    }
+  ],
+  "teste_b_substituicao": [
+    {
+      "substituicoes": 0,
+      "uma_palavra_a_cada": null,
+      "precisao": 1.0,
+      "recall": 1.0,
+      "verdadeiros_positivos": 90,
+      "falsos_positivos": 0,
+      "falsos_negativos": 0
+    },
+    {
+      "substituicoes": 1,
+      "uma_palavra_a_cada": 30.0,
+      "precisao": 1.0,
+      "recall": 0.9666666666666667,
+      "verdadeiros_positivos": 87,
+      "falsos_positivos": 0,
+      "falsos_negativos": 3
+    },
+    {
+      "substituicoes": 2,
+      "uma_palavra_a_cada": 15.0,
+      "precisao": 1.0,
+      "recall": 0.9333333333333333,
+      "verdadeiros_positivos": 84,
+      "falsos_positivos": 0,
+      "falsos_negativos": 6
+    },
+    {
+      "substituicoes": 3,
+      "uma_palavra_a_cada": 10.0,
+      "precisao": 1.0,
+      "recall": 0.5,
+      "verdadeiros_positivos": 45,
+      "falsos_positivos": 0,
+      "falsos_negativos": 45
+    },
+    {
+      "substituicoes": 4,
+      "uma_palavra_a_cada": 7.5,
+      "precisao": null,
+      "recall": 0.0,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 90
+    },
+    {
+      "substituicoes": 5,
+      "uma_palavra_a_cada": 6.0,
+      "precisao": null,
+      "recall": 0.0,
+      "verdadeiros_positivos": 0,
+      "falsos_positivos": 0,
+      "falsos_negativos": 90
+    }
+  ],
+  "teste_c_falso_positivo": [
+    {
+      "redacao": "R1",
+      "percentual_detectado": 0,
+      "palavras_marcadas": 0,
+      "total_palavras": 251
+    },
+    {
+      "redacao": "R2",
+      "percentual_detectado": 0,
+      "palavras_marcadas": 0,
+      "total_palavras": 189
+    },
+    {
+      "redacao": "R3",
+      "percentual_detectado": 0,
+      "palavras_marcadas": 0,
+      "total_palavras": 124
+    },
+    {
+      "redacao": "R4",
+      "percentual_detectado": 70,
+      "palavras_marcadas": 65,
+      "total_palavras": 93
+    },
+    {
+      "redacao": "R5",
+      "percentual_detectado": 29,
+      "palavras_marcadas": 32,
+      "total_palavras": 109
+    },
+    {
+      "redacao": "R6",
+      "percentual_detectado": 45,
+      "palavras_marcadas": 65,
+      "total_palavras": 145
+    }
+  ]
+}

@@ -1,0 +1,658 @@
+{
+  "gerado_em": "20261026T214633Z",
+  "corpus": "Essay-BR (testing split)",
+  "parametros": {
+    "n": 25,
+    "prompt": "ancorado",
+    "modelo": "claude-opus-5",
+    "max_tokens": 8000,
+    "esforco": "medium",
+    "semente": 20261023
+  },
+  "relatorio": {
+    "geral": {
+      "n": 25,
+      "vies": 75.2,
+      "erro_absoluto": 126.4,
+      "dp": 181.6,
+      "fora_de_100": 11,
+      "fora_de_100_pct": 44.0
+    },
+    "por_competencia": {
+      "C1": {
+        "n": 25,
+        "vies": 8,
+        "erro_absoluto": 24,
+        "dp": 41.6
+      },
+      "C2": {
+        "n": 25,
+        "vies": 12.8,
+        "erro_absoluto": 32,
+        "dp": 47.2
+      },
+      "C3": {
+        "n": 25,
+        "vies": 20.8,
+        "erro_absoluto": 27.2,
+        "dp": 38.5
+      },
+      "C4": {
+        "n": 25,
+        "vies": 11.2,
+        "erro_absoluto": 33.6,
+        "dp": 49.7
+      },
+      "C5": {
+        "n": 25,
+        "vies": 22.4,
+        "erro_absoluto": 35.2,
+        "dp": 53.0
+      }
+    },
+    "por_faixa": {
+      "fraca": {
+        "n": 8,
+        "vies": 195,
+        "erro_absoluto": 205,
+        "dp": 247.0
+      },
+      "baixa": {
+        "n": 8,
+        "vies": 45,
+        "erro_absoluto": 85,
+        "dp": 103.5
+      },
+      "media": {
+        "n": 6,
+        "vies": 13.3,
+        "erro_absoluto": 120,
+        "dp": 137.8
+      },
+      "alta": {
+        "n": 3,
+        "vies": -40,
+        "erro_absoluto": 40,
+        "dp": 69.3
+      }
+    }
+  },
+  "pares": [
+    {
+      "titulo": "Pátria amada, Brasil?",
+      "faixa": "fraca",
+      "humano_total": 320,
+      "humano_comp": [
+        80,
+        120,
+        120,
+        0,
+        0
+      ],
+      "sistema_total": 640,
+      "sistema_comp": [
+        160,
+        120,
+        120,
+        160,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1610,
+      "cache_lido": 0
+    },
+    {
+      "titulo": "Liberdade e respeito a homossexualidadel",
+      "faixa": "fraca",
+      "humano_total": 280,
+      "humano_comp": [
+        80,
+        40,
+        40,
+        40,
+        80
+      ],
+      "sistema_total": 320,
+      "sistema_comp": [
+        40,
+        80,
+        40,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1765,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "A renovação do Brasil",
+      "faixa": "fraca",
+      "humano_total": 0,
+      "humano_comp": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sistema_total": 280,
+      "sistema_comp": [
+        80,
+        80,
+        40,
+        40,
+        40
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1745,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "A falta de valorização dos povos indígenas",
+      "faixa": "fraca",
+      "humano_total": 360,
+      "humano_comp": [
+        120,
+        120,
+        40,
+        80,
+        0
+      ],
+      "sistema_total": 520,
+      "sistema_comp": [
+        120,
+        120,
+        80,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1758,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "O que é mais importante para vencer na vida?",
+      "faixa": "fraca",
+      "humano_total": 240,
+      "humano_comp": [
+        40,
+        80,
+        40,
+        40,
+        40
+      ],
+      "sistema_total": 200,
+      "sistema_comp": [
+        80,
+        0,
+        40,
+        40,
+        40,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1871,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Preocupação com o idoso",
+      "faixa": "fraca",
+      "humano_total": 0,
+      "humano_comp": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sistema_total": 720,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 2033,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "o comprometimento com a educação",
+      "faixa": "fraca",
+      "humano_total": 360,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        80,
+        40
+      ],
+      "sistema_total": 400,
+      "sistema_comp": [
+        40,
+        120,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1658,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "fraca",
+      "humano_total": 320,
+      "humano_comp": [
+        120,
+        80,
+        40,
+        40,
+        40
+      ],
+      "sistema_total": 360,
+      "sistema_comp": [
+        120,
+        80,
+        80,
+        80,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1559,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "A Intolerância Religiosa",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        120,
+        120
+      ],
+      "sistema_total": 520,
+      "sistema_comp": [
+        120,
+        120,
+        80,
+        80,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1566,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        120,
+        120,
+        80,
+        120,
+        80
+      ],
+      "sistema_total": 440,
+      "sistema_comp": [
+        120,
+        80,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1985,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "ANALFABETIMOS FUNCIONAL NO BRASIL",
+      "faixa": "baixa",
+      "humano_total": 520,
+      "humano_comp": [
+        80,
+        120,
+        80,
+        120,
+        120
+      ],
+      "sistema_total": 480,
+      "sistema_comp": [
+        80,
+        120,
+        80,
+        80,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1812,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "A importância da cultura",
+      "faixa": "baixa",
+      "humano_total": 400,
+      "humano_comp": [
+        120,
+        120,
+        80,
+        80,
+        0
+      ],
+      "sistema_total": 360,
+      "sistema_comp": [
+        120,
+        80,
+        80,
+        80,
+        0
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1686,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "A troca da boneca por um bebe, quem é o culpado?",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        120,
+        40
+      ],
+      "sistema_total": 640,
+      "sistema_comp": [
+        120,
+        120,
+        120,
+        120,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1638,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Protagonistas e coadjuvantes",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        120,
+        80,
+        80,
+        80,
+        80
+      ],
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        80,
+        120,
+        120
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1873,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 400,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        80,
+        80
+      ],
+      "sistema_total": 440,
+      "sistema_comp": [
+        80,
+        120,
+        80,
+        80,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1744,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "baixa",
+      "humano_total": 440,
+      "humano_comp": [
+        80,
+        80,
+        80,
+        120,
+        80
+      ],
+      "sistema_total": 600,
+      "sistema_comp": [
+        160,
+        120,
+        120,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1526,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Será possível ter um saneamento básico de qualidade sem privatização do serviço?",
+      "faixa": "media",
+      "humano_total": 680,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        120,
+        120
+      ],
+      "sistema_total": 760,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1551,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        160,
+        120
+      ],
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1630,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Impactos ambientais, como lidar?",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        120,
+        160,
+        120,
+        160,
+        160
+      ],
+      "sistema_total": 800,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        200
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1984,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "SUS",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        160,
+        120
+      ],
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        80,
+        120,
+        120
+      ],
+      "plagio_percentual": 10,
+      "tokens_saida": 1923,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Esporte e cooperação",
+      "faixa": "media",
+      "humano_total": 720,
+      "humano_comp": [
+        120,
+        120,
+        160,
+        120,
+        200
+      ],
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        120,
+        120,
+        80
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1609,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "",
+      "faixa": "media",
+      "humano_total": 600,
+      "humano_comp": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "sistema_total": 760,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1775,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "SUS",
+      "faixa": "alta",
+      "humano_total": 840,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        200,
+        200
+      ],
+      "sistema_total": 840,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        200
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1472,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Combate aos autoritários.",
+      "faixa": "alta",
+      "humano_total": 800,
+      "humano_comp": [
+        160,
+        160,
+        120,
+        200,
+        160
+      ],
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1571,
+      "cache_lido": 5798
+    },
+    {
+      "titulo": "Violência policial no Brasil",
+      "faixa": "alta",
+      "humano_total": 880,
+      "humano_comp": [
+        160,
+        200,
+        160,
+        200,
+        160
+      ],
+      "sistema_total": 760,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        160
+      ],
+      "plagio_percentual": 0,
+      "tokens_saida": 1919,
+      "cache_lido": 5798
+    }
+  ]
+}

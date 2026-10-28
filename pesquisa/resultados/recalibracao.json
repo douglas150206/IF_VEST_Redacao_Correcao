@@ -1,0 +1,29 @@
+{
+  "fonte": "concordancia_atual_20261024T000207Z.json",
+  "n": 25,
+  "metricas": {
+    "sem_correcao": {
+      "vies": 16,
+      "erro_absoluto": 115.2,
+      "fora_de_100": 10,
+      "n": 25
+    },
+    "linear": {
+      "vies": 1.6,
+      "erro_absoluto": 129.6,
+      "fora_de_100": 12,
+      "n": 25
+    },
+    "isotonica": {
+      "vies": -3.2,
+      "erro_absoluto": 128,
+      "fora_de_100": 11,
+      "n": 25
+    }
+  },
+  "curva_linear": {
+    "a": 61.06,
+    "b": 0.8476
+  },
+  "aviso": "Ajustada em amostra estratificada com peso nas faixas baixas; não representa a população. Reajustar sobre amostra representativa antes de usar em produção."
+}
