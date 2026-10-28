@@ -1,0 +1,427 @@
+{
+  "gerado_em": "20261028T221326Z",
+  "metodo": "ancoragem com redações do próprio simulado, leave-one-out",
+  "parametros": {
+    "modelo": "claude-opus-5",
+    "max_tokens": 8000,
+    "esforco": "medium",
+    "perfil_ancoras": [
+      [
+        "baixa",
+        0,
+        500,
+        2
+      ],
+      [
+        "alta",
+        700,
+        1001,
+        1
+      ]
+    ]
+  },
+  "relatorio": {
+    "final": {
+      "vies": 32.5,
+      "erro_absoluto": 97.5,
+      "qwk_medio": 0.56,
+      "por_competencia": {
+        "C1": {
+          "vies": -2.5,
+          "erro_absoluto": 12.5,
+          "qwk": 1.0
+        },
+        "C2": {
+          "vies": 17.5,
+          "erro_absoluto": 42.5,
+          "qwk": 0.49
+        },
+        "C3": {
+          "vies": 20,
+          "erro_absoluto": 30,
+          "qwk": 0.75
+        },
+        "C4": {
+          "vies": -2.5,
+          "erro_absoluto": 17.5,
+          "qwk": null
+        },
+        "C5": {
+          "vies": 0,
+          "erro_absoluto": 40,
+          "qwk": 0.0
+        }
+      }
+    },
+    "A": {
+      "vies": 22.5,
+      "erro_absoluto": 87.5,
+      "qwk_medio": 0.622,
+      "por_competencia": {
+        "C1": {
+          "vies": -12.5,
+          "erro_absoluto": 22.5,
+          "qwk": 0.588
+        },
+        "C2": {
+          "vies": 20,
+          "erro_absoluto": 40,
+          "qwk": 0.505
+        },
+        "C3": {
+          "vies": 7.5,
+          "erro_absoluto": 17.5,
+          "qwk": 0.865
+        },
+        "C4": {
+          "vies": -2.5,
+          "erro_absoluto": 17.5,
+          "qwk": 0.545
+        },
+        "C5": {
+          "vies": 10,
+          "erro_absoluto": 30,
+          "qwk": 0.604
+        }
+      }
+    },
+    "B": {
+      "vies": 42.5,
+      "erro_absoluto": 127.5,
+      "qwk_medio": 0.609,
+      "por_competencia": {
+        "C1": {
+          "vies": 7.5,
+          "erro_absoluto": 7.5,
+          "qwk": 0.844
+        },
+        "C2": {
+          "vies": 15,
+          "erro_absoluto": 45,
+          "qwk": 0.5
+        },
+        "C3": {
+          "vies": 32.5,
+          "erro_absoluto": 42.5,
+          "qwk": 0.65
+        },
+        "C4": {
+          "vies": -2.5,
+          "erro_absoluto": 22.5,
+          "qwk": 0.516
+        },
+        "C5": {
+          "vies": -10,
+          "erro_absoluto": 50,
+          "qwk": 0.532
+        }
+      }
+    }
+  },
+  "resultados": [
+    {
+      "prontuario": "S01",
+      "sistema_total": 480,
+      "sistema_comp": [
+        80,
+        120,
+        80,
+        120,
+        80
+      ],
+      "final": [
+        100,
+        40,
+        60,
+        140,
+        40
+      ],
+      "A": [
+        120,
+        40,
+        80,
+        160,
+        40
+      ],
+      "B": [
+        80,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 380,
+      "ancoras": [
+        320,
+        420,
+        760
+      ]
+    },
+    {
+      "prontuario": "S02",
+      "sistema_total": 680,
+      "sistema_comp": [
+        120,
+        160,
+        140,
+        140,
+        120
+      ],
+      "final": [
+        140,
+        40,
+        60,
+        140,
+        40
+      ],
+      "A": [
+        160,
+        40,
+        80,
+        160,
+        40
+      ],
+      "B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 420,
+      "ancoras": [
+        320,
+        380,
+        760
+      ]
+    },
+    {
+      "prontuario": "S03",
+      "sistema_total": 480,
+      "sistema_comp": [
+        120,
+        80,
+        80,
+        120,
+        80
+      ],
+      "final": [
+        100,
+        40,
+        40,
+        100,
+        40
+      ],
+      "A": [
+        80,
+        40,
+        40,
+        80,
+        40
+      ],
+      "B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 320,
+      "ancoras": [
+        380,
+        420,
+        760
+      ]
+    },
+    {
+      "prontuario": "S04",
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "final": [
+        160,
+        200,
+        160,
+        180,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        160,
+        200,
+        160,
+        200,
+        200
+      ],
+      "humano_total": 880,
+      "ancoras": [
+        320,
+        380,
+        760
+      ]
+    },
+    {
+      "prontuario": "S05",
+      "sistema_total": 880,
+      "sistema_comp": [
+        160,
+        200,
+        160,
+        180,
+        180
+      ],
+      "final": [
+        180,
+        200,
+        140,
+        160,
+        200
+      ],
+      "A": [
+        200,
+        200,
+        160,
+        160,
+        200
+      ],
+      "B": [
+        160,
+        200,
+        120,
+        160,
+        200
+      ],
+      "humano_total": 880,
+      "ancoras": [
+        320,
+        380,
+        760
+      ]
+    },
+    {
+      "prontuario": "S06",
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        180,
+        160,
+        160,
+        140
+      ],
+      "final": [
+        140,
+        200,
+        140,
+        180,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        120,
+        200,
+        120,
+        200,
+        200
+      ],
+      "humano_total": 840,
+      "ancoras": [
+        320,
+        380,
+        760
+      ]
+    },
+    {
+      "prontuario": "S07",
+      "sistema_total": 800,
+      "sistema_comp": [
+        140,
+        180,
+        160,
+        160,
+        160
+      ],
+      "final": [
+        140,
+        200,
+        140,
+        140,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        120,
+        200,
+        120,
+        120,
+        200
+      ],
+      "humano_total": 800,
+      "ancoras": [
+        320,
+        380,
+        760
+      ]
+    },
+    {
+      "prontuario": "S08",
+      "sistema_total": 620,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        140,
+        80
+      ],
+      "final": [
+        120,
+        180,
+        160,
+        160,
+        140
+      ],
+      "A": [
+        120,
+        160,
+        160,
+        160,
+        120
+      ],
+      "B": [
+        120,
+        200,
+        160,
+        160,
+        160
+      ],
+      "humano_total": 760,
+      "ancoras": [
+        320,
+        380,
+        800
+      ]
+    }
+  ]
+}

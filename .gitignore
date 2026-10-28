@@ -32,3 +32,11 @@ Thumbs.db
 
 # Experimentos (logs e bancos temporários)
 pesquisa/*.log
+
+# Corpus do simulado — redações de alunos reais do campus, identificadas por
+# prontuário. Este repositório é público, então nada disso pode ser versionado:
+# são dados pessoais de estudantes, coletados para correção, não para
+# publicação. Os resultados dos experimentos vão para o repositório apenas em
+# forma anonimizada (ver pesquisa/anonimizar_resultados.py); a tabela que liga
+# pseudônimo a prontuário mora aqui dentro e não sai da máquina.
+pesquisa/corpus/simulado/

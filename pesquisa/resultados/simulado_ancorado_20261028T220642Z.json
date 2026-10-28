@@ -1,0 +1,375 @@
+{
+  "gerado_em": "20261028T220642Z",
+  "corpus": "simulado do cursinho, lote 1",
+  "tema_inferido": "Os desafios para o enfrentamento da insegurança alimentar no Brasil",
+  "parametros": {
+    "prompt": "ancorado",
+    "modelo": "claude-opus-5",
+    "max_tokens": 8000,
+    "esforco": "medium"
+  },
+  "relatorio": {
+    "final": {
+      "vies": 65,
+      "erro_absoluto": 125,
+      "qwk_medio": 0.464,
+      "por_competencia": {
+        "C1": {
+          "vies": 0,
+          "erro_absoluto": 15,
+          "qwk": 1.0
+        },
+        "C2": {
+          "vies": 17.5,
+          "erro_absoluto": 52.5,
+          "qwk": 0.386
+        },
+        "C3": {
+          "vies": 22.5,
+          "erro_absoluto": 32.5,
+          "qwk": 0.75
+        },
+        "C4": {
+          "vies": 5,
+          "erro_absoluto": 20,
+          "qwk": 0.0
+        },
+        "C5": {
+          "vies": 20,
+          "erro_absoluto": 50,
+          "qwk": 0.182
+        }
+      }
+    },
+    "A": {
+      "vies": 55,
+      "erro_absoluto": 115,
+      "qwk_medio": 0.494,
+      "por_competencia": {
+        "C1": {
+          "vies": -10,
+          "erro_absoluto": 20,
+          "qwk": 0.515
+        },
+        "C2": {
+          "vies": 20,
+          "erro_absoluto": 50,
+          "qwk": 0.389
+        },
+        "C3": {
+          "vies": 10,
+          "erro_absoluto": 20,
+          "qwk": 0.738
+        },
+        "C4": {
+          "vies": 5,
+          "erro_absoluto": 15,
+          "qwk": 0.538
+        },
+        "C5": {
+          "vies": 30,
+          "erro_absoluto": 40,
+          "qwk": 0.287
+        }
+      }
+    },
+    "B": {
+      "vies": 75,
+      "erro_absoluto": 145,
+      "qwk_medio": 0.419,
+      "por_competencia": {
+        "C1": {
+          "vies": 10,
+          "erro_absoluto": 10,
+          "qwk": 0.619
+        },
+        "C2": {
+          "vies": 15,
+          "erro_absoluto": 55,
+          "qwk": 0.382
+        },
+        "C3": {
+          "vies": 35,
+          "erro_absoluto": 45,
+          "qwk": 0.409
+        },
+        "C4": {
+          "vies": 5,
+          "erro_absoluto": 25,
+          "qwk": 0.412
+        },
+        "C5": {
+          "vies": 10,
+          "erro_absoluto": 60,
+          "qwk": 0.273
+        }
+      }
+    }
+  },
+  "resultados": [
+    {
+      "prontuario": "S01",
+      "sistema_total": 600,
+      "sistema_comp": [
+        120,
+        120,
+        120,
+        120,
+        120
+      ],
+      "final": [
+        100,
+        40,
+        60,
+        140,
+        40
+      ],
+      "A": [
+        120,
+        40,
+        80,
+        160,
+        40
+      ],
+      "B": [
+        80,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 380
+    },
+    {
+      "prontuario": "S02",
+      "sistema_total": 720,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        160,
+        160
+      ],
+      "final": [
+        140,
+        40,
+        60,
+        140,
+        40
+      ],
+      "A": [
+        160,
+        40,
+        80,
+        160,
+        40
+      ],
+      "B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 420
+    },
+    {
+      "prontuario": "S03",
+      "sistema_total": 560,
+      "sistema_comp": [
+        120,
+        120,
+        80,
+        120,
+        120
+      ],
+      "final": [
+        100,
+        40,
+        40,
+        100,
+        40
+      ],
+      "A": [
+        80,
+        40,
+        40,
+        80,
+        40
+      ],
+      "B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "humano_total": 320
+    },
+    {
+      "prontuario": "S04",
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "final": [
+        160,
+        200,
+        160,
+        180,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        160,
+        200,
+        160,
+        200,
+        200
+      ],
+      "humano_total": 880
+    },
+    {
+      "prontuario": "S05",
+      "sistema_total": 880,
+      "sistema_comp": [
+        160,
+        200,
+        160,
+        200,
+        160
+      ],
+      "final": [
+        180,
+        200,
+        140,
+        160,
+        200
+      ],
+      "A": [
+        200,
+        200,
+        160,
+        160,
+        200
+      ],
+      "B": [
+        160,
+        200,
+        120,
+        160,
+        200
+      ],
+      "humano_total": 880
+    },
+    {
+      "prontuario": "S06",
+      "sistema_total": 800,
+      "sistema_comp": [
+        160,
+        160,
+        160,
+        160,
+        160
+      ],
+      "final": [
+        140,
+        200,
+        140,
+        180,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        120,
+        200,
+        120,
+        200,
+        200
+      ],
+      "humano_total": 840
+    },
+    {
+      "prontuario": "S07",
+      "sistema_total": 760,
+      "sistema_comp": [
+        120,
+        160,
+        160,
+        160,
+        160
+      ],
+      "final": [
+        140,
+        200,
+        140,
+        140,
+        180
+      ],
+      "A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "B": [
+        120,
+        200,
+        120,
+        120,
+        200
+      ],
+      "humano_total": 800
+    },
+    {
+      "prontuario": "S08",
+      "sistema_total": 680,
+      "sistema_comp": [
+        120,
+        160,
+        120,
+        160,
+        120
+      ],
+      "final": [
+        120,
+        180,
+        160,
+        160,
+        140
+      ],
+      "A": [
+        120,
+        160,
+        160,
+        160,
+        120
+      ],
+      "B": [
+        120,
+        200,
+        160,
+        160,
+        160
+      ],
+      "humano_total": 760
+    }
+  ]
+}

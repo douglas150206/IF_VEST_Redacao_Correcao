@@ -327,3 +327,135 @@ problema.
 
 75 correções em três rodadas, cerca de US$ 5. Com cache de prompt ligado no
 bloco de sistema, 5.566 tokens por correção passaram a ser lidos do cache.
+
+## Experimento 4 — concordância no corpus do próprio cursinho
+
+**Pergunta:** o que o sistema faz nas redações que os alunos daqui realmente
+escreveram, corrigidas pelas corretoras que o cursinho usa?
+
+O Essay-BR deu a primeira régua, mas é de outro contexto. Este experimento usa
+o simulado do cursinho, e traz uma vantagem que nenhum corpus público tem:
+**duas avaliadoras independentes por redação**.
+
+```bash
+python concordancia_humana.py          # o teto da tarefa, sem gastar API
+python experimento_simulado.py         # sistema contra as corretoras
+python experimento_ancora_local.py     # ancoragem com redações daqui
+```
+
+### O teto: duas corretoras concordam em QWK 0,867
+
+| | QWK | Diferença absoluta média | Notas idênticas |
+|---|---|---|---|
+| C1 | 0,825 | 12,4 | 69% |
+| C2 | 0,916 | 10,1 | 79% |
+| C3 | 0,861 | 15,2 | 63% |
+| C4 | 0,852 | 13,0 | 69% |
+| C5 | 0,877 | 18,6 | 59% |
+| **média** | **0,867** | — | — |
+
+71 redações, correlação de 0,941 na nota total. Este número é o limite superior
+da tarefa: nenhum sistema automático pode concordar com "a nota certa" mais do
+que duas corretoras treinadas concordam entre si, porque onde elas discordam
+não existe nota certa única.
+
+**A tolerância informada precisa de correção.** A indicação prática era de até
+40 pontos de diferença por competência entre corretores. Na prática, apenas
+**1% das competências** (5 de 355) passa de 40 pontos; a diferença típica é de
+10 a 19. Os 40 pontos são teto generoso, não comportamento real.
+
+### Resultado 1 — o sistema não usa a parte de baixo da escala
+
+Oito redações do lote 1, com transcrição e nota:
+
+| Humano | Sistema | Diferença |
+|---|---|---|
+| 320 | 560 | **+240** |
+| 380 | 560 | **+180** |
+| 420 | 680 | **+260** |
+| 760 | 600 | −160 |
+| 800 | 800 | 0 |
+| 840 | 800 | −40 |
+| 880 | 760 | −120 |
+| 880 | 880 | 0 |
+
+QWK 0,368 contra a nota final. Nas redações boas o sistema acerta; nas fracas
+erra de 180 a 260 pontos, sempre para cima. **Ele nunca desceu de 560**,
+enquanto as corretoras desceram a 320 e deram competências valendo 40.
+
+Isso reproduz com precisão o que a equipe de testes relatou de forma
+qualitativa: redação de 320 recebendo de 520 a 600.
+
+**Correção a uma conclusão anterior deste arquivo.** O experimento 2 concluiu,
+a partir do Essay-BR, que o problema não era leniência e sim dispersão. No
+corpus real, para redações fracas, **é leniência**. O Essay-BR embaralhava o
+quadro: tinha dois casos de nota humana 0 sem motivo visível no texto e ruído
+de transcrição que puxava as redações boas para baixo, e os dois efeitos se
+cancelavam na média.
+
+### Resultado 2 — ancoragem com redações locais é a primeira coisa que funciona
+
+Âncoras tiradas do próprio simulado, duas de nota baixa e uma alta, com
+validação *leave-one-out*: cada redação é avaliada por um prompt montado a
+partir das outras sete.
+
+| | Produção | Âncora Essay-BR | **Âncora local** |
+|---|---|---|---|
+| QWK vs nota final | 0,368 | 0,464 | **0,560** |
+| QWK vs avaliadora A | 0,471 | 0,494 | **0,622** |
+| QWK vs avaliadora B | 0,457 | 0,419 | **0,609** |
+| Viés | +45 | +65 | **+32,5** |
+| Erro absoluto | 125 | 125 | **97,5** |
+| Menor nota atribuída | 560 | 560 | **480** |
+
+**O piso cedeu.** Duas das três redações fracas melhoraram 80 pontos; a de 420
+não se moveu. As redações boas não quebraram.
+
+Três diferenças em relação à ancoragem que falhou no experimento 2:
+
+1. As âncoras vêm do próprio cursinho, corrigidas pelas corretoras de
+   referência, e não de outro corpus com outras anotadoras.
+2. **Duas das três âncoras são de nota baixa**, com competências valendo 40. As
+   âncoras do Essay-BR cobriam a escala de forma equilibrada, mas o problema
+   estava concentrado embaixo.
+3. O bloco diz explicitamente que não existe piso implícito em 120.
+
+### Resultado 3 — ancoragem resolve a Competência I
+
+| C1 | Produção | Âncora Essay-BR | Âncora local |
+|---|---|---|---|
+| QWK | 0,333 | 1,000 | 1,000 |
+| Erro absoluto | 25,0 | 15,0 | 12,5 |
+
+Somado ao Essay-BR, onde C1 também foi a única competência a melhorar
+(0,381 → 0,450), são três medições independentes na mesma direção. É o achado
+mais robusto do conjunto, e é coerente: "poucos desvios" é o critério mais
+ambíguo da grade, e exemplo concreto substitui adjetivo melhor que definição.
+
+### Limitações
+
+- **n = 8.** QWK com oito pontos se move muito com uma redação. O valor 0,560
+  não é confiável; o que é confiável é o piso ter cedido, porque se verifica
+  caso a caso.
+- **Estimativa otimista.** Com apenas 8 redações, deixar uma de fora ainda
+  deixa as âncoras cobrindo quase todo o corpus. Em uso real as âncoras viriam
+  de um conjunto separado, e o ganho tende a ser menor.
+- **Uma das três redações fracas não melhorou.**
+- **Os textos motivadores do simulado não vieram**, então o detector de cópia
+  não rodou e o prompt não recebeu textos de apoio. Nenhuma das oito é cópia,
+  mas a entrada não é idêntica à de produção.
+- **O tema foi inferido** do conteúdo das redações. O enunciado oficial não
+  acompanhou o lote.
+- **A nota final é a média das duas avaliadoras**, então cai fora da escala de
+  40 em 40 (aparecem 100 e 60). Por isso o relatório compara também contra cada
+  avaliadora separadamente.
+- **Só o lote 1 foi transcrito**: 8 de 71 redações. As outras 63 têm nota e
+  estão como imagem nos lotes 2 a 6.
+
+### Encaminhamento
+
+A ancoragem local é a primeira mudança que merece ir para produção, mas precisa
+de validação com n maior antes. O gargalo deixou de ser calibração e passou a
+ser **transcrição**: com os lotes 2 a 6 em texto, dá para separar um conjunto de
+âncoras de um conjunto de teste de verdade. O módulo de OCR já integrado ao
+sistema do IFvest é o caminho natural para isso.
