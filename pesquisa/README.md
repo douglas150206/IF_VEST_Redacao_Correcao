@@ -452,10 +452,88 @@ ambíguo da grade, e exemplo concreto substitui adjetivo melhor que definição.
 - **Só o lote 1 foi transcrito**: 8 de 71 redações. As outras 63 têm nota e
   estão como imagem nos lotes 2 a 6.
 
+### Resultado 4 — correção por competência piora, e revela o padrão
+
+C4 e C5 estavam em QWK 0,000 — concordância nenhuma. A hipótese era que julgar
+cinco critérios numa chamada só divide a atenção, e que a Competência V, cujo
+nível a grade define *como* o número de elementos válidos da proposta, viraria
+aritmética se o modelo enumerasse ação, agente, modo, efeito e detalhamento um
+a um.
+
+Cada competência recebeu uma chamada própria, só com seus descritores e um
+roteiro de exame a cumprir antes de pontuar.
+
+```bash
+python experimento_por_competencia.py
+```
+
+| Competência | QWK chamada única | QWK por competência |
+|---|---|---|
+| C1 | 0,333 | 0,333 |
+| C2 | 0,386 | 0,337 |
+| C3 | **0,750** | **0,286** |
+| C4 | 0,000 | 0,000 |
+| C5 | 0,370 | **0,171** |
+
+Viés dobrou, de +45 para +100. O piso subiu de 560 para 600. A C5, onde estava
+a aposta, piorou; a C3, melhor competência do sistema, desabou.
+
+Mas a divisão por redação é instrutiva:
+
+| Nota humana | Sistema |
+|---|---|
+| 880 | **880** |
+| 880 | **880** |
+| 840 | **840** |
+| 800 | **800** |
+| 760 | 680 |
+| 420 | **760** |
+| 380 | **640** |
+| 320 | **600** |
+
+Quatro acertos exatos nas redações fortes, o que nunca havia ocorrido. E as
+três fracas muito piores.
+
+### O padrão que atravessa os quatro experimentos
+
+| Intervenção | Efeito nas redações fracas |
+|---|---|
+| Grade específica do INEP no prompt | piorou |
+| Ancoragem com redações do Essay-BR | piorou |
+| Correção por competência com roteiro | piorou muito |
+| **Ancoragem com redações fracas do próprio cursinho** | **melhorou** |
+
+Toda intervenção que faz o modelo **analisar mais** empurra a redação fraca
+para cima. Examinando a coesão de perto, ele encontra alguns conectivos e
+atribui nível 3; percorrendo a proposta elemento a elemento, encontra ação e
+agente e atribui nível 2. Critério mais detalhado fornece ao modelo mais
+motivos para pontuar.
+
+A única intervenção que reduziu a nota das redações fracas foi mostrar
+**redações fracas com nota baixa**. Comparação, não análise.
+
+Isso contraria a intuição corrente de que um corretor automático melhora quando
+se explicita o critério. Na parte de baixo da escala, a relação se inverte — e
+é a parte da escala onde a devolutiva mais importa, porque é o estudante com
+dificuldade que depende dela para saber onde está.
+
 ### Encaminhamento
 
-A ancoragem local é a primeira mudança que merece ir para produção, mas precisa
-de validação com n maior antes. O gargalo deixou de ser calibração e passou a
-ser **transcrição**: com os lotes 2 a 6 em texto, dá para separar um conjunto de
-âncoras de um conjunto de teste de verdade. O módulo de OCR já integrado ao
-sistema do IFvest é o caminho natural para isso.
+Quatro variações de prompt foram testadas e o resultado é consistente: três
+pioram, uma melhora. Mais variações sem dados novos é chute caro.
+
+A ancoragem local é a resposta, e o que ela precisa é **corpus, não ideia
+nova**. Hoje há 11 redações transcritas de 71: o lote 1 inteiro (8) e três do
+lote 3. Com os lotes restantes em texto, dá para separar um conjunto de âncoras
+de um conjunto de teste e medir com n que sustente conclusão.
+
+O gargalo do projeto deixou de ser calibração e passou a ser **transcrição**. O
+módulo de OCR já integrado ao sistema do IFvest é o caminho natural.
+
+Dois registros para retomar depois:
+
+- Os quatro acertos exatos indicam que correção por competência serve bem para
+  redação forte. Um desenho híbrido — triagem holística e depois exame por
+  competência apenas acima de certa faixa — não foi testado.
+- O erro é previsível por faixa de nota. Isso sustenta a decisão de produto de
+  exibir faixa em vez de nota única, que é decisão pedagógica e não técnica.

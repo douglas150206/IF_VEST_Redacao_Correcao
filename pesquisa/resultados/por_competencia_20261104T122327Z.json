@@ -1,0 +1,306 @@
+{
+  "gerado_em": "20261104T122327Z",
+  "metodo": "uma chamada por competência, com roteiro de exame",
+  "parametros": {
+    "modelo": "claude-opus-5",
+    "competencias": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "max_tokens": 4000,
+    "esforco": "medium"
+  },
+  "relatorio": {
+    "C1": {
+      "qwk": 0.333,
+      "erro_absoluto": 30,
+      "vies": -25,
+      "n": 8
+    },
+    "C2": {
+      "qwk": 0.337,
+      "erro_absoluto": 47.5,
+      "vies": 47.5,
+      "n": 8
+    },
+    "C3": {
+      "qwk": 0.286,
+      "erro_absoluto": 42.5,
+      "vies": 32.5,
+      "n": 8
+    },
+    "C4": {
+      "qwk": 0.0,
+      "erro_absoluto": 20,
+      "vies": -5,
+      "n": 8
+    },
+    "C5": {
+      "qwk": 0.171,
+      "erro_absoluto": 55,
+      "vies": 50,
+      "n": 8
+    }
+  },
+  "resultados": [
+    {
+      "prontuario": "S01",
+      "humano": [
+        100,
+        40,
+        60,
+        140,
+        40
+      ],
+      "humano_A": [
+        120,
+        40,
+        80,
+        160,
+        40
+      ],
+      "humano_B": [
+        80,
+        40,
+        40,
+        120,
+        40
+      ],
+      "sistema": {
+        "C1": 80,
+        "C2": 160,
+        "C3": 120,
+        "C4": 120,
+        "C5": 160
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S02",
+      "humano": [
+        140,
+        40,
+        60,
+        140,
+        40
+      ],
+      "humano_A": [
+        160,
+        40,
+        80,
+        160,
+        40
+      ],
+      "humano_B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "sistema": {
+        "C1": 120,
+        "C2": 160,
+        "C3": 160,
+        "C4": 120,
+        "C5": 200
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S03",
+      "humano": [
+        100,
+        40,
+        40,
+        100,
+        40
+      ],
+      "humano_A": [
+        80,
+        40,
+        40,
+        80,
+        40
+      ],
+      "humano_B": [
+        120,
+        40,
+        40,
+        120,
+        40
+      ],
+      "sistema": {
+        "C1": 80,
+        "C2": 160,
+        "C3": 120,
+        "C4": 120,
+        "C5": 120
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S04",
+      "humano": [
+        160,
+        200,
+        160,
+        180,
+        180
+      ],
+      "humano_A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "humano_B": [
+        160,
+        200,
+        160,
+        200,
+        200
+      ],
+      "sistema": {
+        "C1": 120,
+        "C2": 200,
+        "C3": 160,
+        "C4": 200,
+        "C5": 200
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S05",
+      "humano": [
+        180,
+        200,
+        140,
+        160,
+        200
+      ],
+      "humano_A": [
+        200,
+        200,
+        160,
+        160,
+        200
+      ],
+      "humano_B": [
+        160,
+        200,
+        120,
+        160,
+        200
+      ],
+      "sistema": {
+        "C1": 160,
+        "C2": 200,
+        "C3": 160,
+        "C4": 160,
+        "C5": 200
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S06",
+      "humano": [
+        140,
+        200,
+        140,
+        180,
+        180
+      ],
+      "humano_A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "humano_B": [
+        120,
+        200,
+        120,
+        200,
+        200
+      ],
+      "sistema": {
+        "C1": 160,
+        "C2": 200,
+        "C3": 160,
+        "C4": 160,
+        "C5": 160
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S07",
+      "humano": [
+        140,
+        200,
+        140,
+        140,
+        180
+      ],
+      "humano_A": [
+        160,
+        200,
+        160,
+        160,
+        160
+      ],
+      "humano_B": [
+        120,
+        200,
+        120,
+        120,
+        200
+      ],
+      "sistema": {
+        "C1": 80,
+        "C2": 200,
+        "C3": 160,
+        "C4": 160,
+        "C5": 200
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    },
+    {
+      "prontuario": "S08",
+      "humano": [
+        120,
+        180,
+        160,
+        160,
+        140
+      ],
+      "humano_A": [
+        120,
+        160,
+        160,
+        160,
+        120
+      ],
+      "humano_B": [
+        120,
+        200,
+        160,
+        160,
+        160
+      ],
+      "sistema": {
+        "C1": 80,
+        "C2": 200,
+        "C3": 120,
+        "C4": 120,
+        "C5": 160
+      },
+      "exame": "[redigido: contém trecho da redação do aluno; a versão completa está apenas na cópia local, fora do git]"
+    }
+  ]
+}
