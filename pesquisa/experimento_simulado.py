@@ -72,19 +72,41 @@ NIVEIS = [0, 40, 80, 120, 160, 200]
 # alimentar. O enunciado oficial do simulado não veio junto; se vier, trocar.
 TEMA = "Os desafios para o enfrentamento da insegurança alimentar no Brasil"
 
+# O lote 1 veio como "REDAÇÃO 1 — PRONTUÁRIO: X"; o lote 3, transcrito depois,
+# como "REDAÇÃO — PRONTUÁRIO: X   (lote 3, página 1)   nota 560". O número é
+# opcional e `[^\n]*` consome a cauda, de modo que o corpo comece sempre na
+# linha seguinte ao cabeçalho, nos dois formatos.
 _CABECALHO = re.compile(
-    r"REDAÇÃO\s+(\d+)\s+—\s+PRONTUÁRIO:\s*([A-Z]{2}\s*\d+)", re.IGNORECASE
+    r"REDAÇÃO\s*\d*\s*—\s*PRONTUÁRIO:\s*([A-Z]{2}\s*\d+)[^\n]*", re.IGNORECASE
 )
+
+# Marca de folha em branco: o bloco não tem texto do aluno, só a explicação de
+# quem transcreveu.
+_EM_BRANCO = "[FOLHA EM BRANCO]"
+
+# Notas editoriais entre colchetes não são texto do aluno.
+_NOTA_EDITORIAL = re.compile(r"\[[^\]]*\]")
 
 
 def carregar_transcricoes() -> dict[str, str]:
-    texto = (CORPUS / "transcricao_lote1.txt").read_text(encoding="utf-8")
-    marcas = list(_CABECALHO.finditer(texto))
-    saida = {}
-    for i, m in enumerate(marcas):
-        fim = marcas[i + 1].start() if i + 1 < len(marcas) else len(texto)
-        corpo = texto[m.end():fim].replace("=" * 70, "").strip()
-        saida[m.group(2).replace(" ", "").upper()] = corpo
+    """Lê todos os arquivos de transcrição disponíveis no corpus.
+
+    A folha em branco fica de fora: não há o que corrigir, e deixá-la entrar
+    faria o sistema avaliar o comentário do transcritor em vez da redação.
+    """
+    saida: dict[str, str] = {}
+    for arquivo in sorted(CORPUS.glob("transcricao_lote*.txt")):
+        texto = arquivo.read_text(encoding="utf-8")
+        marcas = list(_CABECALHO.finditer(texto))
+        for i, m in enumerate(marcas):
+            fim = marcas[i + 1].start() if i + 1 < len(marcas) else len(texto)
+            bruto = texto[m.end():fim]
+            if _EM_BRANCO in bruto:
+                continue
+            corpo = _NOTA_EDITORIAL.sub("", bruto.replace("=" * 70, "")).strip()
+            if len(corpo.split()) < 30:
+                continue
+            saida[m.group(1).replace(" ", "").upper()] = corpo
     return saida
 
 

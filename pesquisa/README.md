@@ -517,18 +517,11 @@ se explicita o critério. Na parte de baixo da escala, a relação se inverte �
 é a parte da escala onde a devolutiva mais importa, porque é o estudante com
 dificuldade que depende dela para saber onde está.
 
-### Encaminhamento
+### Encaminhamento parcial
 
-Quatro variações de prompt foram testadas e o resultado é consistente: três
-pioram, uma melhora. Mais variações sem dados novos é chute caro.
-
-A ancoragem local é a resposta, e o que ela precisa é **corpus, não ideia
-nova**. Hoje há 11 redações transcritas de 71: o lote 1 inteiro (8) e três do
-lote 3. Com os lotes restantes em texto, dá para separar um conjunto de âncoras
-de um conjunto de teste e medir com n que sustente conclusão.
-
-O gargalo do projeto deixou de ser calibração e passou a ser **transcrição**. O
-módulo de OCR já integrado ao sistema do IFvest é o caminho natural.
+Quatro variações de prompt testadas, três pioram e uma melhora. O que a
+ancoragem precisava não era ideia nova, era corpus: um conjunto de âncoras
+separado de um conjunto de teste, que 8 redações não permitiam montar.
 
 Dois registros para retomar depois:
 
@@ -537,3 +530,81 @@ Dois registros para retomar depois:
   competência apenas acima de certa faixa — não foi testado.
 - O erro é previsível por faixa de nota. Isso sustenta a decisão de produto de
   exibir faixa em vez de nota única, que é decisão pedagógica e não técnica.
+
+## Experimento 5 — ancoragem local validada
+
+Com o lote 3 transcrito o corpus passou de 8 para 17 redações, cobrindo a
+escala de 320 a 940 — antes não havia nenhuma entre 420 e 760, justamente o
+meio onde a ancoragem precisa de referência.
+
+Isso permitiu o desenho que faltava: **cinco âncoras fixas, nunca avaliadas, e
+doze redações de teste que não aparecem no prompt que as corrige**. Os dois
+braços rodam sobre as mesmas doze, na mesma execução.
+
+```bash
+python experimento_ancora_validado.py
+```
+
+Âncoras: 380, 460, 620, 800 e 900, duas delas na faixa baixa. Todas saem do
+grupo de transcrição confiável — as três redações de letra difícil ficaram
+fora das âncoras, porque âncora com erro de leitura ensina a régua errada; duas
+delas seguem no teste, onde o erro é apenas ruído.
+
+### Resultado — QWK 0,514 para 0,703
+
+| | QWK final | QWK vs A | QWK vs B | Viés | Erro absoluto | Menor nota |
+|---|---|---|---|---|---|---|
+| Prompt de produção | 0,514 | 0,441 | 0,429 | +10,0 | 106,7 | 480 |
+| **Ancorado** | **0,703** | **0,683** | **0,607** | **−11,7** | **95,0** | **400** |
+
+O valor de 0,703 entra na faixa do estado da arte publicado (0,60 a 0,73), que
+é obtida com modelos ajustados; aqui é só prompt. O viés praticamente zerou e
+mudou de sinal, de levemente generoso para levemente conservador — para uso com
+estudante, errar para baixo é o lado menos danoso.
+
+| Nota humana | Produção | Ancorado |
+|---|---|---|
+| 320 | 560 (+240) | **400 (+80)** |
+| 420 | 720 (+300) | 680 (+260) |
+| 500 | 480 (−20) | **500 (exato)** |
+| 560 | 680 (+120) | **620 (+60)** |
+| 700 | 600 (−100) | **680 (−20)** |
+| 760 | 800 (+40) | 860 (+100) |
+| 760 | 600 (−160) | 600 (−160) |
+| 800 | 760 (−40) | 720 (−80) |
+| 840 | 800 (−40) | 740 (−100) |
+| 880 | 760 (−120) | 760 (−120) |
+| 880 | 880 (0) | 820 (−60) |
+| 940 | 840 (−100) | 840 (−100) |
+
+Nas três redações fracas, o erro absoluto caiu de **186,7 para 113,3** — 39% a
+menos, exatamente no caso que motivou a investigação.
+
+O padrão: as redações de 320 a 700 melhoraram todas, sem exceção; as fortes
+pioraram um pouco. O sistema ficou mais conservador em toda a escala, e como o
+erro nas fracas era grande e nas fortes era pequeno, o saldo é positivo. A
+ordenação melhorou, que é o que o QWK mede.
+
+### Limitações
+
+- **n = 12 no teste, com apenas três redações fracas.** O intervalo em torno de
+  0,703 é largo. O que sustenta a conclusão mais do que o valor agregado é a
+  **consistência do padrão**: as cinco redações entre 320 e 700 melhoraram
+  todas, e nenhuma piorou.
+- **A linha de base deste experimento é 0,514, não os 0,368 do experimento 4.**
+  São conjuntos de teste diferentes; o prompt de produção não mudou.
+- **Uma redação resistiu.** A de nota 420 continua recebendo 680, como no teste
+  anterior.
+- **O texto chegou por transcrição cuidadosa.** Em produção no IFvest ele vem
+  de OCR de manuscrito, e o ruído de reconhecimento pode alterar o resultado —
+  o experimento 2 mostrou que ruído de digitalização penaliza a Competência I.
+
+### Condições para levar a produção
+
+Esta é a primeira mudança do projeto que o resultado recomenda aplicar, com
+duas condições que não são técnicas:
+
+1. **Medir antes no IFvest**, onde a entrada vem de OCR.
+2. **Combinar as âncoras com a Profa. Daniela e a Profa. Aline.** São redações
+   de alunos reais entrando no prompt de um sistema que outros alunos usam.
+   Decisão pedagógica e de uso de dados, não de engenharia.
