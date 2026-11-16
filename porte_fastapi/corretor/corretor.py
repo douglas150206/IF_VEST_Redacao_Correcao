@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import anthropic
 
+from . import ancoragem
 from .config import config
 from .esquemas import CorrecaoIA
 from .plagio import ResultadoPlagio
@@ -44,6 +45,22 @@ as próprias palavras.
 
 O feedback de cada competência deve ter de 2 a 3 frases e apontar evidências \
 concretas do texto do aluno, não observações genéricas."""
+
+
+def _prompt_sistema() -> str:
+    """Prompt de sistema, com as redações de referência quando configuradas.
+
+    Montado a cada chamada em vez de uma vez na importação: assim trocar o
+    arquivo de âncoras passa a valer sem reiniciar o servidor, e um arquivo
+    inválido falha na requisição, com mensagem clara, em vez de derrubar a
+    aplicação inteira na subida.
+    """
+    try:
+        return ancoragem.aplicar(PROMPT_SISTEMA, config.ancoras)
+    except ancoragem.ErroDeAncoragem as erro:
+        raise ErroDeCorrecao(
+            f"Configuração de ancoragem inválida: {erro}", status=500
+        ) from erro
 
 
 class ErroDeCorrecao(Exception):
@@ -95,7 +112,15 @@ def corrigir_redacao(
         resposta = cliente.messages.parse(
             model=config.modelo,
             max_tokens=config.max_tokens,
-            system=PROMPT_SISTEMA,
+            # O bloco de sistema é idêntico em toda correção; marcá-lo como
+            # cacheável faz a segunda chamada em diante pagar leitura de cache
+            # em vez do prompt inteiro. Importa sobretudo com ancoragem, que
+            # acrescenta alguns milhares de tokens fixos.
+            system=[{
+                "type": "text",
+                "text": _prompt_sistema(),
+                "cache_control": {"type": "ephemeral"},
+            }],
             messages=[
                 {
                     "role": "user",

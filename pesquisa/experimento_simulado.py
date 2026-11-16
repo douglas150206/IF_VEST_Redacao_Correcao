@@ -88,14 +88,21 @@ _EM_BRANCO = "[FOLHA EM BRANCO]"
 _NOTA_EDITORIAL = re.compile(r"\[[^\]]*\]")
 
 
-def carregar_transcricoes() -> dict[str, str]:
-    """Lê todos os arquivos de transcrição disponíveis no corpus.
+def carregar_transcricoes(fonte: str = "manual") -> dict[str, str]:
+    """Lê as transcrições do corpus.
+
+    `fonte` escolhe entre a transcrição feita à mão (`manual`, os arquivos por
+    lote) e a produzida por modelo de visão sem revisão (`automatica`), que é
+    a forma como o texto chega em produção. As duas existem para que o mesmo
+    experimento possa ser repetido sobre a entrada real.
 
     A folha em branco fica de fora: não há o que corrigir, e deixá-la entrar
     faria o sistema avaliar o comentário do transcritor em vez da redação.
     """
+    padrao = {"manual": "transcricao_lote*.txt",
+              "automatica": "transcricao_automatica.txt"}[fonte]
     saida: dict[str, str] = {}
-    for arquivo in sorted(CORPUS.glob("transcricao_lote*.txt")):
+    for arquivo in sorted(CORPUS.glob(padrao)):
         texto = arquivo.read_text(encoding="utf-8")
         marcas = list(_CABECALHO.finditer(texto))
         for i, m in enumerate(marcas):

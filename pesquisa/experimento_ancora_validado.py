@@ -147,10 +147,12 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--modelo", default=MODELO_PADRAO)
+    ap.add_argument("--fonte", choices=("manual", "automatica"), default="manual",
+                    help="qual transcrição usar; 'automatica' é a entrada de produção")
     ap.add_argument("--listar", action="store_true")
     args = ap.parse_args()
 
-    transcricoes = carregar_transcricoes()
+    transcricoes = carregar_transcricoes(args.fonte)
     notas = carregar_notas()
     casadas = sorted(set(transcricoes) & set(notas))
 
@@ -165,7 +167,7 @@ def main() -> int:
                for p in selecionadas]
     teste = [p for p in casadas if p not in selecionadas]
 
-    print(f"corpus: {len(casadas)} redações")
+    print(f"corpus: {len(casadas)} redações   transcrição: {args.fonte}")
     print(f"\nâncoras ({len(ancoras)}, nunca avaliadas):")
     for a in sorted(ancoras, key=lambda x: x["total"]):
         print(f"  {a['prontuario']}  {a['total']:>4}  {a['final']}")
@@ -218,22 +220,32 @@ def main() -> int:
             continue
         relatorio[nome] = {ref: comparar(res, ref) for ref in ("final", "A", "B")}
 
-    print(f"\n{'':<12}{'QWK final':>11}{'QWK A':>9}{'QWK B':>9}"
+    # Com poucos pares o QWK fica indefinido (variância zero numa das escalas).
+    # Formatar None quebra, então o valor ausente vira traço.
+    def num(v, casas=3):
+        return "—" if v is None else f"{v:.{casas}f}"
+
+    print(f"\n{'':<12}{'n':>4}{'QWK final':>11}{'QWK A':>9}{'QWK B':>9}"
           f"{'viés':>9}{'erro abs':>11}{'mín':>7}")
-    print("-" * 68)
+    print("-" * 72)
     for nome, res in saidas.items():
         if not res:
             continue
         r = relatorio[nome]
         menor = min(x["sistema_total"] for x in res)
-        print(f"{nome:<12}{r['final']['qwk_medio']:>11}{r['A']['qwk_medio']:>9}"
-              f"{r['B']['qwk_medio']:>9}{r['final']['vies']:>+9.1f}"
+        print(f"{nome:<12}{len(res):>4}{num(r['final']['qwk_medio']):>11}"
+              f"{num(r['A']['qwk_medio']):>9}{num(r['B']['qwk_medio']):>9}"
+              f"{r['final']['vies']:>+9.1f}"
               f"{r['final']['erro_absoluto']:>11.1f}{menor:>7}")
+
+    if any(len(res) < len(teste) for res in saidas.values()):
+        print("\nAVISO: a rodada não completou — os números acima são parciais")
+        print("e não devem ser comparados com rodadas completas.")
 
     print("\nreferências: corretoras entre si QWK 0,867 · "
           "estado da arte publicado 0,60 a 0,73")
 
-    if len(saidas["atual"]) == len(saidas["ancorado"]):
+    if saidas["atual"] and len(saidas["atual"]) == len(saidas["ancorado"]):
         print(f"\n{'prontuário':<12}{'humano':>8}{'atual':>8}{'ancorado':>10}"
               f"{'Δ atual':>9}{'Δ anc.':>8}")
         print("-" * 55)
@@ -256,14 +268,17 @@ def main() -> int:
     saida = AQUI / "resultados"
     saida.mkdir(exist_ok=True)
     carimbo = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    arquivo = saida / f"simulado_ancora_validada_{carimbo}.json"
+    arquivo = saida / f"simulado_ancora_validada_{args.fonte}_{carimbo}.json"
     arquivo.write_text(json.dumps({
         "gerado_em": carimbo,
+        "fonte_do_texto": args.fonte,
         "metodo": "ancoragem local com conjunto de teste disjunto das âncoras",
         "ancoras": [{"prontuario": a["prontuario"], "total": a["total"],
                      "final": a["final"]} for a in ancoras],
         "parametros": {"modelo": args.modelo, "max_tokens": MAX_TOKENS,
                        "esforco": ESFORCO},
+        "completo": all(len(res) == len(teste) for res in saidas.values()),
+        "n_teste": len(teste),
         "relatorio": relatorio,
         "resultados": saidas,
     }, ensure_ascii=False, indent=2), encoding="utf-8")

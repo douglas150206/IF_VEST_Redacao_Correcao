@@ -61,5 +61,20 @@ class Config:
     # Tamanho mínimo da redação aceita, em caracteres.
     min_caracteres_redacao: int = 100
 
+    # Caminho do arquivo JSON com as redações de referência que calibram a
+    # correção. Sem esta variável o sistema funciona como antes, sem
+    # ancoragem — e com a leniência medida na faixa baixa (QWK 0,514 contra
+    # as corretoras, erro de até 260 pontos em redação fraca).
+    #
+    # Com o arquivo, a medição deu QWK 0,703 e erro 39% menor nas fracas.
+    # O formato e os critérios de escolha estão em `ancoragem.py`.
+    #
+    # O arquivo fica fora do repositório porque contém redações com nota
+    # atribuída por avaliador, cujo uso precisa de autorização de quem
+    # coordena o projeto.
+    ancoras: Path | None = (
+        Path(os.environ["CORRETOR_ANCORAS"]) if os.getenv("CORRETOR_ANCORAS") else None
+    )
+
 
 config = Config()
